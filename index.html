@@ -61,6 +61,119 @@
   <article class="post">
       
         
+          <h1><a href="/2025/02/24/js-1/">js_学习笔记1</a></h1>
+        
+      
+      <div class="post-content ">
+        
+  
+
+
+
+
+        <p>type: Post<br>status: Published<br>date: 2023&#x2F;05&#x2F;16<br>summary: javascript学习<br>tags: JS, 学习, 开发<br>category: 学习思考<br>icon: js_study</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>JavaScript 能够改变 HTML 内容</li>
+<li>JavaScript 能够改变 HTML 属性</li>
+<li>JavaScript 能够隐藏 HTML 元素</li>
+<li>JavaScript 能够显示 HTML 元素</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><code>&lt;script&gt;&lt;/script&gt;</code></p>
+<p>使用在<code>&lt;body&gt;</code>或<code>&lt;head&gt;</code>中</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><h3 id="JavaScript-显示方案"><a href="#JavaScript-显示方案" class="headerlink" title="JavaScript 显示方案"></a>JavaScript 显示方案</h3><p>JavaScript 能够以不同方式“显示”数据：</p>
+<ul>
+<li>使用 <code>window.alert()</code> 写入警告框</li>
+<li>使用 <code>document.write()</code> 写入 HTML 输出</li>
+<li>使用 <code>innerHTML</code> 写入 HTML 元素</li>
+<li>使用 <code>console.log()</code> 写入浏览器控制台</li>
+</ul>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><p><strong>在 HTML 中，JavaScript 语句是由 web 浏览器“执行”的“指令”</strong></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="JavaScript-值"><a href="#JavaScript-值" class="headerlink" title="JavaScript 值"></a>JavaScript 值</h3><p>JavaScript 语句定义两种类型的值：混合值和变量值。</p>
+<p>混合值被称为<em><strong>字面量（literal）</strong></em>。变量值被称为<em><strong>变量</strong></em>。</p>
+<h3 id="JavaScript-字面量"><a href="#JavaScript-字面量" class="headerlink" title="JavaScript 字面量"></a>JavaScript 字面量</h3><p>书写混合值最重要的规则是：</p>
+<p>写<em>数值</em>有无小数点均可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">15.90</span><br><span class="line"></span><br><span class="line">10011</span><br></pre></td></tr></table></figure>
+
+<p><em><strong>字符串</strong></em>是文本，由双引号或单引号包围</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Bill Gates&quot;&#x27;Bill Gates&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-关键词"><a href="#JavaScript-关键词" class="headerlink" title="JavaScript 关键词"></a>JavaScript 关键词</h3><p>JavaScript <em>关键词</em>用于标识被执行的动作。</p>
+<p><code>var</code> 关键词告知浏览器创建新的变量：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">7</span> + <span class="number">8</span>;</span><br><span class="line"><span class="keyword">var</span> y = x * <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-标识符"><a href="#JavaScript-标识符" class="headerlink" title="JavaScript 标识符"></a>JavaScript 标识符</h3><p>所有 JavaScript <em>变量</em>必须以<em>唯一的名称</em>的<em>标识</em>。</p>
+<p>这些唯一的名称称为<em>标识符</em>。</p>
+<p>标识符可以是短名称（比如 x 和 y），或者更具描述性的名称（age、sum、totalVolume）。</p>
+<p>构造变量名称（唯一标识符）的<strong>通用规则</strong>是：</p>
+<ul>
+<li>名称可包含字母、数字、下划线和美元符号</li>
+<li>名称必须以字母开头</li>
+<li>名称也可以 <code>$</code> 和 <code>_</code> 开头（但是在本教程中我们不会这么做）</li>
+<li>名称对大小写敏感（y 和 Y 是不同的变量）</li>
+<li>保留字（比如 JavaScript 的关键词）无法用作变量名称</li>
+</ul>
+<p>**提示：**JavaScript 标识符对大小写敏感。</p>
+<h3 id="JavaScript-对大小写敏感"><a href="#JavaScript-对大小写敏感" class="headerlink" title="JavaScript 对大小写敏感"></a>JavaScript 对大小写敏感</h3><p>所有 JavaScript 标识符<em>对大小写敏感</em>。</p>
+<p>变量 <code>lastName</code> 和 <code>lastname</code>，是两个不同的变量。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lastName = <span class="string">&quot;Gates&quot;</span>;lastname = <span class="string">&quot;Jobs&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-字符集"><a href="#JavaScript-字符集" class="headerlink" title="JavaScript 字符集"></a>JavaScript 字符集</h3><p>JavaScript 使用 <em>Unicode</em> 字符集。</p>
+<p>Unicode 覆盖世界上几乎所有的字符、标点和符号。</p>
+<p>如需了解详情，请访问我们完整的 <a target="_blank" rel="noopener" href="https://www.w3school.com.cn/tags/html_ref_utf8.asp">Unicode 参考手册</a>。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="声明（创建）-JavaScript-变量"><a href="#声明（创建）-JavaScript-变量" class="headerlink" title="声明（创建） JavaScript 变量"></a>声明（创建） JavaScript 变量</h3><p>在 JavaScript 中创建变量被称为“声明”变量。</p>
+<p>您可以通过 <code>var</code> 关键词来声明 JavaScript 变量：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> carName;</span><br></pre></td></tr></table></figure>
+
+<p>声明之后，变量是没有值的。（技术上，它的值是 <code>undefined</code>。）</p>
+<h2 id="JavaScript-Let"><a href="#JavaScript-Let" class="headerlink" title="JavaScript Let"></a>JavaScript Let</h2><h3 id="ECMAScript-2015"><a href="#ECMAScript-2015" class="headerlink" title="ECMAScript 2015"></a>ECMAScript 2015</h3><p>ES2015 引入了两个重要的 JavaScript 新关键词：<code>let</code> 和 <code>const</code>。</p>
+<p>这两个关键字在 JavaScript 中提供了块作用域（<em>Block Scope</em>）变量（和常量）。</p>
+<p>在 ES2015 之前，JavaScript 只有两种类型的作用域：<em>全局作用域</em>和<em>函数作用域</em>。</p>
+<blockquote>
+<p>作用域</p>
+<ul>
+<li>全局作用域</li>
+<li>函数作用域</li>
+<li>块作用域</li>
+</ul>
+</blockquote>
+<h3 id="JavaScript-块作用域"><a href="#JavaScript-块作用域" class="headerlink" title="JavaScript 块作用域"></a>JavaScript 块作用域</h3><p>通过 <code>var</code> 关键词声明的变量没有块<em>作用域</em>。</p>
+<p>在块 <em>{}</em> 内声明的变量可以从块之外进行访问。</p>
+<p><strong>实例</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;  <span class="keyword">var</span> x = <span class="number">10</span>;&#125;<span class="comment">// 此处可以使用 x</span></span><br></pre></td></tr></table></figure>
+
+<p>在 ES2015 之前，JavaScript 是没有块作用域的。</p>
+<p>可以使用 <code>let</code> 关键词声明拥有块作用域的变量。</p>
+<p>在块 <em>{}</em> 内声明的变量无法从块外访问：</p>
+<p><strong>实例</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 此处不可以使用 x</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用 <code>let</code> 关键字重新声明变量可以解决重新声明变量导致的覆盖。</strong></p>
+<p><strong>在块中重新声明变量不会重新声明块外的变量：</strong></p>
+<h3 id="循环作用域"><a href="#循环作用域" class="headerlink" title="循环作用域"></a>循环作用域</h3><p>在循环中使用 <code>var</code>：</p>
+<p><strong>实例</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">7</span>;<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;  <span class="comment">// 一些语句&#125;// 此处，i 为 10</span></span><br></pre></td></tr></table></figure>
+
+<p>在循环中使用 <code>let</code>：</p>
+<p><strong>实例</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">7</span>;<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;  <span class="comment">// 一些语句&#125;// 此处 i 为 7</span></span><br></pre></td></tr></table></figure>
+
+<p>在第一个例子中，在循环中使用的变量使用 <code>var</code> 重新声明了循环之外的变量。</p>
+<p>在第二个例子中，在循环中使用的变量使用 <code>let</code> 并没有重新声明循环外的变量。</p>
+<p>如果在循环中用 <code>let</code> 声明了变量 i，那么只有在循环内，变量 i 才是可见的。</p>
+<h2 id="JavaScript-const"><a href="#JavaScript-const" class="headerlink" title="JavaScript const"></a>JavaScript const</h2><p>通过 <code>const</code> 定义的变量与 <code>let</code> 变量类似，但不能重新赋值：</p>
+<blockquote>
+<p>不是真正的常数</p>
+<p>关键字 <code>const</code> 有一定的误导性。</p>
+<p>它没有定义常量值。它定义了对值的常量引用。</p>
+<p>因此，我们不能更改常量原始值，但我们可以更改常量对象的属性。</p>
+</blockquote>
+
+      </div>
+  </article>
+
+  <article class="post">
+      
+        
           <h1><a href="/2025/02/24/java-1/">java_1</a></h1>
         
       
