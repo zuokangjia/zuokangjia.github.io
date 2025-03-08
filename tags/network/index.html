@@ -70,50 +70,55 @@
   </li>
 </ul>
     <div class="post-content">
-      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><ul>
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p>数据链路层的功能概述：数据链路层在物理层提供服务的基础上向网络层提供服务，其最基本的服务是将源自网络层来的数据可靠地传输到相邻结点的目标网络层。<br>其主要作用是加强物理层传输原始比特流的功能，将物理层提供的可能出错的物理连接改造成为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
+</blockquote>
+<h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><ul>
 <li>主机、路由器、交换机、网桥是<strong>节点</strong>（nodes）</li>
-<li>连接相邻节点的的通信信道是<strong>链路</strong>（links）</li>
-<li>数据单元（PDU）:<strong>帧</strong>（frame）</li>
+<li>连接相邻节点的的通信信道是<strong>链路</strong>（links）<ul>
+<li>又可分为<strong>物理链路</strong>和<strong>数据链路</strong></li>
+<li>物理链路指的是实际的通信链路，如有线的双绞线、光线，无线的微波等。、</li>
+<li>数据链路指的是网络中节点之间的<strong>逻辑通道</strong>，链路上附加的软硬件实现控制传输协议。</li>
 </ul>
-<h2 id="链路层提供的服务"><a href="#链路层提供的服务" class="headerlink" title="链路层提供的服务"></a>链路层提供的服务</h2><pre><code>  1. 数据成帧，帧封装、解封
-  2. 流量控制
-  3. 差错控制：检测和纠正
-  4. 介质接入控制
-</code></pre>
-<h3 id="成帧"><a href="#成帧" class="headerlink" title="成帧"></a>成帧</h3><p><strong>帧：帧头+网络层数据报+帧尾</strong></p>
+</li>
+<li>数据单元（PDU）:<strong>帧</strong>（frame）、</li>
+</ul>
+<h2 id="链路层提供的服务"><a href="#链路层提供的服务" class="headerlink" title="链路层提供的服务"></a>链路层提供的服务</h2><p><strong>三个基本问题</strong>：</p>
 <ul>
-<li>接收：识别帧头帧尾用于识别接收帧数据的开始和结束。</li>
-<li>发送：在发送的数据前后加上帧头和帧尾</li>
+<li>封装成帧</li>
+<li>差错控制</li>
+<li>透明传输<br>这几个基本原则在不同的链路层协议中是共通的，但在不同的协议中会有不同的细节。</li>
 </ul>
+<p>      1. 数据成帧，帧封装、解封<br>      2. 流量控制<br>      3. 差错控制：检测和纠正<br>      4. 介质接入控制</p>
+<h3 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h3><p><strong>帧：帧头+网络层数据报+帧尾</strong></p>
+<p><img src="https://pic4.zhimg.com/v2-b531f1c80f411a0fefcb198b08f145ef_r.jpg" alt="帧结构"></p>
+<ul>
+<li>接收：识别帧头帧尾用于识别接收帧数据的开始和结束。<ul>
+<li>flag是帧开始和结束的标记，指示了帧的开始与结束。</li>
+</ul>
+</li>
+<li>发送：在发送的数据前后加上帧头和帧尾。<br><em>在具体的协议中，帧的结构会有细微的不同。</em></li>
+</ul>
+<h3 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h3><p>透明传输是指不管所传数据是什么样的比特组合，都应当能够在链路上传送。<br>透明意味着，传输链路不会约束传输的数据，像不存在一样。</p>
 <h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><ul>
 <li>匹配相邻节点之间的传输和接收速率</li>
 <li>可以避免数据淹没</li>
 </ul>
-<h3 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h3><p>帧结构可以分为<strong>数据（D）<strong>和</strong>差错检测和纠正位（EDC）</strong>。<br>接收方根据接收到的数据和校验位进行判断，检测到错误可以提醒发送方重传或纠正。</p>
+<h3 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h3><p>帧结构可以分为<strong>数据（D）</strong> 和 <strong>差错检测和纠正位（EDC）</strong>。<br>接收方根据接收到的数据和校验位进行判断，检测到错误可以提醒发送方重传或纠正。</p>
 <ul>
 <li>数据可以包含帧头</li>
 <li>EDC是引入冗余来加强数据可靠性（类似信道编码）<br><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250304_1741097286.png" alt="数据和冗余位"></li>
 </ul>
 <h4 id="常见的检验算法"><a href="#常见的检验算法" class="headerlink" title="常见的检验算法"></a>常见的检验算法</h4><ul>
-<li><p>奇偶检验（1bit）</p>
+<li>奇偶检验（1bit）<br>   - 可增强为二维奇偶校验</li>
+<li>CRC（循环冗余校验）<br>   -  检错能力强，但没有纠错能力</li>
+</ul>
+<h2 id="LLC和MAC"><a href="#LLC和MAC" class="headerlink" title="LLC和MAC"></a>LLC和MAC</h2><p>在OSI&#x2F;RM和TCP&#x2F;IP体系结构中，数据链路层就一层。而在局域网体系结构中，是可以细分为两个子层的，就是逻辑链路控制(Logical Link Control, LLC)子层和介质访问控制(Medium Access Control, MAC)。</p>
 <ul>
-<li>可增强为二维奇偶校验</li>
+<li><strong>Mac子层</strong>：控制不同用户数据传输中对物理层传输介质的访问，包括数据帧的封装&#x2F;卸装，帧的寻址和识别，帧的接收与发送，帧的差错控制，以及介质访问冲突控制等。</li>
+<li><strong>LLC子层</strong>：LLC子层的最基本功能，就是负责数据链路层中的逻辑链路(逻辑链路就是物理层信道中的物理链路，在通过LLC协议作用后形成的虚拟电路)。包括逻辑链路的建立和释放，控制信号交换，数据流量控制，解释上层通信协议传来的命令并生产响应，以及克服数据在传输的过程当中发生的种种问题。如数据发生错误、重复收到相同的数据、接收数据顺序与传送的顺序不一致等。在LLC子层方面，IEEE 802系列中只制定了一种标准——IEEE 802.2.</li>
 </ul>
-</li>
-<li><p>CRC（循环冗余校验）</p>
-<pre><code>  采用循环码的校验功能进行检错的编码
-      可检如下错误
-      突发长度≤n-k的错误
-      - 大部分突发长度=n-k+1的错误,其中不可检的这类错误只占2-(n-k-1) 
-      - 大部分突发长度&gt;n-k+1的错误,其中不可检的这类错误只占2-(n-k) 
-      - 所有与许用码组码距&lt;dmin-1的错误
-      - 所有奇数个随机错误
-  
-  检错能力强，但没有纠错能力
-</code></pre>
-</li>
-</ul>
-<h3 id="媒体访问控制（MAC协议）"><a href="#媒体访问控制（MAC协议）" class="headerlink" title="媒体访问控制（MAC协议）"></a>媒体访问控制（MAC协议）</h3><p>多路访问协议，使多个节点都能访问网络，协议负责协调和控制，也提供重传</p>
+<h3 id="媒体访问控制（MAC协议）"><a href="#媒体访问控制（MAC协议）" class="headerlink" title="媒体访问控制（MAC协议）"></a>媒体访问控制（MAC协议）</h3><p>多路访问协议，使多个节点都能访问网络，协议负责协调和控制，也提供重传。</p>
 <h2 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h2><p>局域网（LAN）</p>
 
     </div>
