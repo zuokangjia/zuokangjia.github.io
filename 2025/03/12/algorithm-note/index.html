@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Leetcode刷题笔记 | BlueSKyzzz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="接雨水遍历每一个柱子，向左向右找到最高的柱子，然后取左右最高柱子中较小的那个，减去当前柱子的高度，就是当前柱子能接的雨水。 优化点：找最高柱子的过程可以优化，用空间换时间。 24. 两两交换链表中的节点一个链表，交换相邻的两个节点，直到没有相邻的两个节点可以交换。 思路：从头到尾，每两个为一组（不足两个的不用交换），步长为2，遍历链表，使用临时变量保存当前节点的下一个节点，然后交换当前节点和下一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode刷题笔记">
+<meta property="og:url" content="https://zuokangjia.github.io/2025/03/12/algorithm-note/index.html">
+<meta property="og:site_name" content="BlueSKyzzz">
+<meta property="og:description" content="接雨水遍历每一个柱子，向左向右找到最高的柱子，然后取左右最高柱子中较小的那个，减去当前柱子的高度，就是当前柱子能接的雨水。 优化点：找最高柱子的过程可以优化，用空间换时间。 24. 两两交换链表中的节点一个链表，交换相邻的两个节点，直到没有相邻的两个节点可以交换。 思路：从头到尾，每两个为一组（不足两个的不用交换），步长为2，遍历链表，使用临时变量保存当前节点的下一个节点，然后交换当前节点和下一个">
+<meta property="og:locale">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250312_1741774693.png">
+<meta property="article:published_time" content="2025-03-12T05:25:46.000Z">
+<meta property="article:modified_time" content="2025-03-12T10:26:55.342Z">
+<meta property="article:author" content="Kangjia">
+<meta property="article:tag" content="up">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250312_1741774693.png">
+  
+    <link rel="alternate" href="/atom.xml" title="BlueSKyzzz" type="application/atom+xml">
+  
+  
+  
+  
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0.css">
+
+  
+<link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="BlueSKyzzz">BlueSKyzzz</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix"><article class="post-detail">
+  <h1 class="post-title"><a href="/">Leetcode刷题笔记</a></h1>
+  <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 Kangjia</li>
+  <li><i class="fa fa-calendar"></i> 日期 Mar 12</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    no_categories
+  
+  </li>
+</ul>
+  <div class="post-content">
+      
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="接雨水"><a href="#接雨水" class="headerlink" title="接雨水"></a>接雨水</h2><p>遍历每一个柱子，向左向右找到最高的柱子，然后取左右最高柱子中较小的那个，减去当前柱子的高度，就是当前柱子能接的雨水。</p>
+<p>优化点：找最高柱子的过程可以优化，用空间换时间。</p>
+<h2 id="24-两两交换链表中的节点"><a href="#24-两两交换链表中的节点" class="headerlink" title="24. 两两交换链表中的节点"></a>24. 两两交换链表中的节点</h2><p>一个链表，交换相邻的两个节点，直到没有相邻的两个节点可以交换。</p>
+<p>思路：从头到尾，每两个为一组（不足两个的不用交换），步长为2，遍历链表，使用临时变量保存当前节点的下一个节点，然后交换当前节点和下一个节点的指针，然后移动到下一个节点的下一个节点。</p>
+<p>要注意使用last 来更新最后一个交换的节点，否则会出现链表断裂。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"> <span class="keyword">while</span>(cur!=<span class="literal">null</span> &amp;&amp; cur.next!=<span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(first!=<span class="number">1</span>)last.next=cur.next;</span><br><span class="line">            <span class="keyword">else</span> first=<span class="number">0</span>;</span><br><span class="line">            <span class="comment">//记录并更新上一个</span></span><br><span class="line">            last = cur;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//调整指针</span></span><br><span class="line">            temp=cur.next.next;</span><br><span class="line">            cur.next.next = cur;</span><br><span class="line">            cur.next=temp;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//这里要注意的是，链表已经交换了，cur位于后位，所以要更新cur到cur的下一个节点，而不是最开始的last.next.next。</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//不过这里形式上是下一个，要明白这是下一个的下一个。</span></span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>指针交换如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250312_1741774693.png" alt="指针交换"></p>
+
+  </div>
+  
+
+</article>
+
+<!-- Comments -->
+
+<!-- End Comments --></section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2025 <a href="/">BlueSKyzzz</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  
+<script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+
+  
+<script src="/js/helper.js"></script>
+
+  
+<script src="/js/_third-party/gitment.js"></script>
+
+</body>
+</html>
