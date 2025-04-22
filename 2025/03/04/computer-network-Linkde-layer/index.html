@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://pic4.zhimg.com/v2-b531f1c80f411a0fefcb198b08f145ef_r.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250304_1741097286.png">
 <meta property="article:published_time" content="2025-03-04T12:59:25.000Z">
-<meta property="article:modified_time" content="2025-03-08T08:35:36.130Z">
+<meta property="article:modified_time" content="2025-04-22T11:05:25.934Z">
 <meta property="article:author" content="Kangjia">
 <meta property="article:tag" content="network">
 <meta name="twitter:card" content="summary">
@@ -82,7 +82,7 @@
 <li>主机、路由器、交换机、网桥是<strong>节点</strong>（nodes）</li>
 <li>连接相邻节点的的通信信道是<strong>链路</strong>（links）<ul>
 <li>又可分为<strong>物理链路</strong>和<strong>数据链路</strong></li>
-<li>物理链路指的是实际的通信链路，如有线的双绞线、光线，无线的微波等。、</li>
+<li>物理链路指的是实际的通信链路，如有线的双绞线、光线，无线的微波等。</li>
 <li>数据链路指的是网络中节点之间的<strong>逻辑通道</strong>，链路上附加的软硬件实现控制传输协议。</li>
 </ul>
 </li>
@@ -101,7 +101,7 @@
 <li>差错控制：检测和纠正</li>
 <li>介质接入控制</li>
 </ol>
-<h3 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h3><p><strong>帧：帧头+网络层数据报+帧尾</strong></p>
+<h3 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h3><p>帧的结构<br><strong>帧：帧头+网络层数据报+帧尾</strong></p>
 <p><img src="https://pic4.zhimg.com/v2-b531f1c80f411a0fefcb198b08f145ef_r.jpg" alt="帧结构"></p>
 <ul>
 <li>接收：识别帧头帧尾用于识别接收帧数据的开始和结束。<ul>
@@ -121,8 +121,8 @@
 <li>EDC是引入冗余来加强数据可靠性（类似信道编码）<br><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250304_1741097286.png" alt="数据和冗余位"></li>
 </ul>
 <h4 id="常见的检验算法"><a href="#常见的检验算法" class="headerlink" title="常见的检验算法"></a>常见的检验算法</h4><ul>
-<li>奇偶检验（1bit）<br>   - 可增强为二维奇偶校验</li>
-<li>CRC（循环冗余校验）<br>   -  检错能力强，但没有纠错能力</li>
+<li>奇偶检验（1bit）<br>  - 可增强为二维奇偶校验</li>
+<li>CRC（循环冗余校验）<br>  -  检错能力强，但没有纠错能力</li>
 </ul>
 <h2 id="LLC和MAC"><a href="#LLC和MAC" class="headerlink" title="LLC和MAC"></a>LLC和MAC</h2><p>在OSI&#x2F;RM和TCP&#x2F;IP体系结构中，数据链路层就一层。而在局域网体系结构中，是可以细分为两个子层的，就是逻辑链路控制(Logical Link Control, LLC)子层和介质访问控制(Medium Access Control, MAC)。</p>
 <ul>

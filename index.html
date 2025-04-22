@@ -61,7 +61,147 @@
   <article class="post">
       
         
-          <h1><a href="/2025/03/12/algorithm-note/">Leetcode刷题记录</a></h1>
+          <h1><a href="/2025/04/15/linux101/">linux101</a></h1>
+        
+      
+      <div class="post-content ">
+        
+  
+
+
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
+<p>Linux的基础操作指令<br>熟练了就会用了<br>只涉及基础操作，不涉及内核原理</p>
+</blockquote>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>发行版：Linux操作系统的不同版本，如Ubuntu、CentOS、Arch Linux等。</li>
+<li>终端：Linux系统的命令行界面，用户通过终端输入命令来操作系统。</li>
+<li>权限：在Linux系统中，权限是用来控制用户对文件和目录的访问权限的。</li>
+<li>文本编辑器：在Linux系统中，有很多文本编辑器可以用来编辑文件，如nano、vim、gedit等。</li>
+</ul>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>文件操作命令：</p>
+<ul>
+<li>ls：列出目录下的文件和目录。</li>
+<li>cd：切换目录。</li>
+<li>mkdir：创建目录。</li>
+<li>rm：删除文件或目录。<ul>
+<li>-r：递归删除目录及其子目录。</li>
+<li>-i：删除前询问确认。</li>
+<li>-f：强制删除，无需确认。</li>
+<li>-d：删除空目录。</li>
+</ul>
+</li>
+<li>touch：创建空文件。</li>
+<li>mv：移动或重命名文件或目录。</li>
+<li>cp：复制文件或目录。</li>
+</ul>
+<p>网络操作命令：</p>
+<ul>
+<li>ifconfig：查看网络接口信息。</li>
+<li>ping：测试网络连接。</li>
+<li>ssh：远程登录。</li>
+</ul>
+<p>进程管理命令：</p>
+<ul>
+<li>ps：查看进程信息。</li>
+<li>top：实时显示进程信息。</li>
+<li>kill：杀死进程。</li>
+<li>killall：杀死进程。</li>
+<li>nohup：后台运行命令。</li>
+</ul>
+<p>系统管理命令：</p>
+<ul>
+<li>man：查看命令的帮助信息。</li>
+<li>sudo：以超级用户权限运行命令。</li>
+<li>su：切换用户。</li>
+<li>chmod：修改文件或目录的权限。</li>
+<li>chmod -R 777: 递归地将目录及其子目录的权限设置为777。</li>
+</ul>
+<p>sudo apt update：更新软件源。</p>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>ctrl+alt+t：打开终端。</p>
+<h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><ul>
+<li>vi&#x2F;vim：Linux系统中最常用的文本编辑器。</li>
+<li>nano：功能较为简单，适合小型系统。</li>
+<li>gedit：GNOME桌面环境下最常用的文本编辑器。</li>
+<li>emacs：功能强大，可高度自定义。</li>
+</ul>
+<h3 id="vim常用命令"><a href="#vim常用命令" class="headerlink" title="vim常用命令"></a>vim常用命令</h3><ul>
+<li>i：进入编辑模式。</li>
+<li>esc：退出编辑模式。</li>
+<li>:wq：保存并退出。</li>
+<li>:q!：强制退出不保存。</li>
+<li>?：查看帮助。</li>
+<li>&#x2F;：查找。</li>
+<li>p：粘贴。</li>
+<li>u：撤销。</li>
+</ul>
+
+      </div>
+  </article>
+
+  <article class="post">
+      
+        
+          <h1><a href="/2025/04/04/python-101/">python入门</a></h1>
+        
+      
+      <div class="post-content ">
+        
+  
+
+
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Python-简介"><a href="#Python-简介" class="headerlink" title="Python 简介"></a>Python 简介</h2><p>Python 是一个高层次的结合了解释性、编译性、互动性和面向对象的脚本语言。</p>
+<p>Python 的设计具有很强的可读性，相比其他语言经常使用英文关键字，其他语言的一些标点符号，它具有比其他语言更有特色语法结构。</p>
+<p>Python 是一种解释型语言，这意味着开发过程中无需编译，直接运行代码即可。</p>
+<h2 id="第一个-Python-程序"><a href="#第一个-Python-程序" class="headerlink" title="第一个 Python 程序"></a>第一个 Python 程序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello, World!&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="行和缩进"><a href="#行和缩进" class="headerlink" title="行和缩进"></a>行和缩进</h2><p>学习 Python 与其他语言最大的区别就是，Python 的代码块不使用大括号 {} 来控制类，函数以及其他逻辑判断。python 最具特色的就是用缩进来写模块。</p>
+<p>缩进的空白数量是可变的，但是所有代码块语句必须包含相同的缩进空白数量，这个必须严格执行。</p>
+<p>以下实例缩进为四个空格:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="literal">True</span>:</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;True&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;False&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>Python 中的变量赋值不需要类型声明。</p>
+<p><strong>每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。</strong><br>等号 &#x3D; 用来给变量赋值。</p>
+<p>等号 &#x3D; 运算符<strong>左边</strong>是一个变量名，等号 &#x3D; 运算符<strong>右边</strong>是存储在变量中的值。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">5</span> <span class="comment"># x 是一个整数变量</span></span><br><span class="line"><span class="built_in">int</span></span><br><span class="line">y = <span class="number">3.14159</span> <span class="comment"># y 是一个浮点数变量,也就是小数</span></span><br><span class="line"><span class="built_in">float</span></span><br><span class="line">z = <span class="string">&quot;HelloWorld!&quot;</span> <span class="comment"># z 是一个字符串变量</span></span><br><span class="line">zz = <span class="string">&#x27;Hello, World!&#x27;</span> <span class="comment"># zz 也是一个字符串变量</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>本章节主要说明Python的运算符。举个简单的例子 4 +5 &#x3D; 9 。 例子中，4 和 5 被称为操作数，+ 称为运算符。</p>
+<p>Python 支持多种运算符，包括：</p>
+<ul>
+<li>算术运算符：+、-、<em>、&#x2F;、**%(取余)、(幂)、&#x2F;&#x2F;(取整除)*</em></li>
+<li>赋值运算符：&#x3D;(赋值)</li>
+<li>比较运算符：&#x3D;&#x3D;(等于)、!&#x3D;(不等于)、&gt;、&lt;、&gt;&#x3D;、&lt;&#x3D;</li>
+<li>逻辑运算符：and、or、not</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">3</span>**<span class="number">2</span> <span class="comment"># 3的平方</span></span><br><span class="line">y = <span class="number">10</span> % <span class="number">3</span> <span class="comment"># 10除以3的余数</span></span><br><span class="line">z = <span class="number">10</span> // <span class="number">3</span> <span class="comment"># 10除以3的商</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>Python 内置了<code>input()</code>函数用于从控制台获取输入，<code>print()</code>函数用于输出内容到控制台。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输入</span></span><br><span class="line">name = <span class="built_in">input</span>(<span class="string">&quot;请输入你的名字：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;你好，&quot;</span> + name + <span class="string">&quot;！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello, World!&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>Python 中单行注释以 # 开头。</p>
+<h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><p>Python 中使用 if-else 语句实现分支结构。</p>
+<p>细分有三种分支结构：</p>
+<ul>
+<li>if 语句</li>
+<li>if-else 语句</li>
+<li>if-elif-else 语句</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if 语句</span></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is positive&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># if-else 语句</span></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is positive&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is not positive&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># if-elif-else 语句</span></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is positive&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> x &lt; <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is negative&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is zero&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出格式化</p>
+<p><code>round()</code> 函数用于四舍五入，第二个参数指定保留几位小数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">3.1415926</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;保留两位小数：&quot;</span>, <span class="built_in">round</span>(x, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;保留一位小数：&quot;</span>, <span class="built_in">round</span>(<span class="number">3.1415926</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+      </div>
+  </article>
+
+  <article class="post">
+      
+        
+          <h1><a href="/2025/03/12/algorithm-recording/">Leetcode刷题记录</a></h1>
         
       
       <div class="post-content ">
@@ -101,6 +241,12 @@
 <p>层次遍历和广搜的区别是，层序遍历是按层次遍历，广搜是按宽度遍历。<br>尽管都是使用队列，但是层次遍历会在每一层加入队列后停下一个间隔，记录一下这个层的宽度（通常是队列的大小），而广搜则是一次性将所有节点都加入队列，然后按宽度遍历。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span></span><br><span class="line"><span class="comment"> *         this.val = val;</span></span><br><span class="line"><span class="comment"> *         this.left = left;</span></span><br><span class="line"><span class="comment"> *         this.right = right;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">levelOrder</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(root ==<span class="literal">null</span>)<span class="keyword">return</span> res;</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">            List&lt;Integer&gt;list =<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">            <span class="type">int</span> <span class="variable">Size</span> <span class="operator">=</span> queue.size();</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=Size;i++) &#123;</span><br><span class="line">                <span class="type">TreeNode</span> <span class="variable">temp</span> <span class="operator">=</span>queue.poll();</span><br><span class="line">                list.add(temp.val);</span><br><span class="line">                <span class="keyword">if</span>(temp.left!=<span class="literal">null</span>)queue.offer(temp.left);</span><br><span class="line">                <span class="keyword">if</span>(temp.right!=<span class="literal">null</span>)queue.offer(temp.right);</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(list);</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="105-从前序与中序遍历序列构造二叉树"><a href="#105-从前序与中序遍历序列构造二叉树" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树"></a>105. 从前序与中序遍历序列构造二叉树</h2><p>也是经典题，如果能明白中序遍历和前序遍历的特点，那么这道题就很简单。</p>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>很显然，中序遍历的左右子树是由根节点分开的。而前序遍历的第一个节点就是根节点。前序遍历的第二个节点到倒数第二个节点就是左子树，倒数第二个节点到最后一个节点就是右子树。</p>
+<p>所以，我们可以先找到根节点在中序遍历中的位置，然后递归地构造左右子树。<br>在中序遍历中寻找根节点的算法可以使用MAP，也可以使用线性查找。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> TreeNode <span class="title function_">buildTree</span><span class="params">(<span class="type">int</span>[] preorder, <span class="type">int</span>[] inorder)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> work(<span class="number">0</span>,preorder.length,<span class="number">0</span>,preorder.length,preorder,inorder);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> TreeNode <span class="title function_">work</span><span class="params">(<span class="type">int</span> pl,<span class="type">int</span> pr,<span class="type">int</span> il,<span class="type">int</span> ir,<span class="type">int</span>[] preorder,<span class="type">int</span>[] inorder)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(pl&gt;=pr)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">res</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">val</span> <span class="operator">=</span> preorder[pl];</span><br><span class="line">        <span class="comment">//这里可以使用map对索引查找进行优化</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=il;i&lt;ir;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(inorder[i]==val)&#123;</span><br><span class="line">                res = <span class="keyword">new</span> <span class="title class_">TreeNode</span>(val);</span><br><span class="line">                <span class="type">int</span> <span class="variable">leftsize</span> <span class="operator">=</span> i - il;</span><br><span class="line">                <span class="comment">//rightsize = ir - i;</span></span><br><span class="line">                <span class="comment">//System.out.println(pl+1+&quot; &quot;+(pl+1+leftsize)+&quot; &quot;+il+&quot; &quot;+i);</span></span><br><span class="line">                <span class="comment">//System.out.println(pl+1+leftsize+&quot; &quot;+(pr)+&quot; &quot;+(i+1)+&quot; &quot;+ir);</span></span><br><span class="line">                res.left = work(pl+<span class="number">1</span>,pl+<span class="number">1</span>+leftsize,il,i,preorder,inorder);</span><br><span class="line">                res.right = work(pl+<span class="number">1</span>+leftsize,pr,i+<span class="number">1</span>,ir,preorder,inorder);   </span><br><span class="line">                <span class="comment">//if(res.left==null) System.out.println(&quot;NULL&quot;);</span></span><br><span class="line">                <span class="comment">//else System.out.println(res.left.val+&quot; &quot;+res.right.val);</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>没看看懂这一块</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2>
       </div>
   </article>
@@ -125,7 +271,7 @@
 <li>主机、路由器、交换机、网桥是<strong>节点</strong>（nodes）</li>
 <li>连接相邻节点的的通信信道是<strong>链路</strong>（links）<ul>
 <li>又可分为<strong>物理链路</strong>和<strong>数据链路</strong></li>
-<li>物理链路指的是实际的通信链路，如有线的双绞线、光线，无线的微波等。、</li>
+<li>物理链路指的是实际的通信链路，如有线的双绞线、光线，无线的微波等。</li>
 <li>数据链路指的是网络中节点之间的<strong>逻辑通道</strong>，链路上附加的软硬件实现控制传输协议。</li>
 </ul>
 </li>
@@ -144,7 +290,7 @@
 <li>差错控制：检测和纠正</li>
 <li>介质接入控制</li>
 </ol>
-<h3 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h3><p><strong>帧：帧头+网络层数据报+帧尾</strong></p>
+<h3 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h3><p>帧的结构<br><strong>帧：帧头+网络层数据报+帧尾</strong></p>
 <p><img src="https://pic4.zhimg.com/v2-b531f1c80f411a0fefcb198b08f145ef_r.jpg" alt="帧结构"></p>
 <ul>
 <li>接收：识别帧头帧尾用于识别接收帧数据的开始和结束。<ul>
@@ -164,8 +310,8 @@
 <li>EDC是引入冗余来加强数据可靠性（类似信道编码）<br><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250304_1741097286.png" alt="数据和冗余位"></li>
 </ul>
 <h4 id="常见的检验算法"><a href="#常见的检验算法" class="headerlink" title="常见的检验算法"></a>常见的检验算法</h4><ul>
-<li>奇偶检验（1bit）<br>   - 可增强为二维奇偶校验</li>
-<li>CRC（循环冗余校验）<br>   -  检错能力强，但没有纠错能力</li>
+<li>奇偶检验（1bit）<br>  - 可增强为二维奇偶校验</li>
+<li>CRC（循环冗余校验）<br>  -  检错能力强，但没有纠错能力</li>
 </ul>
 <h2 id="LLC和MAC"><a href="#LLC和MAC" class="headerlink" title="LLC和MAC"></a>LLC和MAC</h2><p>在OSI&#x2F;RM和TCP&#x2F;IP体系结构中，数据链路层就一层。而在局域网体系结构中，是可以细分为两个子层的，就是逻辑链路控制(Logical Link Control, LLC)子层和介质访问控制(Medium Access Control, MAC)。</p>
 <ul>
@@ -195,7 +341,7 @@
 </blockquote>
 <p>SDN，软件定义网络，将网络控制功能从网络设备中分离出来，集中管理，从而实现网络的灵活性和可编程性。（AI真是啥都能续写~~）</p>
 <p><em>还没写完，先放着，等学完再写。</em></p>
-<p>——————————</p>
+<p>——————————<br>export DISPLAY&#x3D;localhost:0.0<br>xauth add $(xauth -f ~&#x2F;.Xauthority list | tail -1)</p>
 
       </div>
   </article>
