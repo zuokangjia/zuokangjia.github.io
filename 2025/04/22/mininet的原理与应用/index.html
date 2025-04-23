@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mininet的原理与应用 | BlueSKyzzz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Mininet可以创建一个含有主机、交换机、控制器和链路的虚拟网络，其交换机支持OpenFlow，具有高度灵活的自定义软件定义网络；同时也可将此进程虚拟化的平台下代码迁移到真实的环境中。 Mininet的由来Mininet是由斯坦福大学基于Linux Container架构开发的一个进程虚拟化网络仿真工具。它采用轻量级的虚拟化技术使一个单一的系统看起来像一个完整的网络运行想过的内核系统和用户代码，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mininet的原理与应用">
+<meta property="og:url" content="https://zuokangjia.github.io/2025/04/22/mininet%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="BlueSKyzzz">
+<meta property="og:description" content="Mininet可以创建一个含有主机、交换机、控制器和链路的虚拟网络，其交换机支持OpenFlow，具有高度灵活的自定义软件定义网络；同时也可将此进程虚拟化的平台下代码迁移到真实的环境中。 Mininet的由来Mininet是由斯坦福大学基于Linux Container架构开发的一个进程虚拟化网络仿真工具。它采用轻量级的虚拟化技术使一个单一的系统看起来像一个完整的网络运行想过的内核系统和用户代码，">
+<meta property="og:locale">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745321597.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322564.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322145.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322623.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745332532.png">
+<meta property="article:published_time" content="2025-04-22T11:10:37.000Z">
+<meta property="article:modified_time" content="2025-04-22T14:35:44.030Z">
+<meta property="article:author" content="Kangjia">
+<meta property="article:tag" content="up">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745321597.png">
+  
+    <link rel="alternate" href="/atom.xml" title="BlueSKyzzz" type="application/atom+xml">
+  
+  
+  
+  
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0.css">
+
+  
+<link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="BlueSKyzzz">BlueSKyzzz</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix"><article class="post-detail">
+  <h1 class="post-title"><a href="/">Mininet的原理与应用</a></h1>
+  <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 Kangjia</li>
+  <li><i class="fa fa-calendar"></i> 日期 Apr 22</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    no_categories
+  
+  </li>
+</ul>
+  <div class="post-content">
+      
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Mininet可以创建一个含有<strong>主机</strong>、<strong>交换机</strong>、<strong>控制器</strong>和<strong>链路</strong>的虚拟网络，其交换机支持OpenFlow，具有高度灵活的自定义软件定义网络；同时也可将此进程虚拟化的平台下代码迁移到真实的环境中。</p>
+<h2 id="Mininet的由来"><a href="#Mininet的由来" class="headerlink" title="Mininet的由来"></a>Mininet的由来</h2><p>Mininet是由斯坦福大学基于Linux Container架构开发的一个进程虚拟化网络仿真工具。它采用轻量级的虚拟化技术使一个单一的系统看起来像一个完整的网络运行想过的内核系统和用户代码，也可简单理解为 SDN 网络系统中的一种基于进程虚拟化平台，它支持OpenFlow、OpenvSwith 等各种协议。</p>
+<p>其最早的论文发表于2010年的SIGCOMM会议上，作者是斯坦福大学的B Lantz、Nick McKeown等人，后者是也是OpenFlow协议的主要设计者。</p>
+<h2 id="Mininet的原理和架构"><a href="#Mininet的原理和架构" class="headerlink" title="Mininet的原理和架构"></a>Mininet的原理和架构</h2><h3 id="Linux-Container"><a href="#Linux-Container" class="headerlink" title="Linux Container"></a>Linux Container</h3><p>从Linux 2.6.24版的内核开始，Linux 逐渐支持6种不同类型的命名空间。其中，最重要的三种分别是用户命名空间、进程命名空间和网络命名空间。</p>
+<ul>
+<li>用户命名空间：它是最基本的命名空间，它使得一个进程只能访问属于自己的资源，包括用户ID、组ID、文件系统、网络接口、进程列表等。</li>
+<li>进程命名空间：允许一个进程创建自己的进程树，每个进程都有自己的PID，并且只能访问属于自己的资源。</li>
+<li>网络命名空间：允许一个进程创建自己的网络栈，包括网络设备、路由表、防火墙规则等。</li>
+</ul>
+<p>在每个命名空间中，都可以创建自己的文件系统、进程列表、网络接口等资源，但这些资源只能在该命名空间内使用。</p>
+<p>每个Namespace下的资源对于其他Namespace下的资源都是透明，不可见的。因此在操作系统层面上看，就会出现多个相同pid的进程。而在用户层面上只能看到属于用户自己Namespace下的资源，例如使用ps命令只能列出自己Namespace下的进程。这样每个Namespace看上去就像一个单独的Linux系统。</p>
+<p>在Mininet开源项目提供的教学案例中，有提到具体的Linux Container的实现原理。</p>
+<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745321597.png"></p>
+<p>使用两个namespace，分别为h1和h2，用于模拟host1和host2。</p>
+<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322564.png"></p>
+<p>两个namespace之间通过veth pair（virtual ethernet pair）连接，veth pair是一种虚拟设备，它可以用来在两个命名空间之间传输数据。更加复杂的网络环境，可以使用Linux bridge、Open vSwitch等虚拟交换机。</p>
+<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322145.png"></p>
+<p>通过下面的的一系列Linux指令，就可以使用Linux Container创建多个虚拟网络环境，实现对最简单网络环境的模拟。</p>
+<p>Mininet正是使用这种Linux Container技术实现的虚拟网络环境。使用python语言编写的Mininet代码，通过调用Linux系统的命名空间和网络管理工具，可以创建多个虚拟网络环境，并在这些环境中模拟真实网络环境的各种功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> bash</span><br><span class="line"><span class="comment"># Create host namespaces</span></span><br><span class="line">ip netns add h1</span><br><span class="line">ip netns add h2</span><br><span class="line"><span class="comment"># Create switch</span></span><br><span class="line">ovs-vsctl add-br s1</span><br><span class="line"><span class="comment"># Create links</span></span><br><span class="line">ip <span class="built_in">link</span> add h1-eth0 <span class="built_in">type</span> veth peer name s1-eth1</span><br><span class="line">ip <span class="built_in">link</span> add h2-eth0 <span class="built_in">type</span> veth peer name s1-eth2</span><br><span class="line">ip <span class="built_in">link</span> show</span><br><span class="line"><span class="comment"># Move host ports into namespaces</span></span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> h1-etho netns h1</span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> h2-etho netns h2</span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ip <span class="built_in">link</span> show</span><br><span class="line">ip netns <span class="built_in">exec</span> h2 ip <span class="built_in">link</span> show</span><br><span class="line"><span class="comment"># Connect switch ports to ovS</span></span><br><span class="line">ovs-vsctl add-port s1 s1-eth1</span><br><span class="line">ovs-vsctl add-port s1 s1-eth2</span><br><span class="line">ovs-vsctl show</span><br><span class="line"><span class="comment"># Set up OpenFlow controller</span></span><br><span class="line">ovs-vsctl set-controller s1 tcp:127.0.0.1</span><br><span class="line">ovs-controller ptcp:&amp;</span><br><span class="line">ovs-vsctl show</span><br><span class="line"><span class="comment"># Configure network</span></span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ifconfig h1-eth0 10.1</span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ifconfig lo up</span><br><span class="line">ip netns <span class="built_in">exec</span> h2 ifconfig h2-eth0 10.2</span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ifconfig lo up</span><br><span class="line">ifconfig s1-eth1 up</span><br><span class="line">ifconfig s1-eth2 up</span><br><span class="line"><span class="comment"># Test network</span></span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ping -c1 10.2</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mininet的架构"><a href="#Mininet的架构" class="headerlink" title="Mininet的架构"></a>Mininet的架构</h3><p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322623.png"></p>
+<ol>
+<li>Mininet的主要组件包括：控制器、主机、交换机、链路。</li>
+<li>控制器：控制器是Mininet的核心组件，它负责管理网络中的主机、交换机、链路，并提供网络服务。</li>
+<li>主机：主机是Mininet的网络实体，它可以是物理机也可以是虚拟机。</li>
+<li>交换机：交换机是Mininet的网络实体，它可以是物理交换机也可以是虚拟交换机。</li>
+<li>链路：链路是Mininet的网络实体，它可以是物理链路也可以是虚拟链路。</li>
+<li>Mininet的架构可以分为两层，第一层是虚拟化层，它负责创建虚拟网络环境，包括创建主机、交换机、链路等；第二层是控制层，它负责管理虚拟网络环境，包括启动、停止、配置、监控虚拟网络等。</li>
+</ol>
+<h2 id="Mininet可以做什么"><a href="#Mininet可以做什么" class="headerlink" title="Mininet可以做什么"></a>Mininet可以做什么</h2><ul>
+<li>为OpenFlow应用程序提供一个简单、便宜的网络测试平台</li>
+<li>启用复杂的拓扑测试，无需连接物理网络</li>
+<li>具有拓扑感知和OpenFlow感知的CLI，用于调试或运行网络范围的测试</li>
+<li>支持任意自定义拓扑，主机数可达4096，并包括一组基本的参数化拓扑</li>
+<li>提供用于网络创建和实验的可扩展Python API</li>
+</ul>
+<h2 id="Mininet的安装"><a href="#Mininet的安装" class="headerlink" title="Mininet的安装"></a>Mininet的安装</h2><p>由于使用Linux Container技术，Mininet需要安装Linux操作系统，并配置好相关的环境。<br>具体安装方式可查看<a target="_blank" rel="noopener" href="https://mininet.org/download/">Mininet安装文档</a></p>
+<h2 id="Mininet的使用"><a href="#Mininet的使用" class="headerlink" title="Mininet的使用"></a>Mininet的使用</h2><p>Mininet提供了一系列的命令行工具，用于创建、配置、运行、监控虚拟网络。</p>
+<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745332532.png"></p>
+<h3 id="网络构建参数"><a href="#网络构建参数" class="headerlink" title="网络构建参数"></a>网络构建参数</h3><ul>
+<li><code>--topo</code>：指定拓扑类型，如<code>linear</code>、<code>tree</code>、<code>single</code>、<code>torus</code>等。</li>
+<li><code>--controller</code>：指定要使用的控制器类型，如<code>remote</code>、<code>ryu</code>、<code>ODL</code>等。</li>
+<li><code>--switch</code>：指定交换机类型，默认使用OVSK，如<code>ovsk</code>、<code>user</code>等。</li>
+<li><code>--custom</code>：指定自定义拓扑文件。</li>
+<li><code>--mac</code>：按顺序而非随机分配主机的MAC地址。设置简单唯一，肉眼也能看出mac地址对应的主机。</li>
+</ul>
+<h3 id="内部交互命令"><a href="#内部交互命令" class="headerlink" title="内部交互命令"></a>内部交互命令</h3><p>使用<code>sudo mn</code>启动Mininet的命令行界面，可以输入内部命令，包括：</p>
+<ul>
+<li><p><code>net</code>：查看当前网络状态。</p>
+</li>
+<li><p><code>nodes</code>：查看当前网络中的主机、交换机、控制器。</p>
+</li>
+<li><p><code>links</code>：查看当前网络中的链路的状态。</p>
+</li>
+<li><p><code>intfs</code>：查看当前网络中的接口的状态。</p>
+</li>
+<li><p><code>pingall</code>：所有的主机之间互相ping，测试网络是否通畅。</p>
+</li>
+<li><p><code>xterm</code>：对一个主机打开一个新的xterm窗口，用于运行主机上的命令。</p>
+</li>
+<li><p><code>ovs-ofctl</code>：对OpenFlow交换机进行操作。</p>
+</li>
+<li><p><code>ovs-vsctl</code>：对OpenFlow控制器进行操作。</p>
+</li>
+<li><p><code>mnexec</code>：在所有主机上执行命令。</p>
+</li>
+<li><p><code>dpctl</code>：对OpenFlow交换机进行流表的操作。</p>
+</li>
+<li><p><code>iperf</code>：测试主机之间的TCP流量带宽。</p>
+</li>
+<li><p><code>iperfudp</code>：测试主机之间的UDP流量带宽。</p>
+</li>
+</ul>
+<h2 id="Mininet的应用"><a href="#Mininet的应用" class="headerlink" title="Mininet的应用"></a>Mininet的应用</h2><ul>
+<li>TODO</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Mininet/Mininet">Mininet 开源项目</a></li>
+<li><a target="_blank" rel="noopener" href="https://mininet.org/">Mininet 官方网站</a></li>
+</ul>
+
+  </div>
+  
+
+</article>
+
+<!-- Comments -->
+
+<!-- End Comments --></section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2025 <a href="/">BlueSKyzzz</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  
+<script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+
+  
+<script src="/js/helper.js"></script>
+
+  
+<script src="/js/_third-party/gitment.js"></script>
+
+</body>
+</html>
