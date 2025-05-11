@@ -1,538 +1,488 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
-<head>
+<html lang="zh-Hans" color-mode="light">
+
+  <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Kangjia" />
+  <!-- Open Graph Description 简短摘要-->
   
-  <title>BlueSKyzzz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="zzz">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BlueSKyzzz">
-<meta property="og:url" content="https://zuokangjia.github.io/index.html">
-<meta property="og:site_name" content="BlueSKyzzz">
-<meta property="og:description" content="zzz">
-<meta property="og:locale">
-<meta property="article:author" content="Kangjia">
-<meta property="article:tag" content="up">
-<meta name="twitter:card" content="summary">
+  <!-- 用于搜索引擎的文章摘要 -->
   
-    <link rel="alternate" href="/atom.xml" title="BlueSKyzzz" type="application/atom+xml">
+  <meta name="description" content="zzz" />
   
   
   
-  
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0.css">
+  <title>
+    
+     BlueSKyzzz
+  </title>
 
   
-<link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
 
   
-<link rel="stylesheet" href="/css/main.css">
 
   
-<script src="/lib/jquery/dist/jquery.min.js"></script>
 
-  
-  
-  
-  
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
 <meta name="generator" content="Hexo 7.3.0"></head>
-<body>
-  <div id="wrapper">
-    <header id="header" class="clearfix">
-	<a id="logo" href="/" title="BlueSKyzzz">BlueSKyzzz</a>
-	
-	<nav id="nav-menu" class="clearfix">
-		<form id="search" method="post" action="./" role="search">
-			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
-		</form>
-		<ul>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
       
-				
-        <li><a class="main-nav-link" href="/">主页</a></li>
+        <img src="/images/avatar.png" alt="">
       
-				
-        <li><a class="main-nav-link" href="/archives">归档</a></li>
+    </a>
+    <div class="nickname"><a href="/">Oranges</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
       
-		</ul>
-	</nav>
-</header>
-    <section id="main" class="clearfix">
-  <article class="post">
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
       
-        
-          <h1><a href="/2025/04/22/mininet%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">Mininet</a></h1>
-        
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
       
-      <div class="post-content ">
-        
-  
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
 
 
 
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Mininet可以创建一个含有<strong>主机</strong>、<strong>交换机</strong>、<strong>控制器</strong>和<strong>链路</strong>的虚拟网络，其交换机支持OpenFlow，具有高度灵活的自定义软件定义网络；同时也可将此进程虚拟化的平台下代码迁移到真实的环境中。</p>
-<h2 id="Mininet的由来"><a href="#Mininet的由来" class="headerlink" title="Mininet的由来"></a>Mininet的由来</h2><p>Mininet是由斯坦福大学基于Linux Container架构开发的一个进程虚拟化网络仿真工具。它采用轻量级的虚拟化技术使一个单一的系统看起来像一个完整的网络运行想过的内核系统和用户代码，也可简单理解为 SDN 网络系统中的一种基于进程虚拟化平台，它支持OpenFlow、OpenvSwith 等各种协议。</p>
-<p>其最早的论文发表于2010年的SIGCOMM会议上，作者是斯坦福大学的B Lantz、Nick McKeown等人，后者是也是OpenFlow协议的主要设计者。</p>
-<h2 id="Mininet的原理和架构"><a href="#Mininet的原理和架构" class="headerlink" title="Mininet的原理和架构"></a>Mininet的原理和架构</h2><h3 id="Linux-Container"><a href="#Linux-Container" class="headerlink" title="Linux Container"></a>Linux Container</h3><p>从Linux 2.6.24版的内核开始，Linux 逐渐支持6种不同类型的命名空间。其中，最重要的三种分别是用户命名空间、进程命名空间和网络命名空间。</p>
-<ul>
-<li>用户命名空间：它是最基本的命名空间，它使得一个进程只能访问属于自己的资源，包括用户ID、组ID、文件系统、网络接口、进程列表等。</li>
-<li>进程命名空间：允许一个进程创建自己的进程树，每个进程都有自己的PID，并且只能访问属于自己的资源。</li>
-<li>网络命名空间：允许一个进程创建自己的网络栈，包括网络设备、路由表、防火墙规则等。</li>
-</ul>
-<p>在每个命名空间中，都可以创建自己的文件系统、进程列表、网络接口等资源，但这些资源只能在该命名空间内使用。</p>
-<p>每个Namespace下的资源对于其他Namespace下的资源都是透明，不可见的。因此在操作系统层面上看，就会出现多个相同pid的进程。而在用户层面上只能看到属于用户自己Namespace下的资源，例如使用ps命令只能列出自己Namespace下的进程。这样每个Namespace看上去就像一个单独的Linux系统。</p>
-<p>在Mininet开源项目提供的教学案例中，有提到具体的Linux Container的实现原理。</p>
-<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745321597.png"></p>
-<p>使用两个namespace，分别为h1和h2，用于模拟host1和host2。</p>
-<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322564.png"></p>
-<p>两个namespace之间通过veth pair（virtual ethernet pair）连接，veth pair是一种虚拟设备，它可以用来在两个命名空间之间传输数据。更加复杂的网络环境，可以使用Linux bridge、Open vSwitch等虚拟交换机。</p>
-<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322145.png"></p>
-<p>通过下面的的一系列Linux指令，就可以使用Linux Container创建多个虚拟网络环境，实现对最简单网络环境的模拟。</p>
-<p>Mininet正是使用这种Linux Container技术实现的虚拟网络环境。使用python语言编写的Mininet代码，通过调用Linux系统的命名空间和网络管理工具，可以创建多个虚拟网络环境，并在这些环境中模拟真实网络环境的各种功能。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> bash</span><br><span class="line"><span class="comment"># Create host namespaces</span></span><br><span class="line">ip netns add h1</span><br><span class="line">ip netns add h2</span><br><span class="line"><span class="comment"># Create switch</span></span><br><span class="line">ovs-vsctl add-br s1</span><br><span class="line"><span class="comment"># Create links</span></span><br><span class="line">ip <span class="built_in">link</span> add h1-eth0 <span class="built_in">type</span> veth peer name s1-eth1</span><br><span class="line">ip <span class="built_in">link</span> add h2-eth0 <span class="built_in">type</span> veth peer name s1-eth2</span><br><span class="line">ip <span class="built_in">link</span> show</span><br><span class="line"><span class="comment"># Move host ports into namespaces</span></span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> h1-etho netns h1</span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> h2-etho netns h2</span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ip <span class="built_in">link</span> show</span><br><span class="line">ip netns <span class="built_in">exec</span> h2 ip <span class="built_in">link</span> show</span><br><span class="line"><span class="comment"># Connect switch ports to ovS</span></span><br><span class="line">ovs-vsctl add-port s1 s1-eth1</span><br><span class="line">ovs-vsctl add-port s1 s1-eth2</span><br><span class="line">ovs-vsctl show</span><br><span class="line"><span class="comment"># Set up OpenFlow controller</span></span><br><span class="line">ovs-vsctl set-controller s1 tcp:127.0.0.1</span><br><span class="line">ovs-controller ptcp:&amp;</span><br><span class="line">ovs-vsctl show</span><br><span class="line"><span class="comment"># Configure network</span></span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ifconfig h1-eth0 10.1</span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ifconfig lo up</span><br><span class="line">ip netns <span class="built_in">exec</span> h2 ifconfig h2-eth0 10.2</span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ifconfig lo up</span><br><span class="line">ifconfig s1-eth1 up</span><br><span class="line">ifconfig s1-eth2 up</span><br><span class="line"><span class="comment"># Test network</span></span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ping -c1 10.2</span><br></pre></td></tr></table></figure>
-
-<h3 id="Mininet的架构"><a href="#Mininet的架构" class="headerlink" title="Mininet的架构"></a>Mininet的架构</h3><p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322623.png"></p>
-<ol>
-<li>Mininet的主要组件包括：控制器、主机、交换机、链路。</li>
-<li>控制器：控制器是Mininet的核心组件，它负责管理网络中的主机、交换机、链路，并提供网络服务。</li>
-<li>主机：主机是Mininet的网络实体，它可以是物理机也可以是虚拟机。</li>
-<li>交换机：交换机是Mininet的网络实体，它可以是物理交换机也可以是虚拟交换机。</li>
-<li>链路：链路是Mininet的网络实体，它可以是物理链路也可以是虚拟链路。</li>
-<li>Mininet的架构可以分为两层，第一层是虚拟化层，它负责创建虚拟网络环境，包括创建主机、交换机、链路等；第二层是控制层，它负责管理虚拟网络环境，包括启动、停止、配置、监控虚拟网络等。</li>
-</ol>
-<h2 id="Mininet可以做什么"><a href="#Mininet可以做什么" class="headerlink" title="Mininet可以做什么"></a>Mininet可以做什么</h2><ul>
-<li>为OpenFlow应用程序提供一个简单、便宜的网络测试平台</li>
-<li>启用复杂的拓扑测试，无需连接物理网络</li>
-<li>具有拓扑感知和OpenFlow感知的CLI，用于调试或运行网络范围的测试</li>
-<li>支持任意自定义拓扑，主机数可达4096，并包括一组基本的参数化拓扑</li>
-<li>提供用于网络创建和实验的可扩展Python API</li>
-</ul>
-<h2 id="Mininet的安装"><a href="#Mininet的安装" class="headerlink" title="Mininet的安装"></a>Mininet的安装</h2><p>由于使用Linux Container技术，Mininet需要安装Linux操作系统，并配置好相关的环境。<br>具体安装方式可查看<a target="_blank" rel="noopener" href="https://mininet.org/download/">Mininet安装文档</a></p>
-<h2 id="Mininet的使用"><a href="#Mininet的使用" class="headerlink" title="Mininet的使用"></a>Mininet的使用</h2><p>Mininet提供了一系列的命令行工具，用于创建、配置、运行、监控虚拟网络。</p>
-<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745332532.png"></p>
-<h3 id="网络构建参数"><a href="#网络构建参数" class="headerlink" title="网络构建参数"></a>网络构建参数</h3><ul>
-<li><code>--topo</code>：指定拓扑类型，如<code>linear</code>、<code>tree</code>、<code>single</code>、<code>torus</code>等。</li>
-<li><code>--controller</code>：指定要使用的控制器类型，如<code>remote</code>、<code>ryu</code>、<code>ODL</code>等。</li>
-<li><code>--switch</code>：指定交换机类型，默认使用OVSK，如<code>ovsk</code>、<code>user</code>等。</li>
-<li><code>--custom</code>：指定自定义拓扑文件。</li>
-<li><code>--mac</code>：按顺序而非随机分配主机的MAC地址。设置简单唯一，肉眼也能看出mac地址对应的主机。</li>
-</ul>
-<h3 id="内部交互命令"><a href="#内部交互命令" class="headerlink" title="内部交互命令"></a>内部交互命令</h3><p>使用<code>sudo mn</code>启动Mininet的命令行界面，可以输入内部命令，包括：</p>
-<ul>
-<li><p><code>net</code>：查看当前网络状态。</p>
-</li>
-<li><p><code>nodes</code>：查看当前网络中的主机、交换机、控制器。</p>
-</li>
-<li><p><code>links</code>：查看当前网络中的链路的状态。</p>
-</li>
-<li><p><code>intfs</code>：查看当前网络中的接口的状态。</p>
-</li>
-<li><p><code>pingall</code>：所有的主机之间互相ping，测试网络是否通畅。</p>
-</li>
-<li><p><code>xterm</code>：对一个主机打开一个新的xterm窗口，用于运行主机上的命令。</p>
-</li>
-<li><p><code>ovs-ofctl</code>：对OpenFlow交换机进行操作。</p>
-</li>
-<li><p><code>ovs-vsctl</code>：对OpenFlow控制器进行操作。</p>
-</li>
-<li><p><code>mnexec</code>：在所有主机上执行命令。</p>
-</li>
-<li><p><code>dpctl</code>：对OpenFlow交换机进行流表的操作。</p>
-</li>
-<li><p><code>iperf</code>：测试主机之间的TCP流量带宽。</p>
-</li>
-<li><p><code>iperfudp</code>：测试主机之间的UDP流量带宽。</p>
-</li>
-</ul>
-<h2 id="Mininet的应用"><a href="#Mininet的应用" class="headerlink" title="Mininet的应用"></a>Mininet的应用</h2><ul>
-<li>TODO</li>
-</ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/Mininet/Mininet">Mininet 开源项目</a></li>
-<li><a target="_blank" rel="noopener" href="https://mininet.org/">Mininet 官方网站</a></li>
-</ul>
-
+      <div class="flex-container">
+        <div class="container index">
+  <div class="post-list">
+    <!-- 遍历渲染文章 -->
+    
+      <div class="post-item" title="Mininet">
+        <div class="time-m-d">2025-04-22</div>
+        <div class="title">
+          <a href="/2025/04/22/mininet%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">
+            
+              
+                <span>Mininet</span>
+              
+            
+          </a>
+        </div>
       </div>
-  </article>
-
-  <article class="post">
-      
-        
-          <h1><a href="/2025/04/15/linux101/">linux101</a></h1>
-        
-      
-      <div class="post-content ">
-        
-  
-
-
-
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
-<p>Linux的基础操作指令<br>熟练了就会用了<br>只涉及基础操作，不涉及内核原理</p>
-</blockquote>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li>发行版：Linux操作系统的不同版本，如Ubuntu、CentOS、Arch Linux等。</li>
-<li>终端：Linux系统的命令行界面，用户通过终端输入命令来操作系统。</li>
-<li>权限：在Linux系统中，权限是用来控制用户对文件和目录的访问权限的。</li>
-<li>文本编辑器：在Linux系统中，有很多文本编辑器可以用来编辑文件，如nano、vim、gedit等。</li>
-</ul>
-<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>文件操作命令：</p>
-<ul>
-<li>ls：列出目录下的文件和目录。</li>
-<li>cd：切换目录。</li>
-<li>mkdir：创建目录。</li>
-<li>rm：删除文件或目录。<ul>
-<li>-r：递归删除目录及其子目录。</li>
-<li>-i：删除前询问确认。</li>
-<li>-f：强制删除，无需确认。</li>
-<li>-d：删除空目录。</li>
-</ul>
-</li>
-<li>touch：创建空文件。</li>
-<li>mv：移动或重命名文件或目录。</li>
-<li>cp：复制文件或目录。</li>
-</ul>
-<p>网络操作命令：</p>
-<ul>
-<li>ifconfig：查看网络接口信息。</li>
-<li>ping：测试网络连接。</li>
-<li>ssh：远程登录。</li>
-</ul>
-<p>进程管理命令：</p>
-<ul>
-<li>ps：查看进程信息。</li>
-<li>top：实时显示进程信息。</li>
-<li>kill：杀死进程。</li>
-<li>killall：杀死进程。</li>
-<li>nohup：后台运行命令。</li>
-</ul>
-<p>系统管理命令：</p>
-<ul>
-<li>man：查看命令的帮助信息。</li>
-<li>sudo：以超级用户权限运行命令。</li>
-<li>su：切换用户。</li>
-<li>chmod：修改文件或目录的权限。</li>
-<li>chmod -R 777: 递归地将目录及其子目录的权限设置为777。</li>
-</ul>
-<p>sudo apt update：更新软件源。</p>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>ctrl+alt+t：打开终端。</p>
-<h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><ul>
-<li>vi&#x2F;vim：Linux系统中最常用的文本编辑器。</li>
-<li>nano：功能较为简单，适合小型系统。</li>
-<li>gedit：GNOME桌面环境下最常用的文本编辑器。</li>
-<li>emacs：功能强大，可高度自定义。</li>
-</ul>
-<h3 id="vim常用命令"><a href="#vim常用命令" class="headerlink" title="vim常用命令"></a>vim常用命令</h3><ul>
-<li>i：进入编辑模式。</li>
-<li>esc：退出编辑模式。</li>
-<li>:wq：保存并退出。</li>
-<li>:q!：强制退出不保存。</li>
-<li>?：查看帮助。</li>
-<li>&#x2F;：查找。</li>
-<li>p：粘贴。</li>
-<li>u：撤销。</li>
-</ul>
-
+    
+      <div class="post-item" title="linux101">
+        <div class="time-m-d">2025-04-15</div>
+        <div class="title">
+          <a href="/2025/04/15/linux101/">
+            
+              
+                <span>linux101</span>
+              
+            
+          </a>
+        </div>
       </div>
-  </article>
-
-  <article class="post">
-      
-        
-          <h1><a href="/2025/04/04/python-101/">python入门</a></h1>
-        
-      
-      <div class="post-content ">
-        
-  
-
-
-
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Python-简介"><a href="#Python-简介" class="headerlink" title="Python 简介"></a>Python 简介</h2><p>Python 是一个高层次的结合了解释性、编译性、互动性和面向对象的脚本语言。</p>
-<p>Python 的设计具有很强的可读性，相比其他语言经常使用英文关键字，其他语言的一些标点符号，它具有比其他语言更有特色语法结构。</p>
-<p>Python 是一种解释型语言，这意味着开发过程中无需编译，直接运行代码即可。</p>
-<h2 id="第一个-Python-程序"><a href="#第一个-Python-程序" class="headerlink" title="第一个 Python 程序"></a>第一个 Python 程序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello, World!&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="行和缩进"><a href="#行和缩进" class="headerlink" title="行和缩进"></a>行和缩进</h2><p>学习 Python 与其他语言最大的区别就是，Python 的代码块不使用大括号 {} 来控制类，函数以及其他逻辑判断。python 最具特色的就是用缩进来写模块。</p>
-<p>缩进的空白数量是可变的，但是所有代码块语句必须包含相同的缩进空白数量，这个必须严格执行。</p>
-<p>以下实例缩进为四个空格:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="literal">True</span>:</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;True&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;False&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>Python 中的变量赋值不需要类型声明。</p>
-<p><strong>每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。</strong><br>等号 &#x3D; 用来给变量赋值。</p>
-<p>等号 &#x3D; 运算符<strong>左边</strong>是一个变量名，等号 &#x3D; 运算符<strong>右边</strong>是存储在变量中的值。例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">5</span> <span class="comment"># x 是一个整数变量</span></span><br><span class="line"><span class="built_in">int</span></span><br><span class="line">y = <span class="number">3.14159</span> <span class="comment"># y 是一个浮点数变量,也就是小数</span></span><br><span class="line"><span class="built_in">float</span></span><br><span class="line">z = <span class="string">&quot;HelloWorld!&quot;</span> <span class="comment"># z 是一个字符串变量</span></span><br><span class="line">zz = <span class="string">&#x27;Hello, World!&#x27;</span> <span class="comment"># zz 也是一个字符串变量</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>本章节主要说明Python的运算符。举个简单的例子 4 +5 &#x3D; 9 。 例子中，4 和 5 被称为操作数，+ 称为运算符。</p>
-<p>Python 支持多种运算符，包括：</p>
-<ul>
-<li>算术运算符：+、-、<em>、&#x2F;、**%(取余)、(幂)、&#x2F;&#x2F;(取整除)*</em></li>
-<li>赋值运算符：&#x3D;(赋值)</li>
-<li>比较运算符：&#x3D;&#x3D;(等于)、!&#x3D;(不等于)、&gt;、&lt;、&gt;&#x3D;、&lt;&#x3D;</li>
-<li>逻辑运算符：and、or、not</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">3</span>**<span class="number">2</span> <span class="comment"># 3的平方</span></span><br><span class="line">y = <span class="number">10</span> % <span class="number">3</span> <span class="comment"># 10除以3的余数</span></span><br><span class="line">z = <span class="number">10</span> // <span class="number">3</span> <span class="comment"># 10除以3的商</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>Python 内置了<code>input()</code>函数用于从控制台获取输入，<code>print()</code>函数用于输出内容到控制台。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输入</span></span><br><span class="line">name = <span class="built_in">input</span>(<span class="string">&quot;请输入你的名字：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;你好，&quot;</span> + name + <span class="string">&quot;！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello, World!&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>Python 中单行注释以 # 开头。</p>
-<h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><p>Python 中使用 if-else 语句实现分支结构。</p>
-<p>细分有三种分支结构：</p>
-<ul>
-<li>if 语句</li>
-<li>if-else 语句</li>
-<li>if-elif-else 语句</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># if 语句</span></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is positive&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># if-else 语句</span></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is positive&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is not positive&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># if-elif-else 语句</span></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is positive&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> x &lt; <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is negative&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;x is zero&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>输出格式化</p>
-<p><code>round()</code> 函数用于四舍五入，第二个参数指定保留几位小数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">3.1415926</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;保留两位小数：&quot;</span>, <span class="built_in">round</span>(x, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;保留一位小数：&quot;</span>, <span class="built_in">round</span>(<span class="number">3.1415926</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
+    
+      <div class="post-item" title="python入门">
+        <div class="time-m-d">2025-04-04</div>
+        <div class="title">
+          <a href="/2025/04/04/python-101/">
+            
+              
+                <span>python入门</span>
+              
+            
+          </a>
+        </div>
       </div>
-  </article>
-
-  <article class="post">
-      
-        
-          <h1><a href="/2025/03/12/algorithm-recording/">Leetcode刷题记录</a></h1>
-        
-      
-      <div class="post-content ">
-        
-  
-
-
-
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a>42. 接雨水</h2><p>遍历每一个柱子，向左向右找到最高的柱子，然后取左右最高柱子中较小的那个，减去当前柱子的高度，就是当前柱子能接的雨水。</p>
-<p>优化点：找最高柱子的过程可以优化，用空间换时间。</p>
-<p>如果用数组来存储这个数据，需要O(n)的空间,但是观察可以发现，每个位置的数据只用了一次，而不同位置的数字之间也存在着某种联系。</p>
-<p>所以可以使用双指针来优化，一个指向左边最高的柱子，一个指向右边最高的柱子，然后向中间移动，直到两指针相遇，此时两指针所指的柱子就是最高的柱子。在这个移动的过程中，边移动边计算当前位置能接的雨水。这样可以将空间复杂度降低到O(1)。</p>
-<h2 id="24-两两交换链表中的节点"><a href="#24-两两交换链表中的节点" class="headerlink" title="24. 两两交换链表中的节点"></a>24. 两两交换链表中的节点</h2><p>一个链表，交换相邻的两个节点，直到没有相邻的两个节点可以交换。</p>
-<p>思路：从头到尾，每两个为一组（不足两个的不用交换），步长为2，遍历链表，使用临时变量保存当前节点的下一个节点，然后交换当前节点和下一个节点的指针，然后移动到下一个节点的下一个节点。</p>
-<p>要注意使用last 来更新最后一个交换的节点，否则会出现链表断裂。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(cur!=<span class="literal">null</span> &amp;&amp; cur.next!=<span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(first!=<span class="number">1</span>)last.next=cur.next;</span><br><span class="line">            <span class="keyword">else</span> first=<span class="number">0</span>;</span><br><span class="line">            <span class="comment">//记录并更新上一个</span></span><br><span class="line">            last = cur;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//调整指针</span></span><br><span class="line">            temp=cur.next.next;</span><br><span class="line">            cur.next.next = cur;</span><br><span class="line">            cur.next=temp;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//这里要注意的是，链表已经交换了，cur位于后位，所以要更新cur到cur的下一个节点，而不是最开始的last.next.next。</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//不过这里形式上是下一个，要明白这是下一个的下一个。</span></span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>指针交换如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250312_1741774693.png" alt="指针交换"></p>
-<h2 id="51-N-皇后"><a href="#51-N-皇后" class="headerlink" title="51. N 皇后"></a>51. N 皇后</h2><p>N皇后，不能再经典的回溯题，逻辑很好理解，即使用回溯的方式枚举所有的可能，然后判断可行性，得到所有的可行解。<br>不过这个输出格式实在是想吐槽，莫名其妙的格式（不过应该是我对字符串以及组织不熟悉）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(c[i]==<span class="number">0</span> &amp;&amp; x[i+num]==<span class="number">0</span> &amp;&amp; xx[i-num+n-<span class="number">1</span>]==<span class="number">0</span>) &#123;</span><br><span class="line">                c[i]=<span class="number">1</span>;             <span class="comment">//column</span></span><br><span class="line">                x[i+num]=<span class="number">1</span>;         <span class="comment">//left diagonal</span></span><br><span class="line">                xx[i-num+n-<span class="number">1</span>]=<span class="number">1</span>;    <span class="comment">//right diagonal</span></span><br><span class="line">                ans[num]=i;</span><br><span class="line">                f(ans,num+<span class="number">1</span>);</span><br><span class="line">                c[i]=<span class="number">0</span>;</span><br><span class="line">                x[i+num]=<span class="number">0</span>;</span><br><span class="line">                xx[i-num+n-<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<p>题目中要求的 字符串格式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//[[&quot;.Q..&quot;,&quot;...Q&quot;,&quot;Q...&quot;,&quot;..Q.&quot;],[&quot;..Q.&quot;,&quot;Q...&quot;,&quot;...Q&quot;,&quot;.Q..&quot;]]</span></span><br><span class="line"><span class="keyword">if</span>(num==n)&#123;</span><br><span class="line">            List&lt;String&gt; temp=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">                <span class="type">char</span>[] row = <span class="keyword">new</span> <span class="title class_">char</span>[n];</span><br><span class="line">                Arrays.fill(row, <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">                row[ans[i]] = <span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">                temp.add(<span class="keyword">new</span> <span class="title class_">String</span>(row));</span><br><span class="line">            &#125;</span><br><span class="line">            list.add(temp);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="98-验证二叉搜索树"><a href="#98-验证二叉搜索树" class="headerlink" title="98. 验证二叉搜索树"></a>98. 验证二叉搜索树</h2><h3 id="1-中序遍历"><a href="#1-中序遍历" class="headerlink" title="1.中序遍历"></a>1.中序遍历</h3><p><strong>排序二叉树的中序遍历是升序的。</strong></p>
-<p>所以可以将中序遍历输出到一个数组，再检查数组是否是升序的即可。<br>可以对其进行空间优化。遍历中进行判断，记录上一个节点的值，如果当前节点的值小于等于上一个节点的值，则不是二叉搜索树。</p>
-<p>但是第一个点不是很好判断，如果设置一个初始值<code>last=Long.MIN_VALUE</code>,  可以解决这个问题。<br>也可以用一个组合节点来判断，如果是第一个就跳过。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">long</span> <span class="variable">last</span> <span class="operator">=</span> <span class="number">0</span>;<span class="comment">//Long.MIN_VALUE;</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="variable">isbigger</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="variable">first</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isValidBST</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="literal">null</span>)<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">l</span> <span class="operator">=</span> isValidBST(root.left);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(first)&#123;first = <span class="literal">false</span>;&#125;</span><br><span class="line">        <span class="keyword">else</span> isbigger = isbigger &amp;&amp; root.val &gt; last;</span><br><span class="line">        <span class="comment">//System.out.println(root.val+&quot; &quot;+isbigger);</span></span><br><span class="line">        last = root.val;</span><br><span class="line"></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">r</span> <span class="operator">=</span> isValidBST(root.right);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> isbigger;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-递归检查"><a href="#2-递归检查" class="headerlink" title="2.递归检查"></a>2.递归检查</h3><p>递归检查，设置上下限，递归检查左右子树。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isValidBST</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        注意这里的上下限，如果是Integer.MIN_VALUE，则会导致死循环。</span></span><br><span class="line"><span class="string">        所以这里设置成null，表示无穷小。</span></span><br><span class="line"><span class="string">        其实我没有验证过，但是应该是可以的，思路是一样的。</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> check(root, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">check</span><span class="params">(TreeNode root, Integer lower, Integer upper)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(lower!= <span class="literal">null</span> &amp;&amp; root.val &lt;= lower) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(upper!= <span class="literal">null</span> &amp;&amp; root.val &gt;= upper) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> check(root.left, lower, root.val) &amp;&amp; check(root.right, root.val, upper);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="102-二叉树的层序遍历"><a href="#102-二叉树的层序遍历" class="headerlink" title="102. 二叉树的层序遍历"></a>102. 二叉树的层序遍历</h2><p>二叉树的遍历方式有很多种，深度优先搜索，广度优先搜索，层序遍历。深搜还可以分为前序遍历，中序遍历，后序遍历。广搜可以分为层序遍历，宽度遍历。</p>
-<p>层序遍历就是先把根节点放入队列，然后依次弹出队列中的节点，并将其左右子节点放入队列，直到队列为空。</p>
-<p>层次遍历和广搜的区别是，层序遍历是按层次遍历，广搜是按宽度遍历。<br>尽管都是使用队列，但是层次遍历会在每一层加入队列后停下一个间隔，记录一下这个层的宽度（通常是队列的大小），而广搜则是一次性将所有节点都加入队列，然后按宽度遍历。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span></span><br><span class="line"><span class="comment"> *         this.val = val;</span></span><br><span class="line"><span class="comment"> *         this.left = left;</span></span><br><span class="line"><span class="comment"> *         this.right = right;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">levelOrder</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(root ==<span class="literal">null</span>)<span class="keyword">return</span> res;</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">            List&lt;Integer&gt;list =<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">            <span class="type">int</span> <span class="variable">Size</span> <span class="operator">=</span> queue.size();</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=Size;i++) &#123;</span><br><span class="line">                <span class="type">TreeNode</span> <span class="variable">temp</span> <span class="operator">=</span>queue.poll();</span><br><span class="line">                list.add(temp.val);</span><br><span class="line">                <span class="keyword">if</span>(temp.left!=<span class="literal">null</span>)queue.offer(temp.left);</span><br><span class="line">                <span class="keyword">if</span>(temp.right!=<span class="literal">null</span>)queue.offer(temp.right);</span><br><span class="line">            &#125;</span><br><span class="line">            res.add(list);</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="105-从前序与中序遍历序列构造二叉树"><a href="#105-从前序与中序遍历序列构造二叉树" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树"></a>105. 从前序与中序遍历序列构造二叉树</h2><p>也是经典题，如果能明白中序遍历和前序遍历的特点，那么这道题就很简单。</p>
-<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>很显然，中序遍历的左右子树是由根节点分开的。而前序遍历的第一个节点就是根节点。前序遍历的第二个节点到倒数第二个节点就是左子树，倒数第二个节点到最后一个节点就是右子树。</p>
-<p>所以，我们可以先找到根节点在中序遍历中的位置，然后递归地构造左右子树。<br>在中序遍历中寻找根节点的算法可以使用MAP，也可以使用线性查找。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> TreeNode <span class="title function_">buildTree</span><span class="params">(<span class="type">int</span>[] preorder, <span class="type">int</span>[] inorder)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> work(<span class="number">0</span>,preorder.length,<span class="number">0</span>,preorder.length,preorder,inorder);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> TreeNode <span class="title function_">work</span><span class="params">(<span class="type">int</span> pl,<span class="type">int</span> pr,<span class="type">int</span> il,<span class="type">int</span> ir,<span class="type">int</span>[] preorder,<span class="type">int</span>[] inorder)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(pl&gt;=pr)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">res</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">val</span> <span class="operator">=</span> preorder[pl];</span><br><span class="line">        <span class="comment">//这里可以使用map对索引查找进行优化</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=il;i&lt;ir;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(inorder[i]==val)&#123;</span><br><span class="line">                res = <span class="keyword">new</span> <span class="title class_">TreeNode</span>(val);</span><br><span class="line">                <span class="type">int</span> <span class="variable">leftsize</span> <span class="operator">=</span> i - il;</span><br><span class="line">                <span class="comment">//rightsize = ir - i;</span></span><br><span class="line">                <span class="comment">//System.out.println(pl+1+&quot; &quot;+(pl+1+leftsize)+&quot; &quot;+il+&quot; &quot;+i);</span></span><br><span class="line">                <span class="comment">//System.out.println(pl+1+leftsize+&quot; &quot;+(pr)+&quot; &quot;+(i+1)+&quot; &quot;+ir);</span></span><br><span class="line">                res.left = work(pl+<span class="number">1</span>,pl+<span class="number">1</span>+leftsize,il,i,preorder,inorder);</span><br><span class="line">                res.right = work(pl+<span class="number">1</span>+leftsize,pr,i+<span class="number">1</span>,ir,preorder,inorder);   </span><br><span class="line">                <span class="comment">//if(res.left==null) System.out.println(&quot;NULL&quot;);</span></span><br><span class="line">                <span class="comment">//else System.out.println(res.left.val+&quot; &quot;+res.right.val);</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>没看看懂这一块</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+    
+      <div class="post-item" title="Leetcode刷题记录">
+        <div class="time-m-d">2025-03-12</div>
+        <div class="title">
+          <a href="/2025/03/12/algorithm-recording/">
+            
+              
+                <span>Leetcode刷题记录</span>
+              
+            
+          </a>
+        </div>
       </div>
-  </article>
-
-  <article class="post">
-      
-        
-          <h1><a href="/2025/03/04/computer-network-Linkde-layer/">计算机网络-链路层</a></h1>
-        
-      
-      <div class="post-content ">
-        
-  
-
-
-
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
-<p>数据链路层的功能概述：数据链路层在物理层提供服务的基础上向网络层提供服务，其最基本的服务是将源自网络层来的数据可靠地传输到相邻结点的目标网络层。<br>其主要作用是加强物理层传输原始比特流的功能，将物理层提供的可能出错的物理连接改造成为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
-</blockquote>
-<h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><ul>
-<li>主机、路由器、交换机、网桥是<strong>节点</strong>（nodes）</li>
-<li>连接相邻节点的的通信信道是<strong>链路</strong>（links）<ul>
-<li>又可分为<strong>物理链路</strong>和<strong>数据链路</strong></li>
-<li>物理链路指的是实际的通信链路，如有线的双绞线、光线，无线的微波等。</li>
-<li>数据链路指的是网络中节点之间的<strong>逻辑通道</strong>，链路上附加的软硬件实现控制传输协议。</li>
-</ul>
-</li>
-<li>数据单元（PDU）:<strong>帧</strong>（frame）、</li>
-</ul>
-<h2 id="链路层提供的服务"><a href="#链路层提供的服务" class="headerlink" title="链路层提供的服务"></a>链路层提供的服务</h2><p><strong>三个基本服务</strong>：</p>
-<ul>
-<li>封装成帧</li>
-<li>差错控制</li>
-<li>透明传输<br>这几个基本原则在不同的链路层协议中是共通的，但在不同的协议中会有不同的细节。</li>
-</ul>
-<p>主要的服务类型：</p>
-<ol>
-<li>数据成帧，帧封装、解封</li>
-<li>流量控制</li>
-<li>差错控制：检测和纠正</li>
-<li>介质接入控制</li>
-</ol>
-<h3 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h3><p>帧的结构<br><strong>帧：帧头+网络层数据报+帧尾</strong></p>
-<p><img src="https://pic4.zhimg.com/v2-b531f1c80f411a0fefcb198b08f145ef_r.jpg" alt="帧结构"></p>
-<ul>
-<li>接收：识别帧头帧尾用于识别接收帧数据的开始和结束。<ul>
-<li>flag是帧开始和结束的标记，指示了帧的开始与结束。</li>
-</ul>
-</li>
-<li>发送：在发送的数据前后加上帧头和帧尾。<br><em>在具体的协议中，帧的结构会有细微的不同。</em></li>
-</ul>
-<h3 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h3><p>透明传输是指不管所传数据是什么样的比特组合，都应当能够在链路上传送。<br>透明意味着，传输链路不会约束传输的数据，像不存在一样。</p>
-<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><ul>
-<li>匹配相邻节点之间的传输和接收速率</li>
-<li>可以避免数据淹没</li>
-</ul>
-<h3 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h3><p>帧结构可以分为<strong>数据（D）</strong> 和 <strong>差错检测和纠正位（EDC）</strong>。<br>接收方根据接收到的数据和校验位进行判断，检测到错误可以提醒发送方重传或纠正。</p>
-<ul>
-<li>数据可以包含帧头</li>
-<li>EDC是引入冗余来加强数据可靠性（类似信道编码）<br><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250304_1741097286.png" alt="数据和冗余位"></li>
-</ul>
-<h4 id="常见的检验算法"><a href="#常见的检验算法" class="headerlink" title="常见的检验算法"></a>常见的检验算法</h4><ul>
-<li>奇偶检验（1bit）<br>  - 可增强为二维奇偶校验</li>
-<li>CRC（循环冗余校验）<br>  -  检错能力强，但没有纠错能力</li>
-</ul>
-<h2 id="LLC和MAC"><a href="#LLC和MAC" class="headerlink" title="LLC和MAC"></a>LLC和MAC</h2><p>在OSI&#x2F;RM和TCP&#x2F;IP体系结构中，数据链路层就一层。而在局域网体系结构中，是可以细分为两个子层的，就是逻辑链路控制(Logical Link Control, LLC)子层和介质访问控制(Medium Access Control, MAC)。</p>
-<ul>
-<li><strong>Mac子层</strong>：控制不同用户数据传输中对物理层传输介质的访问，包括数据帧的封装&#x2F;卸装，帧的寻址和识别，帧的接收与发送，帧的差错控制，以及介质访问冲突控制等。</li>
-<li><strong>LLC子层</strong>：LLC子层的最基本功能，就是负责数据链路层中的逻辑链路(逻辑链路就是物理层信道中的物理链路，在通过LLC协议作用后形成的虚拟电路)。包括逻辑链路的建立和释放，控制信号交换，数据流量控制，解释上层通信协议传来的命令并生产响应，以及克服数据在传输的过程当中发生的种种问题。如数据发生错误、重复收到相同的数据、接收数据顺序与传送的顺序不一致等。在LLC子层方面，IEEE 802系列中只制定了一种标准——IEEE 802.2.</li>
-</ul>
-<h3 id="媒体访问控制（MAC协议）"><a href="#媒体访问控制（MAC协议）" class="headerlink" title="媒体访问控制（MAC协议）"></a>媒体访问控制（MAC协议）</h3><p>多路访问协议，使多个节点都能访问网络，协议负责协调和控制，也提供重传。</p>
-
+    
+      <div class="post-item" title="计算机网络-链路层">
+        <div class="time-m-d">2025-03-04</div>
+        <div class="title">
+          <a href="/2025/03/04/computer-network-Linkde-layer/">
+            
+              
+                <span>计算机网络-链路层</span>
+              
+            
+          </a>
+        </div>
       </div>
-  </article>
-
-  <article class="post">
-      
-        
-          <h1><a href="/2025/02/27/sdn-base1/">SDN-Base-1</a></h1>
-        
-      
-      <div class="post-content ">
-        
-  
-
-
-
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="SDN概述"><a href="#SDN概述" class="headerlink" title="SDN概述"></a>SDN概述</h2><blockquote>
-<p>SDN是一种网络架构，它将网络控制平面与数据平面分离，从而实现网络的灵活性和可编程性。SDN的核心思想是将网络控制功能从网络设备中分离出来，集中管理，从而实现网络的灵活性和可编程性。</p>
-</blockquote>
-<p>SDN，软件定义网络，将网络控制功能从网络设备中分离出来，集中管理，从而实现网络的灵活性和可编程性。（AI真是啥都能续写~~）</p>
-<p><em>还没写完，先放着，等学完再写。</em></p>
-
+    
+      <div class="post-item" title="SDN-Base-1">
+        <div class="time-m-d">2025-02-27</div>
+        <div class="title">
+          <a href="/2025/02/27/sdn-base1/">
+            
+              
+                <span>SDN-Base-1</span>
+              
+            
+          </a>
+        </div>
       </div>
-  </article>
-
-  <article class="post">
-      
-        
-          <h1><a href="/2025/02/27/upgit/">upgit-上传图床的安装记录</a></h1>
-        
-      
-      <div class="post-content ">
-        
-  
-
-
-
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="upgit是什么？"><a href="#upgit是什么？" class="headerlink" title="upgit是什么？"></a>upgit是什么？</h2><blockquote>
-<p>Upgit* 可以快捷地将文件上传到 Github 仓库并得到其直链。简洁跨平台，不常驻内存。</p>
-</blockquote>
-<p>upgit是github里的一个项目，可以快捷地将文件上传到github仓库并得到其直链。可以快捷上传图片。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a target="_blank" rel="noopener" href="https://github.com/pluveto/upgit/blob/main/docs/README.zh-CN.md">upgit安装文档</a></p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="配置github图床"><a href="#配置github图床" class="headerlink" title="配置github图床"></a>配置github图床</h3><p>具体见文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44379458/article/details/139687212">upgit使用文档与github图床配置</a></p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upgit -h</span><br></pre></td></tr></table></figure>
-
-<p>可以查看upgit的命令</p>
-<p>常用：</p>
-<h3 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h3><p>比如上传 <code>logo.png</code> 并自动使用重命名规则，执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./upgit logo.png</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="keyword">for</span> windows: .\upgit.exe logo.png</span></span><br></pre></td></tr></table></figure>
-
-<p>然后会看到一个指向  <code>logo.png</code> 的直链。</p>
-<p>比如上传 <code>logo.png</code>  到远程文件夹 <code>/my_images/demo</code>，执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./upgit logo.png -t /my_images/demo</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">对于 Windows: .\upgit.exe logo.png -t /my_images/demo</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="上传剪贴板图像"><a href="#上传剪贴板图像" class="headerlink" title="上传剪贴板图像"></a>上传剪贴板图像</h3><p>使用  <code>:clipboard</code>  占位符放置剪贴板图像。（仅支持<strong>png</strong>格式）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./upgit :clipboard</span><br></pre></td></tr></table></figure>
-
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/02/upgit_20250227_1740586929.png" alt="upgit_20250227_1740586929.png"></p>
-<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/02/upgit_20250227_1740587296.png" alt="upgit_20250227_1740587296.png"></p>
-<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/02/upgit_20250227_1740587366.png" alt="upgit_20250227_1740587366.png"></p>
-<p>以上为测试图片</p>
-<p>由于网络问题，上传速度有点慢，但是可以接受</p>
-
+    
+      <div class="post-item" title="upgit-上传图床的安装记录">
+        <div class="time-m-d">2025-02-27</div>
+        <div class="title">
+          <a href="/2025/02/27/upgit/">
+            
+              
+                <span>upgit-上传图床的安装记录</span>
+              
+            
+          </a>
+        </div>
       </div>
-  </article>
-
-  <article class="post">
-      
-        
-          <h1><a href="/2025/02/23/hello-world/">Hello World</a></h1>
-        
-      
-      <div class="post-content ">
-        
-  
-
-
-
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+    
+      <div class="post-item" title="Hello World">
+        <div class="time-m-d">2025-02-23</div>
+        <div class="title">
+          <a href="/2025/02/23/hello-world/">
+            
+              
+                <span>Hello World</span>
+              
+            
+          </a>
+        </div>
       </div>
-  </article>
+    
+  </div>
+  <nav class="post-navigation">
+    
+    <span class="page-num">1 / 1</span>
+    
+  </nav>
+</div>
 
-
-</section>
-    <footer id="footer" role="contentinfo">
-    <div>&copy; 2025 <a href="/">BlueSKyzzz</a>.
-    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
-	</div>
-</footer><!-- end #footer -->
-
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
   </div>
   
-<script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2025 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
 
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
 
   
-<script src="/js/helper.js"></script>
+<script src="/js/colorscheme.js"></script>
 
+
+
+
+
+        
   
-<script src="/js/_third-party/gitment.js"></script>
+  
+<script src="/js/shares.js"></script>
 
-</body>
+
+
+      </div>
+    </div>
+  </body>
 </html>
