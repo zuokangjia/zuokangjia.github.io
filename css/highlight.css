@@ -1,3 +1,6 @@
+/* ==========================================
+   基础样式设置
+   ========================================== */
 .article-entry pre,
 .article-entry .highlight {
   background: transparent;
@@ -9,45 +12,149 @@
   line-height: 1.4;
 }
 
-.article-entry .highlight .gutter pre,
-.article-entry .gist .gist-file .gist-data .line-numbers {
-  color: #666;
-  font-size: .85em
-}
-
 .article-entry pre,
 .article-entry code {
-  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace
+  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
 }
 
 .article-entry code {
   background: color-background;
   text-shadow: 0 1px #fff;
-  padding: 0 .3em
+  padding: 0 .3em;
 }
 
 .article-entry pre code {
   background: none;
   text-shadow: none;
-  padding: 0
+  padding: 0;
 }
 
+/* ==========================================
+   代码块表格样式
+   ========================================== */
 .article-entry .highlight pre {
   border: none;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 .article-entry .highlight table {
   margin: 0;
-  width: auto
+  width: auto;
 }
 
 .article-entry .highlight td {
   border: none;
-  padding: 0
+  padding: 0;
 }
 
+/* 确保表格没有边框 */
+.highlight table, 
+.highlight tr, 
+.highlight td {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* 添加新的样式来减少表格单元格之间的间距 */
+.highlight table {
+  border-spacing: 0 !important;
+  border-collapse: collapse !important;
+  margin-left: 0 !important;  /* 确保表格也靠左对齐 */
+}
+
+.markdown-body .highlight table td {
+  padding: 0;
+  border: none;
+}
+
+.markdown-body .highlight table tr {
+  border: none;
+}
+
+/* ==========================================
+   行号样式
+   ========================================== */
+.article-entry .highlight .gutter pre,
+.article-entry .gist .gist-file .gist-data .line-numbers {
+  color: #666;
+  font-size: .85em;
+}
+
+.article-entry .highlight .gutter pre {
+  text-align: right;
+  padding-right: 2px;
+  padding-left: 5px;
+  color: #aaa;
+  background: transparent !important;
+  width: 3em;
+  margin-right: 0;
+  border-right: none !important;
+}
+
+/* 行号 */
+.article-entry .highlight .gutter pre,
+.markdown-body .highlight .gutter pre {
+  text-align: right !important;
+  color: #aaa !important;
+  background: transparent !important;
+  padding-right: 2px !important;
+  padding-left: 5px !important;
+  width: 3em !important;
+  margin-right: 0 !important;
+  border-right: none !important;
+}
+
+/* 确保没有分割线 */
+.highlight .gutter {
+  border-right: none !important;
+  background: transparent !important;
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.highlight td.gutter {
+  border-right: none !important;
+  padding-right: 0 !important;
+}
+
+/* ==========================================
+   代码区域样式
+   ========================================== */
+.highlight .code pre {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 10px;
+  background-color: transparent !important;
+}
+
+.highlight td.code {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.article-entry .highlight .line {
+  height: 1.4em;
+}
+
+.article-entry .highlight .line.marked {
+  background: #515151;
+}
+
+.markdown-body .highlight table tbody pre {
+  border-radius: 0;
+}
+
+/* 确保所有可能的边框和背景都被移除 */
+.highlight * {
+  border-radius: 0 !important;
+}
+
+/* ==========================================
+   标题和说明样式
+   ========================================== */
 .article-entry .highlight figcaption {
   font-size: .85em;
   color: #999;
@@ -56,24 +163,36 @@
 }
 
 .article-entry .highlight figcaption a {
-  float: right
+  float: right;
 }
 
-.article-entry .highlight .gutter pre {
-  text-align: right;
-  padding-right: 10px;
-  color: #999;
-  background: transparent !important;
+figure {
+  position: relative;
+  border: none !important;
 }
 
-.article-entry .highlight .line {
-  height: 1.4em;
+figure figcaption {
+  padding-left: 1rem;
+  background-color: transparent !important;
+  border: none !important;
 }
 
-.article-entry .highlight .line.marked {
-  background: #515151
+figure table {
+  border: none !important;
 }
 
+figure table td {
+  border: none !important;
+}
+
+details summary {
+  outline: none;
+  cursor: pointer;
+}
+
+/* ==========================================
+   Gist 样式
+   ========================================== */
 .article-entry .gist {
   margin: 0 -20px;
   border-style: solid;
@@ -97,17 +216,17 @@
 .article-entry .gist .gist-file .gist-data .line-numbers {
   background: none;
   border: none;
-  padding: 0 20px 0 0
+  padding: 0 20px 0 0;
 }
 
 .article-entry .gist .gist-file .gist-data .line-data {
-  padding: 0 !important
+  padding: 0 !important;
 }
 
 .article-entry .gist .gist-file .highlight {
   margin: 0;
   padding: 0;
-  border: none
+  border: none;
 }
 
 .article-entry .gist .gist-file .gist-meta {
@@ -126,14 +245,19 @@
 }
 
 .article-entry .gist .gist-file .gist-meta a:hover {
-  text-decoration: underline
+  text-decoration: underline;
 }
 
+/* ==========================================
+   亮色模式下的代码高亮颜色
+   ========================================== */
+/* 注释和标题 */
 pre .comment,
 pre .title {
-  color: #999
+  color: #505050 !important;
 }
 
+/* 变量和标签 */
 pre .variable,
 pre .attribute,
 pre .tag,
@@ -146,37 +270,42 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #f2777a
+  color: #c01010 !important;
 }
 
+/* 数字和常量 */
 pre .number,
 pre .preprocessor,
 pre .built_in,
 pre .literal,
 pre .params,
 pre .constant {
-  color: #f99157
+  color: #c04000 !important;
 }
 
+/* 类名 */
 pre .class,
 pre .ruby .class .title,
 pre .css .rules .attribute {
-  color: #9c9
+  color: #006000 !important;
 }
 
+/* 字符串 */
 pre .string,
 pre .value,
 pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata {
-  color: #9c9
+  color: #006000 !important;
 }
 
+/* 十六进制颜色 */
 pre .css .hexcolor {
-  color: #6cc
+  color: #006080 !important;
 }
 
+/* 函数 */
 pre .function,
 pre .python .decorator,
 pre .python .title,
@@ -185,77 +314,116 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-  color: #69c
+  color: #004080 !important;
 }
 
+/* 关键字 */
 pre .keyword,
 pre .javascript .function {
-  color: #c9c
+  color: #600080 !important;
 }
 
+/* ==========================================
+   暗色模式下的代码高亮颜色
+   ========================================== */
+:root[color-mode="dark"] {
+  /* 基本文本颜色 */
+  .article-entry pre,
+  .article-entry .highlight,
+  .markdown-body .highlight {
+    color: #f0f0f0 !important;
+  }
+  
+  /* 注释颜色 */
+  pre .comment {
+    color: #c0c0c0 !important;
+  }
+  
+  /* 标题颜色 */
+  pre .title {
+    color: #e0e0e0 !important;
+  }
+  
+  /* 变量和标签颜色 */
+  pre .variable,
+  pre .attribute,
+  pre .tag,
+  pre .regexp,
+  pre .ruby .constant,
+  pre .xml .tag .title,
+  pre .xml .pi,
+  pre .xml .doctype,
+  pre .html .doctype,
+  pre .css .id,
+  pre .css .class,
+  pre .css .pseudo {
+    color: #ff8080 !important;
+  }
+  
+  /* 数字和常量颜色 */
+  pre .number,
+  pre .preprocessor,
+  pre .built_in,
+  pre .literal,
+  pre .params,
+  pre .constant {
+    color: #ffa060 !important;
+  }
+  
+  /* 类名颜色 */
+  pre .class,
+  pre .ruby .class .title,
+  pre .css .rules .attribute {
+    color: #a0ffa0 !important;
+  }
+  
+  /* 字符串颜色 */
+  pre .string,
+  pre .value,
+  pre .inheritance,
+  pre .header,
+  pre .ruby .symbol,
+  pre .xml .cdata {
+    color: #a0ffa0 !important;
+  }
+  
+  /* 函数颜色 */
+  pre .function,
+  pre .python .decorator,
+  pre .python .title,
+  pre .ruby .function .title,
+  pre .ruby .title .keyword,
+  pre .perl .sub,
+  pre .javascript .title,
+  pre .coffeescript .title {
+    color: #80c0ff !important;
+  }
+  
+  /* 关键字颜色 */
+  pre .keyword,
+  pre .javascript .function {
+    color: #e0a0e0 !important;
+  }
+  
+ /* 行号颜色 */
+ .article-entry .highlight .gutter pre,
+ .markdown-body .highlight .gutter pre {
+   color: #777 !important;
+   background: transparent !important;
+   padding-right: 2px !important;  /* 从5px改为2px，与亮色模式保持一致 */
+   padding-left: 5px !important;
+   width: 3em !important;
+   margin-right: 0 !important;
+   border-right: none !important;
+ }
+}
+
+/* ==========================================
+   Markdown 样式
+   ========================================== */
 .markdown-body .highlight {
   color: #333;
   background-color: transparent !important;
   border-radius: 0 !important;
   border: none !important;
-}
-
-.markdown-body .highlight table td {
-  padding: 0;
-  border: none;
-}
-
-.markdown-body .highlight table tr {
-  border: none;
-}
-
-.markdown-body .highlight .gutter pre {
-  color: #999;
-  background: #1b1b1b;
-}
-
-.highlight .code pre {
-  width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: transparent !important;
-}
-
-.markdown-body .highlight table tbody pre {
-  border-radius: 0;
-}
-
-details summary {
-  outline: none;
-  cursor: pointer;
-}
-figure {
-  position: relative;
-  border: none !important;
-}
-
-figure figcaption {
-  padding-left: 1rem;
-  background-color: transparent !important;
-  border: none !important;
-}
-
-figure table {
-  border: none !important;
-}
-
-figure table td {
-  border: none !important;
-}
-
-/* 确保所有可能的边框和背景都被移除 */
-.highlight * {
-  border-radius: 0 !important;
-}
-
-.highlight table, 
-.highlight tr, 
-.highlight td {
-  border: none !important;
-  background: transparent !important;
 }
