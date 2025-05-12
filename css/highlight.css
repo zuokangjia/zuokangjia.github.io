@@ -1,14 +1,12 @@
 .article-entry pre,
 .article-entry .highlight {
-  background: #2d2d2d;
-  margin: 0 -20px;
-  padding: 15px 20px;
-  border-style: solid;
-  border-color: color-border;
-  border-width: 1px 0;
+  background: transparent;
+  margin: 0;
+  padding: 10px 0;
+  border: none !important;
   overflow: auto;
-  color: #ccc;
-  line-height: 22.400000000000002px
+  color: #333;
+  line-height: 1.4;
 }
 
 .article-entry .highlight .gutter pre,
@@ -63,11 +61,13 @@
 
 .article-entry .highlight .gutter pre {
   text-align: right;
-  padding-right: 20px
+  padding-right: 10px;
+  color: #999;
+  background: transparent !important;
 }
 
 .article-entry .highlight .line {
-  height: 22.400000000000002px
+  height: 1.4em;
 }
 
 .article-entry .highlight .line.marked {
@@ -194,9 +194,10 @@ pre .javascript .function {
 }
 
 .markdown-body .highlight {
-  color: #ccc;
-  background-color: #2d2d2d;
-  border-radius: 5px;
+  color: #333;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  border: none !important;
 }
 
 .markdown-body .highlight table td {
@@ -217,7 +218,7 @@ pre .javascript .function {
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #2d2d2d !important;
+  background-color: transparent !important;
 }
 
 .markdown-body .highlight table tbody pre {
@@ -230,22 +231,31 @@ details summary {
 }
 figure {
   position: relative;
+  border: none !important;
 }
 
 figure figcaption {
   padding-left: 1rem;
-  background-color: #1b1b1b;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  background-color: transparent !important;
+  border: none !important;
 }
 
-figure table .gutter {
-  user-select: none;
+figure table {
+  border: none !important;
 }
 
-figure .pin-copy {
-  position: absolute;
-  top: 0;
-  right: 1rem;
-  cursor: pointer;
+figure table td {
+  border: none !important;
+}
+
+/* 确保所有可能的边框和背景都被移除 */
+.highlight * {
+  border-radius: 0 !important;
+}
+
+.highlight table, 
+.highlight tr, 
+.highlight td {
+  border: none !important;
+  background: transparent !important;
 }
