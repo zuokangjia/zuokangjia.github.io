@@ -734,3 +734,52 @@
 .markdown-body hr {
   border-bottom-color: #eee;
 }
+
+/* 统一处理包含 .image-caption 的父元素 */
+.markdown-body p:has(.image-caption),
+.markdown-body li:has(.image-caption),
+.markdown-body div:has(.image-caption),
+.markdown-body article:has(.image-caption) {
+  display: block;
+  margin: 0 auto;
+  /* 移除 max-width: 90%，让图片填满容器 */
+}
+
+/* 图片样式 */
+.markdown-body img {
+  width: 100%; /* 强制宽度100% */
+  height: auto; /* 保持比例 */
+  margin: 0 auto;
+  display: block;
+}
+
+/* 图片标题样式 */
+.markdown-body .image-caption {
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--color-text-sub);
+  margin: 10px 0 14px;
+  font-style: italic;
+  max-width: 100%;
+  display: inline-block;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+/* 响应式：小屏幕调整 */
+@media (max-width: 768px) {
+  .markdown-body .image-caption {
+    font-size: 1.3rem;
+    margin: 8px 0 12px;
+  }
+  .markdown-body img {
+    width: 100%; /* 小屏幕保持100% */
+  }
+}
+
+/* 悬停效果 */
+.markdown-body .image-caption:hover {
+  color: var(--color-text-a);
+}
+
+

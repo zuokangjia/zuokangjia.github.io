@@ -15,7 +15,7 @@
   
   <title>
     
-      Mininet的原理与应用 
+      Mininet的原理和应用 
       
       
       |
@@ -39,13 +39,13 @@
 
   <!-- jquery3.3.1 -->
   
-    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
   
 
   <!-- fancybox -->
   
-    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
-    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   
   
 <script src="/js/fancybox.js"></script>
@@ -53,6 +53,8 @@
 
   
 
+  
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   
 
   <script>
@@ -117,7 +119,7 @@
   <!-- LaTex Display -->
 
   
-    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   
   <script>
     MathJax = {
@@ -155,11 +157,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Mininet的原理与应用</div>
+      <div class="post-title">Mininet的原理和应用</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2025-05-12 01:02:36
+          2025-06-13 20:11:06
         </span>
         
               <span class="post-tags">
@@ -209,6 +211,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> bash</span><br><span class="line"><span class="comment"># Create host namespaces</span></span><br><span class="line">ip netns add h1</span><br><span class="line">ip netns add h2</span><br><span class="line"><span class="comment"># Create switch</span></span><br><span class="line">ovs-vsctl add-br s1</span><br><span class="line"><span class="comment"># Create links</span></span><br><span class="line">ip <span class="built_in">link</span> add h1-eth0 <span class="built_in">type</span> veth peer name s1-eth1</span><br><span class="line">ip <span class="built_in">link</span> add h2-eth0 <span class="built_in">type</span> veth peer name s1-eth2</span><br><span class="line">ip <span class="built_in">link</span> show</span><br><span class="line"><span class="comment"># Move host ports into namespaces</span></span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> h1-etho netns h1</span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> h2-etho netns h2</span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ip <span class="built_in">link</span> show</span><br><span class="line">ip netns <span class="built_in">exec</span> h2 ip <span class="built_in">link</span> show</span><br><span class="line"><span class="comment"># Connect switch ports to ovS</span></span><br><span class="line">ovs-vsctl add-port s1 s1-eth1</span><br><span class="line">ovs-vsctl add-port s1 s1-eth2</span><br><span class="line">ovs-vsctl show</span><br><span class="line"><span class="comment"># Set up OpenFlow controller</span></span><br><span class="line">ovs-vsctl set-controller s1 tcp:127.0.0.1</span><br><span class="line">ovs-controller ptcp:&amp;</span><br><span class="line">ovs-vsctl show</span><br><span class="line"><span class="comment"># Configure network</span></span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ifconfig h1-eth0 10.1</span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ifconfig lo up</span><br><span class="line">ip netns <span class="built_in">exec</span> h2 ifconfig h2-eth0 10.2</span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ifconfig lo up</span><br><span class="line">ifconfig s1-eth1 up</span><br><span class="line">ifconfig s1-eth2 up</span><br><span class="line"><span class="comment"># Test network</span></span><br><span class="line">ip netns <span class="built_in">exec</span> h1 ping -c1 10.2</span><br></pre></td></tr></table></figure>
 
 <h3 id="Mininet的架构"><a href="#Mininet的架构" class="headerlink" title="Mininet的架构"></a>Mininet的架构</h3><p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/04/upgit_20250422_1745322623.png"></p>
+<p>Mininet的架构是按照SDN的架构来设计的，分为虚拟化层和控制层。</p>
+<p>虚拟化层：创建虚拟的网络设备，包括主机、交换机、链路等，对应SDN中的数据平面。</p>
+<p>控制层：管理虚拟网络，包括启动、停止、配置、监控虚拟网络等，对应SDN中的控制平面。</p>
 <ol>
 <li>Mininet的主要组件包括：控制器、主机、交换机、链路。</li>
 <li>控制器：控制器是Mininet的核心组件，它负责管理网络中的主机、交换机、链路，并提供网络服务。</li>
@@ -217,7 +222,9 @@
 <li>链路：链路是Mininet的网络实体，它可以是物理链路也可以是虚拟链路。</li>
 <li>Mininet的架构可以分为两层，第一层是虚拟化层，它负责创建虚拟网络环境，包括创建主机、交换机、链路等；第二层是控制层，它负责管理虚拟网络环境，包括启动、停止、配置、监控虚拟网络等。</li>
 </ol>
-<h2 id="Mininet可以做什么"><a href="#Mininet可以做什么" class="headerlink" title="Mininet可以做什么"></a>Mininet可以做什么</h2><ul>
+<h2 id="Mininet可以做什么"><a href="#Mininet可以做什么" class="headerlink" title="Mininet可以做什么"></a>Mininet可以做什么</h2><p>Mininet是一种仿真器，和模拟器最大的不同在于，它可以创建真实的网络环境，并在虚拟环境中运行各种网络服务。</p>
+<p>Mininet可以做以下事情：</p>
+<ul>
 <li>为OpenFlow应用程序提供一个简单、便宜的网络测试平台</li>
 <li>启用复杂的拓扑测试，无需连接物理网络</li>
 <li>具有拓扑感知和OpenFlow感知的CLI，用于调试或运行网络范围的测试</li>
@@ -283,7 +290,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2025-05-12 01:02:36
+              2025-06-13 20:11:06
             </span>
             
                   <span class="post-tags">
@@ -380,6 +387,19 @@
         
     </div>
   
+  
+    <div class="footer-views">
+      
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+      
+          本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        
+      
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        
+      
+    </div>
   
 </div>
 
@@ -612,12 +632,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Mininet%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8 + '&url=' + https%3A%2F%2Fzuokangjia.github.io%2F2025%2F04%2F22%2Fmininet%25E7%259A%2584%25E5%258E%259F%25E7%2590%2586%25E4%25B8%258E%25E5%25BA%2594%25E7%2594%25A8%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Mininet%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8 + '&url=' + https%3A%2F%2Fzuokangjia.github.io%2F2025%2F04%2F22%2FMininet-theories-and-applications%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://zuokangjia.github.io/2025/04/22/mininet%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://zuokangjia.github.io/2025/04/22/Mininet-theories-and-applications/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

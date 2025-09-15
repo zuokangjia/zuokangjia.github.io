@@ -39,13 +39,13 @@
 
   <!-- jquery3.3.1 -->
   
-    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
   
 
   <!-- fancybox -->
   
-    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
-    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   
   
 <script src="/js/fancybox.js"></script>
@@ -53,6 +53,8 @@
 
   
 
+  
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   
 
   <script>
@@ -117,7 +119,7 @@
   <!-- LaTex Display -->
 
   
-    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   
   <script>
     MathJax = {
@@ -159,7 +161,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2025-04-22 19:05:25
+          2025-09-05 17:33:36
         </span>
         
               <span class="post-tags">
@@ -202,7 +204,7 @@
 <li>介质接入控制</li>
 </ol>
 <h3 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h3><p>帧的结构<br><strong>帧：帧头+网络层数据报+帧尾</strong></p>
-<p><img src="https://pic4.zhimg.com/v2-b531f1c80f411a0fefcb198b08f145ef_r.jpg" alt="帧结构"></p>
+<p><img src="https://pic4.zhimg.com/v2-b531f1c80f411a0fefcb198b08f145ef_r.jpg" alt="帧结构"><span class="image-caption">帧结构</span></p>
 <ul>
 <li>接收：识别帧头帧尾用于识别接收帧数据的开始和结束。<ul>
 <li>flag是帧开始和结束的标记，指示了帧的开始与结束。</li>
@@ -218,8 +220,9 @@
 <h3 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h3><p>帧结构可以分为<strong>数据（D）</strong> 和 <strong>差错检测和纠正位（EDC）</strong>。<br>接收方根据接收到的数据和校验位进行判断，检测到错误可以提醒发送方重传或纠正。</p>
 <ul>
 <li>数据可以包含帧头</li>
-<li>EDC是引入冗余来加强数据可靠性（类似信道编码）<br><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250304_1741097286.png" alt="数据和冗余位"></li>
+<li>EDC是引入冗余来加强数据可靠性（类似信道编码）</li>
 </ul>
+<p><img src="https://raw.githubusercontent.com/zuokangjia/Picture/main/2025/03/upgit_20250304_1741097286.png" alt="数据和冗余位"><span class="image-caption">数据和冗余位</span></p>
 <h4 id="常见的检验算法"><a href="#常见的检验算法" class="headerlink" title="常见的检验算法"></a>常见的检验算法</h4><ul>
 <li>奇偶检验（1bit）<br>  - 可增强为二维奇偶校验</li>
 <li>CRC（循环冗余校验）<br>  -  检错能力强，但没有纠错能力</li>
@@ -245,7 +248,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2025-04-22 19:05:25
+              2025-09-05 17:33:36
             </span>
             
                   <span class="post-tags">
@@ -335,6 +338,19 @@
         
     </div>
   
+  
+    <div class="footer-views">
+      
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+      
+          本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        
+      
+          本站访客数<span id="busuanzi_value_site_uv"></span>人
+        
+      
+    </div>
   
 </div>
 
