@@ -620,7 +620,8 @@
 }
 
 .markdown-body img {
-  max-width: 90%;
+  /*这里影响了live photo 的图片格式 宽度，所以统一调整为100% */
+  max-width: 100%;
   display: block;
   margin: 0 auto;
   box-sizing: content-box;
