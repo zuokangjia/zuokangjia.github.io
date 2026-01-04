@@ -160,6 +160,7 @@
   color: #999;
   line-height: 1em;
   margin-bottom: 1em;
+  text-align: center;
 }
 
 .article-entry .highlight figcaption a {
@@ -172,7 +173,7 @@ figure {
 }
 
 figure figcaption {
-  padding-left: 1rem;
+  text-align: center;
   background-color: transparent !important;
   border: none !important;
 }
@@ -430,378 +431,17 @@ pre .javascript .function {
 
 @font-face {
   font-family: octicons-link;
-  src: url(data:font/woff;charset=utf-8;base64,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)
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB/aFGpk3jaTY6xa8JAGMW/O62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v+k/0an2i+itHDw3v2+9+DBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3/I7AtxEJLtzzuZfI+VVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy/Lt7Kc+0vWY/gAgIIEqAN9we0pwKXreiMasxvabDQMM4riO+qxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw+ymhce7vwM9jSqO8JyVd5RH9gyTt2+J/yUmYlIR0s04n6+7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv/ocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi+W2+MjCzMIDApSwvXzC97Z4Ig8N/BxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh/8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT+AEjAwuDFpBmA9KMDEwMCh9i/v8H8sH0/4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9/lqYwOGZxeUelN2U2R6+cArgtCJpauW7UQBqnFkUsjAY/kOU1cP+DAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl+vvmM/byA48e6tWrKArm4ZJlCbdsrxksL1AwWn/yBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO//sdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd/89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF+9JOS0nbaaYDCQfwCJ7Au3AHj+LO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm+EBXuAbHmIMSRMs+4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL+hD7C1xoaHeLJSEao0FEW14ckxC+TU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOX... [truncated]
     format("woff");
 }
 
-.markdown-body .pl-c {
-  color: #6a737d;
-}
-
-.markdown-body .pl-c1,
-.markdown-body .pl-s .pl-v {
-  color: #005cc5;
-}
-
-.markdown-body .pl-e,
-.markdown-body .pl-en {
-  color: #6f42c1;
-}
-
-.markdown-body .pl-smi,
-.markdown-body .pl-s .pl-s1 {
-  color: #24292e;
-}
-
-.markdown-body .pl-ent {
-  color: #22863a;
-}
-
-.markdown-body .pl-k {
-  color: #d73a49;
-}
-
-.markdown-body .pl-s,
-.markdown-body .pl-pds,
-.markdown-body .pl-s .pl-pse .pl-s1,
-.markdown-body .pl-sr,
-.markdown-body .pl-sr .pl-cce,
-.markdown-body .pl-sr .pl-sre,
-.markdown-body .pl-sr .pl-sra {
-  color: #032f62;
-}
-
-.markdown-body .pl-v,
-.markdown-body .pl-smw {
-  color: #e36209;
-}
-
-.markdown-body .pl-bu {
-  color: #b31d28;
-}
-
-.markdown-body .pl-ii {
-  color: #fafbfc;
-  background-color: #b31d28;
-}
-
-.markdown-body .pl-c2 {
-  color: #fafbfc;
-  background-color: #d73a49;
-}
-
-.markdown-body .pl-c2::before {
-  content: "^M";
-}
-
-.markdown-body .pl-sr .pl-cce {
-  font-weight: bold;
-  color: #22863a;
-}
-
-.markdown-body .pl-ml {
-  color: #735c0f;
-}
-
-.markdown-body .pl-mh,
-.markdown-body .pl-mh .pl-en,
-.markdown-body .pl-ms {
-  font-weight: bold;
-  color: #005cc5;
-}
-
-.markdown-body .pl-mi {
-  font-style: italic;
-  color: #24292e;
-}
-
-.markdown-body .pl-mb {
-  font-weight: bold;
-  color: #24292e;
-}
-
-.markdown-body .pl-md {
-  color: #b31d28;
-  background-color: #ffeef0;
-}
-
-.markdown-body .pl-mi1 {
-  color: #22863a;
-  background-color: #f0fff4;
-}
-
-.markdown-body .pl-mc {
-  color: #e36209;
-  background-color: #ffebda;
-}
-
-.markdown-body .pl-mi2 {
-  color: #f6f8fa;
-  background-color: #005cc5;
-}
-
-.markdown-body .pl-mdr {
-  font-weight: bold;
-  color: #6f42c1;
-}
-
-.markdown-body .pl-ba {
-  color: #586069;
-}
-
-.markdown-body .pl-sg {
-  color: #959da5;
-}
-
-.markdown-body .pl-corl {
-  text-decoration: underline;
-  color: #032f62;
-}
-
-.markdown-body .octicon {
-  display: inline-block;
-  vertical-align: text-top;
-  fill: currentColor;
-}
-
-.markdown-body a {
-  background-color: transparent;
-}
-
-.markdown-body a:active,
-.markdown-body a:hover {
-  outline-width: 0;
-}
-
-.markdown-body strong {
-  font-weight: inherit;
-}
-
-.markdown-body strong {
-  font-weight: bolder;
-}
-
-.markdown-body h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
-.markdown-body img {
-  border-style: none;
-}
-
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body pre {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
-.markdown-body hr {
-  box-sizing: content-box;
-  height: 0;
-  overflow: visible;
-}
-
-.markdown-body input {
-  font: inherit;
-  margin: 0;
-}
-
-.markdown-body input {
-  overflow: visible;
-}
-
-.markdown-body [type="checkbox"] {
-  box-sizing: border-box;
-  padding: 0;
+.markdown-body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px; /* 恢复默认字体大小 */
 }
 
 .markdown-body * {
   box-sizing: border-box;
-}
-
-.markdown-body input {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-.markdown-body a {
-  color: var(--color-text-a);
-  text-decoration: none;
-  border-bottom: 1px solid var(--color-text-a);
-  font-size: 1em;
-  transition: color 0.3s;
-}
-
-.markdown-body a:hover {
-  text-decoration: none;
-  color: var(--color-text-a-hover);
-  border-bottom: 1px solid var(--color-text-a-hover);
-}
-
-.markdown-body strong {
-  font-weight: 600;
-}
-
-.markdown-body hr {
-  height: 0;
-  margin: 15px 0;
-  overflow: hidden;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid #dfe2e5;
-}
-
-.markdown-body hr::before {
-  display: table;
-  content: "";
-}
-
-.markdown-body hr::after {
-  display: table;
-  clear: both;
-  content: "";
-}
-
-.markdown-body table {
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-
-.markdown-body td,
-.markdown-body th {
-  padding: 0;
-}
-
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.markdown-body h1 {
-  font-size: 32px;
-  font-weight: 600;
-}
-
-.markdown-body h2 {
-  font-size: 24px;
-  font-weight: 600;
-}
-
-.markdown-body h3 {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.markdown-body h4 {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.markdown-body h5 {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.markdown-body h6 {
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.markdown-body p {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.markdown-body blockquote {
-  margin: 0;
-}
-
-.markdown-body ul,
-.markdown-body ol {
-  padding-left: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.markdown-body ol ol,
-.markdown-body ul ol {
-  list-style-type: lower-roman;
-}
-
-.markdown-body ul ul ol,
-.markdown-body ul ol ol,
-.markdown-body ol ul ol,
-.markdown-body ol ol ol {
-  list-style-type: lower-alpha;
-}
-
-.markdown-body dd {
-  margin-left: 0;
-}
-
-.markdown-body code {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-    monospace;
-  font-size: 12px;
-}
-
-.markdown-body pre {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-    monospace;
-  font-size: 12px;
-}
-
-.markdown-body .octicon {
-  vertical-align: text-bottom;
-}
-
-.markdown-body .pl-0 {
-  padding-left: 0 !important;
-}
-
-.markdown-body .pl-1 {
-  padding-left: 4px !important;
-}
-
-.markdown-body .pl-2 {
-  padding-left: 8px !important;
-}
-
-.markdown-body .pl-3 {
-  padding-left: 16px !important;
-}
-
-.markdown-body .pl-4 {
-  padding-left: 24px !important;
-}
-
-.markdown-body .pl-5 {
-  padding-left: 32px !important;
-}
-
-.markdown-body .pl-6 {
-  padding-left: 40px !important;
-}
-
-.markdown-body::before {
-  display: table;
-  content: "";
-}
-
-.markdown-body::after {
-  display: table;
-  clear: both;
-  content: "";
 }
 
 .markdown-body > *:first-child {
@@ -812,21 +452,28 @@ pre .javascript .function {
   margin-bottom: 0 !important;
 }
 
-.markdown-body a:not([href]) {
-  color: inherit;
-  text-decoration: none;
+/* -------------------------------------------------------------------------- */
+/*                                 Typography                                 */
+/* -------------------------------------------------------------------------- */
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
-.markdown-body .anchor {
-  float: left;
-  padding-right: 4px;
-  margin-left: -20px;
-  line-height: 1;
-}
-
-.markdown-body .anchor:focus {
-  outline: none;
-}
+.markdown-body h1 { font-size: 2em; padding-bottom: 0.3em; }
+.markdown-body h2 { font-size: 1.5em; padding-bottom: 0.3em; }
+.markdown-body h3 { font-size: 1.25em; }
+.markdown-body h4 { font-size: 1em; }
+.markdown-body h5 { font-size: 0.875em; }
+.markdown-body h6 { font-size: 0.85em; color: #6a737d; }
 
 .markdown-body p,
 .markdown-body blockquote,
@@ -848,140 +495,38 @@ pre .javascript .function {
 }
 
 .markdown-body blockquote {
-  /*margin: 3rem 0;*/
-  padding: 15px;
+  padding: 0 1em;
   color: var(--color-block-md-quote);
   border-left: 0.25em solid var(--color-block-md-quote);
   background: var(--bg-block-md-quote);
   border-radius: 3px;
+  padding: 15px;
 }
 
-.markdown-body blockquote > :first-child {
-  margin-top: 0;
-}
+.markdown-body blockquote > :first-child { margin-top: 0; }
+.markdown-body blockquote > :last-child { margin-bottom: 0; }
 
-.markdown-body blockquote > :last-child {
-  margin-bottom: 0;
-}
-
-.markdown-body kbd {
-  display: inline-block;
-  padding: 3px 5px;
-  font-size: 11px;
-  line-height: 10px;
-  color: #444d56;
-  vertical-align: middle;
-  background-color: #fafbfc;
-  border: solid 1px #c6cbd1;
-  border-bottom-color: #959da5;
-  border-radius: 3px;
-  box-shadow: inset 0 -1px 0 #959da5;
-}
-
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-  margin-top: 24px;
-  margin-bottom: 16px;
-  font-weight: 600;
-  line-height: 1.25;
-}
-
-.markdown-body h1 .headerlink,
-.markdown-body h2 .headerlink,
-.markdown-body h3 .headerlink,
-.markdown-body h4 .headerlink,
-.markdown-body h5 .headerlink,
-.markdown-body h6 .headerlink {
-  position: relative;
+/* Links */
+.markdown-body a {
+  color: var(--color-text-a);
   text-decoration: none;
-}
-
-.markdown-body h1 .headerlink::before,
-.markdown-body h2 .headerlink::before,
-.markdown-body h3 .headerlink::before,
-.markdown-body h4 .headerlink::before,
-.markdown-body h5 .headerlink::before,
-.markdown-body h6 .headerlink::before {
-  content: "#";
-  position: absolute;
-  right: 5px;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.3s, width 0.3s;
-}
-
-.markdown-body h1:hover .headerlink::before,
-.markdown-body h2:hover .headerlink::before,
-.markdown-body h3:hover .headerlink::before,
-.markdown-body h4:hover .headerlink::before,
-.markdown-body h5:hover .headerlink::before,
-.markdown-body h6:hover .headerlink::before {
-  content: "#";
-  position: absolute;
-  right: 5px;
-  opacity: 1;
-}
-
-.markdown-body h1 .octicon-link,
-.markdown-body h2 .octicon-link,
-.markdown-body h3 .octicon-link,
-.markdown-body h4 .octicon-link,
-.markdown-body h5 .octicon-link,
-.markdown-body h6 .octicon-link {
-  color: #1b1f23;
-  vertical-align: middle;
-  visibility: hidden;
-}
-
-.markdown-body h1:hover .anchor,
-.markdown-body h2:hover .anchor,
-.markdown-body h3:hover .anchor,
-.markdown-body h4:hover .anchor,
-.markdown-body h5:hover .anchor,
-.markdown-body h6:hover .anchor {
-  text-decoration: none;
-}
-
-.markdown-body h1:hover .anchor .octicon-link,
-.markdown-body h2:hover .anchor .octicon-link,
-.markdown-body h3:hover .anchor .octicon-link,
-.markdown-body h4:hover .anchor .octicon-link,
-.markdown-body h5:hover .anchor .octicon-link,
-.markdown-body h6:hover .anchor .octicon-link {
-  visibility: visible;
-}
-
-.markdown-body h1 {
-  padding-bottom: 0.3em;
-  font-size: 2em;
-}
-
-.markdown-body h2 {
-  padding-bottom: 0.3em;
-  font-size: 1.5em;
-}
-
-.markdown-body h3 {
-  font-size: 1.25em;
-}
-
-.markdown-body h4 {
+  border-bottom: 1px solid var(--color-text-a);
   font-size: 1em;
+  transition: color 0.3s;
 }
 
-.markdown-body h5 {
-  font-size: 0.875em;
+.markdown-body a:hover {
+  text-decoration: none;
+  color: var(--color-text-a-hover);
+  border-bottom: 1px solid var(--color-text-a-hover);
 }
 
-.markdown-body h6 {
-  font-size: 0.85em;
-  color: #6a737d;
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
 }
 
+/* Lists */
 .markdown-body ul,
 .markdown-body ol {
   padding-left: 2em;
@@ -998,19 +543,14 @@ pre .javascript .function {
 .markdown-body li {
   word-wrap: break-all;
 }
-
 .markdown-body li > p {
   margin-top: 16px;
 }
-
 .markdown-body li + li {
   margin-top: 0.25em;
 }
 
-.markdown-body dl {
-  padding: 0;
-}
-
+.markdown-body dl { padding: 0; }
 .markdown-body dl dt {
   padding: 0;
   margin-top: 16px;
@@ -1018,24 +558,181 @@ pre .javascript .function {
   font-style: italic;
   font-weight: 600;
 }
-
 .markdown-body dl dd {
   padding: 0 16px;
   margin-bottom: 16px;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                    Code                                    */
+/* -------------------------------------------------------------------------- */
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body code {
+  padding: 3px 5px;
+  margin: 0 2px;
+  font-size: 85%;
+  border-radius: 3px;
+  background-color: var(--bg-text-md-code);
+  color: var(--color-text-md-code);
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  word-wrap: normal;
+  padding: 10px;
+  overflow: auto;
+  font-size: 90%;
+  line-height: 1.8;
+  background-color: var(--bg-block-md-pre);
+  border-radius: 5px;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre > code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+  color: var(--color-text-md-pre);
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: solid 1px #d1d5da;
+  border-bottom-color: #c6cbd1;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #c6cbd1;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Images                                   */
+/* -------------------------------------------------------------------------- */
+
+/* 全局图片样式：统一 80% 宽度，居中，保持比例 */
+.markdown-body img {
+  width: auto;
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  box-sizing: content-box;
+  background-color: #fff;
+  border-style: none;
+}
+
+.markdown-body img[align="right"] { padding-left: 20px; }
+.markdown-body img[align="left"] { padding-right: 20px; }
+
+/* Image Captions */
+.markdown-body .image-caption {
+  text-align: center !important;
+  font-size: 1.4rem;
+  color: var(--color-text-sub);
+  margin: 10px auto 14px !important;
+  font-style: italic;
+  max-width: 100%;
+  display: block !important;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.markdown-body .image-caption:hover {
+  color: var(--color-text-a);
+}
+
+/* 统一处理包含 .image-caption 的父元素 */
+.markdown-body p:has(.image-caption),
+.markdown-body li:has(.image-caption),
+.markdown-body div:has(.image-caption),
+.markdown-body article:has(.image-caption) {
+  display: block;
+  margin: 0 auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Live Photo                                  */
+/* -------------------------------------------------------------------------- */
+
+/* 容器样式：表格布局以适应图片宽度，去除所有装饰 */
+.markdown-body .live-photo-container {
+  display: table !important;
+  margin: 20px auto !important;
+  width: auto !important;
+  max-width: 80% !important;
+  
+  /* 去除插件自带的阴影、背景和圆角，实现纯净显示 */
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  
+  /* 消除幽灵空白，确保视频与图片高度一致 */
+  line-height: 0 !important; 
+}
+
+/* 内部静态图片：填满容器，忽略全局图片样式 */
+.markdown-body .live-photo-container img.live-photo-static {
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 8px !important; /* 保持圆角 */
+}
+
+/* 视频层：确保圆角一致 */
+.markdown-body .live-photo-container video.live-photo-video {
+  border-radius: 8px !important;
+}
+
+/* Live Badge 修复：恢复圆角和背景样式，防止被 line-height: 0 影响 */
+.markdown-body .live-badge {
+  border-radius: 4px !important;
+  line-height: normal !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   Tables                                   */
+/* -------------------------------------------------------------------------- */
+
+/* 通用表格样式 */
 .markdown-body table {
   display: block;
   width: 100%;
   overflow: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
+.markdown-body table th { font-weight: 600; }
+.markdown-body table td,
 .markdown-body table th {
-  font-weight: 600;
-}
-
-.markdown-body table th,
-.markdown-body table td {
   padding: 6px 13px;
   border: 2px solid var(--color-border-md-table);
 }
@@ -1049,171 +746,143 @@ pre .javascript .function {
   background-color: var(--bg-block-md-table-2);
 }
 
-.markdown-body img {
-  /*这里影响了live photo 的图片格式 宽度，所以统一调整为100% */
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-  box-sizing: content-box;
-  background-color: #fff;
+/* -------------------------------------------------------------------------- */
+/*                          Syntax Highlight (Fix)                            */
+/* -------------------------------------------------------------------------- */
+
+/* 修复 Hexo 代码块行号挤压问题，覆盖通用表格样式 */
+.markdown-body .highlight table {
+  display: table !important; /* 恢复表格显示 */
+  width: auto !important;
+  border: none !important;
+  margin: 0 !important;
 }
 
-.markdown-body img[align="right"] {
-  padding-left: 20px;
+.markdown-body .highlight td,
+.markdown-body .highlight th {
+  border: none !important;
+  padding: 0 !important;
 }
 
-.markdown-body img[align="left"] {
-  padding-right: 20px;
+.markdown-body .highlight .gutter {
+  padding-right: 15px !important; /* 增加行号与代码的间距 */
+  text-align: right;
+  color: #6a737d;
+  user-select: none;
 }
 
-.markdown-body code {
-  padding: 3px 5px;
-  margin: 0 2px;
-  font-size: 85%;
-  /* font-weight: 600; */
-  border-radius: 3px;
-  background-color: var(--bg-text-md-code);
-  color: var(--color-text-md-code);
+.markdown-body .highlight .code {
+  padding-left: 5px !important;
+  width: 100%;
 }
 
-.markdown-body pre {
-  word-wrap: normal;
-}
 
-.markdown-body pre > code {
-  padding: 0;
-  margin: 0;
-  font-size: 100%;
-  word-break: normal;
-  white-space: pre;
-  background: transparent;
-  border: 0;
-  color: #333;
-}
+/* -------------------------------------------------------------------------- */
+/*                                 Misc & Syntax                              */
+/* -------------------------------------------------------------------------- */
 
-.markdown-body .highlight {
-  margin-bottom: 16px;
-}
-
-.markdown-body .highlight pre {
-  margin-bottom: 0;
-  word-break: normal;
-}
-
-.markdown-body .highlight pre,
-.markdown-body pre {
-  padding: 10px;
-  overflow: auto;
-  font-size: 90%;
-  line-height: 1.8;
-  background-color: var(--bg-block-md-pre);
-  border-radius: 5px;
-}
-
-.markdown-body pre code {
-  display: inline;
-  max-width: auto;
-  padding: 0;
-  margin: 0;
-  overflow: visible;
-  line-height: inherit;
-  word-wrap: normal;
-  background-color: transparent;
-  border: 0;
-  color: var(--color-text-md-pre)
-}
-
-.markdown-body .full-commit .btn-outline:not(:disabled):hover {
-  color: #005cc5;
-  border-color: #005cc5;
-}
-
-.markdown-body kbd {
+.markdown-body .octicon {
   display: inline-block;
-  padding: 3px 5px;
-  font: 11px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-    monospace;
-  line-height: 10px;
-  color: #444d56;
-  vertical-align: middle;
-  background-color: #fafbfc;
-  border: solid 1px #d1d5da;
-  border-bottom-color: #c6cbd1;
-  border-radius: 3px;
-  box-shadow: inset 0 -1px 0 #c6cbd1;
+  vertical-align: text-top;
+  fill: currentColor;
 }
 
-.markdown-body :checked + .radio-label {
+.markdown-body .anchor {
+  float: left;
+  padding-right: 4px;
+  margin-left: -20px;
+  line-height: 1;
+}
+
+.markdown-body .anchor:focus { outline: none; }
+
+/* Header Links */
+.markdown-body h1 .headerlink, .markdown-body h2 .headerlink, .markdown-body h3 .headerlink,
+.markdown-body h4 .headerlink, .markdown-body h5 .headerlink, .markdown-body h6 .headerlink {
   position: relative;
-  z-index: 1;
-  border-color: #0366d6;
+  text-decoration: none;
 }
 
-.markdown-body .task-list-item {
-  list-style-type: none;
+.markdown-body h1 .headerlink::before, .markdown-body h2 .headerlink::before, .markdown-body h3 .headerlink::before,
+.markdown-body h4 .headerlink::before, .markdown-body h5 .headerlink::before, .markdown-body h6 .headerlink::before {
+  content: "#";
+  position: absolute;
+  right: 5px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s, width 0.3s;
 }
 
-.markdown-body .task-list-item + .task-list-item {
-  margin-top: 3px;
+.markdown-body h1:hover .headerlink::before, .markdown-body h2:hover .headerlink::before, .markdown-body h3:hover .headerlink::before,
+.markdown-body h4:hover .headerlink::before, .markdown-body h5:hover .headerlink::before, .markdown-body h6:hover .headerlink::before {
+  opacity: 1;
 }
 
-.markdown-body .task-list-item input {
-  margin: 0 0.2em 0.25em -1.6em;
-  vertical-align: middle;
-}
+/* Task Lists */
+.markdown-body .task-list-item { list-style-type: none; }
+.markdown-body .task-list-item + .task-list-item { margin-top: 3px; }
+.markdown-body .task-list-item input { margin: 0 0.2em 0.25em -1.6em; vertical-align: middle; }
 
-.markdown-body hr {
-  border-bottom-color: #eee;
-}
+/* Syntax Highlighting Colors */
+.markdown-body .pl-c { color: #6a737d; }
+.markdown-body .pl-c1, .markdown-body .pl-s .pl-v { color: #005cc5; }
+.markdown-body .pl-e, .markdown-body .pl-en { color: #6f42c1; }
+.markdown-body .pl-smi, .markdown-body .pl-s .pl-s1 { color: #24292e; }
+.markdown-body .pl-ent { color: #22863a; }
+.markdown-body .pl-k { color: #d73a49; }
+.markdown-body .pl-s, .markdown-body .pl-pds, .markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr, .markdown-body .pl-sr .pl-cce, .markdown-body .pl-sr .pl-sre,
+.markdown-body .pl-sr .pl-sra { color: #032f62; }
+.markdown-body .pl-v, .markdown-body .pl-smw { color: #e36209; }
+.markdown-body .pl-bu { color: #b31d28; }
+.markdown-body .pl-ii { color: #fafbfc; background-color: #b31d28; }
+.markdown-body .pl-c2 { color: #fafbfc; background-color: #d73a49; }
+.markdown-body .pl-c2::before { content: "^M"; }
+.markdown-body .pl-sr .pl-cce { font-weight: bold; color: #22863a; }
+.markdown-body .pl-ml { color: #735c0f; }
+.markdown-body .pl-mh, .markdown-body .pl-mh .pl-en, .markdown-body .pl-ms { font-weight: bold; color: #005cc5; }
+.markdown-body .pl-mi { font-style: italic; color: #24292e; }
+.markdown-body .pl-mb { font-weight: bold; color: #24292e; }
+.markdown-body .pl-md { color: #b31d28; background-color: #ffeef0; }
+.markdown-body .pl-mi1 { color: #22863a; background-color: #f0fff4; }
+.markdown-body .pl-mc { color: #e36209; background-color: #ffebda; }
+.markdown-body .pl-mi2 { color: #f6f8fa; background-color: #005cc5; }
+.markdown-body .pl-mdr { font-weight: bold; color: #6f42c1; }
+.markdown-body .pl-ba { color: #586069; }
+.markdown-body .pl-sg { color: #959da5; }
+.markdown-body .pl-corl { text-decoration: underline; color: #032f62; }
 
-/* 统一处理包含 .image-caption 的父元素 */
-.markdown-body p:has(.image-caption),
-.markdown-body li:has(.image-caption),
-.markdown-body div:has(.image-caption),
-.markdown-body article:has(.image-caption) {
-  display: block;
-  margin: 0 auto;
-  /* 移除 max-width: 90%，让图片填满容器 */
-}
+/* Padding Helpers */
+.markdown-body .pl-0 { padding-left: 0 !important; }
+.markdown-body .pl-1 { padding-left: 4px !important; }
+.markdown-body .pl-2 { padding-left: 8px !important; }
+.markdown-body .pl-3 { padding-left: 16px !important; }
+.markdown-body .pl-4 { padding-left: 24px !important; }
+.markdown-body .pl-5 { padding-left: 32px !important; }
+.markdown-body .pl-6 { padding-left: 40px !important; }
 
-/* 图片样式 */
-.markdown-body img {
-  width: 100%; /* 强制宽度100% */
-  height: auto; /* 保持比例 */
-  margin: 0 auto;
-  display: block;
-}
+/* -------------------------------------------------------------------------- */
+/*                                Responsive                                  */
+/* -------------------------------------------------------------------------- */
 
-/* 图片标题样式 */
-.markdown-body .image-caption {
-  text-align: center;
-  font-size: 1.4rem;
-  color: var(--color-text-sub);
-  margin: 10px 0 14px;
-  font-style: italic;
-  max-width: 100%;
-  display: inline-block;
-  line-height: 1.5;
-  transition: color 0.3s ease;
-}
-
-/* 响应式：小屏幕调整 */
 @media (max-width: 768px) {
   .markdown-body .image-caption {
     font-size: 1.3rem;
     margin: 8px 0 12px;
   }
+  
+  /* 小屏幕时图片样式调整：保持 100% 宽度，还是保持 80%？
+     通常移动端需要 100% 以利用有限空间。 */
   .markdown-body img {
-    width: 100%; /* 小屏幕保持100% */
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Live Photo 移动端适配 */
+  .markdown-body .live-photo-container {
+    max-width: 100% !important;
   }
 }
-
-/* 悬停效果 */
-.markdown-body .image-caption:hover {
-  color: var(--color-text-a);
-}
-
-
 
 /* valine comments style sheets */
 
@@ -2423,4 +2092,40 @@ a:hover {
 .markdown-body h5 .headerlink::before,
 .markdown-body h6 .headerlink::before {
   color: #004d99;
+}
+/* 强制图片标题居中 */
+.image-caption,
+.live-caption {
+  display: block !important;
+  text-align: center !important;
+  margin: 10px auto !important;
+  width: 100% !important;
+}
+/* Code Copy Button Styling */
+figure.highlight {
+  position: relative !important;
+}
+.pin-copy {
+  position: absolute !important;
+  top: 6px !important;
+  right: 10px !important;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 20;
+  background: transparent;
+}
+figure.highlight:hover .pin-copy {
+  opacity: 1;
+}
+/* Tooltip Position Adjustment */
+.pin-copy:hover::after {
+  top: auto !important;
+  bottom: 100% !important;
+  margin-bottom: 5px;
+}
+.pin-copy:hover::before {
+  top: auto !important;
+  bottom: 100% !important;
+  margin-bottom: -5px;
 }

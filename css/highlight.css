@@ -160,6 +160,7 @@
   color: #999;
   line-height: 1em;
   margin-bottom: 1em;
+  text-align: center;
 }
 
 .article-entry .highlight figcaption a {
@@ -172,7 +173,7 @@ figure {
 }
 
 figure figcaption {
-  padding-left: 1rem;
+  text-align: center;
   background-color: transparent !important;
   border: none !important;
 }

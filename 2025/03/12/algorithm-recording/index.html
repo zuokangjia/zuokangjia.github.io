@@ -9,11 +9,13 @@
 .live-photo-container {
   position: relative;
   border-radius: 12px;
-  margin: 20px 0;
+  margin: 20px auto;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 100%;
+  display: table; /* 使用 table 使容器宽度自适应图片内容 */
+  width: auto;
 }
 
 .live-photo-container:hover {
@@ -21,15 +23,16 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-/* 静态图片 */
+/* 静态封面图 */
 .live-photo-static {
-  width: 100%;
+  width: auto; /* 保持图片原始比例和宽度 */
+  max-width: 100%;
   display: block;
   border-radius: 8px;
   transition: opacity 0.3s;
 }
 
-/* 视频元素 */
+/* 视频图层 */
 .live-photo-video {
   position: absolute;
   top: 0;
@@ -46,7 +49,7 @@
   opacity: 1;
 }
 
-/* Live 标识 */
+/* Live 徽章 */
 .live-badge {
   position: absolute;
   background: rgba(0, 0, 0, 0.7);
@@ -71,7 +74,7 @@
   display: inline-block;
 }
 
-/* 位置变体 */
+/* 徽章位置 */
 .live-badge.bottom-left {
   bottom: 12px;
   left: 12px;
@@ -92,7 +95,7 @@
   right: 12px;
 }
 
-/* 加载指示器 */
+/* 加载动画 */
 .live-loading {
   position: absolute;
   top: 50%;
@@ -112,7 +115,7 @@
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* 标题样式 */
+/* 图片说明 */
 .live-caption {
   text-align: center;
   margin-top: 8px;
@@ -120,188 +123,40 @@
   color: #666;
 }
 
-/* 响应式设计 */
+/* 响应式调整 */
 @media (max-width: 768px) {
   .live-photo-container {
     border-radius: 8px;
-    margin: 16px 0;
+    margin: 16px auto;
   }
-  
+
   .live-badge {
     font-size: 11px;
     padding: 3px 6px;
   }
-  
-  .live-badge.bottom-left,
-  .live-badge.bottom-right {
-    bottom: 8px;
-  }
-  
-  .live-badge.bottom-left,
-  .live-badge.top-left {
-    left: 8px;
-  }
-  
-  .live-badge.bottom-right,
-  .live-badge.top-right {
-    right: 8px;
-  }
-  
-  .live-badge.top-left,
-  .live-badge.top-right {
-    top: 8px;
-  }
-  
 }
 
-/* 多图布局容器 */
-.image-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 20px 0;
-  gap: 15px; /* 使用gap属性设置间距 */
-}
-
-.image-column {
-  flex: 0 0 calc(50% - 8px); /* 每列占50%宽度减去一半的间距 */
-  min-width: 0; /* 防止内容溢出 */
-}
-
-/* Grid布局 */
-.image-grid-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 始终保持两列 */
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.grid-item {
-  position: relative;
-  min-width: 0; /* 防止内容溢出 */
-}
-
-/* 浮动布局 */
-.image-float-container {
-  width: 100%;
-  margin: 20px 0;
+/* 多图布局支持 */
+.image-grid, .image-grid-grid, .image-float-container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  margin: 20px 0;
+  justify-content: center;
 }
 
-.float-image {
-  flex: 0 0 calc(50% - 8px); /* 每列占50%宽度减去一半的间距 */
-}
-
-/* Live Photo 容器适配多图布局 */
 .image-grid .live-photo-container,
 .image-grid-grid .live-photo-container,
 .image-float-container .live-photo-container {
-  margin: 0; /* 移除单独设置的外边距 */
-  border-radius: 8px; /* 稍微减小圆角以适应小屏幕 */
+  margin: 0;
+  display: inline-block; /* 在网格中保持行内块属性 */
 }
 
-/* 确保图片和视频在多图布局中正确显示 */
-.image-grid .live-photo-static,
-.image-grid-grid .live-photo-static,
-.image-float-container .live-photo-static,
-.image-grid .live-photo-video,
-.image-grid-grid .live-photo-video,
-.image-float-container .live-photo-video {
-  border-radius: 8px; /* 与容器保持一致 */
-}
-
-/* 调整Live标识在小屏幕上的大小 */
-.image-grid .live-badge,
-.image-grid-grid .live-badge,
-.image-float-container .live-badge {
-  font-size: 10px;
-  padding: 2px 6px;
-}
-
-.image-grid .live-badge.bottom-left,
-.image-grid-grid .live-badge.bottom-left,
-.image-float-container .live-badge.bottom-left,
-.image-grid .live-badge.bottom-right,
-.image-grid-grid .live-badge.bottom-right,
-.image-float-container .live-badge.bottom-right {
-  bottom: 8px;
-}
-
-.image-grid .live-badge.bottom-left,
-.image-grid-grid .live-badge.bottom-left,
-.image-float-container .live-badge.bottom-left,
-.image-grid .live-badge.top-left,
-.image-grid-grid .live-badge.top-left,
-.image-float-container .live-badge.top-left {
-  left: 8px;
-}
-
-.image-grid .live-badge.bottom-right,
-.image-grid-grid .live-badge.bottom-right,
-.image-float-container .live-badge.bottom-right,
-.image-grid .live-badge.top-right,
-.image-grid-grid .live-badge.top-right,
-.image-float-container .live-badge.top-right {
-  right: 8px;
-}
-
-.image-grid .live-badge.top-left,
-.image-grid-grid .live-badge.top-left,
-.image-float-container .live-badge.top-left,
-.image-grid .live-badge.top-right,
-.image-grid-grid .live-badge.top-right,
-.image-float-container .live-badge.top-right {
-  top: 8px;
-}
-
-/* 非常小的设备调整 */
-@media (max-width: 360px) {
-  .image-grid {
-    gap: 10px;
-  }
-  
-  .image-column {
-    flex: 0 0 calc(50% - 5px); /* 调整间距 */
-  }
-  
-  .image-grid-grid {
-    gap: 10px;
-  }
-  
-  .float-image {
-    flex: 0 0 calc(50% - 5px); /* 调整间距 */
-  }
-  
-  /* 进一步调整Live标识 */
-  .image-grid .live-badge,
-  .image-grid-grid .live-badge,
-  .image-float-container .live-badge {
-    font-size: 9px;
-    padding: 2px 4px;
-  }
-}
-
-/* 确保单图布局不受影响 */
+/* 确保非网格状态下居中 */
 .live-photo-container:not(.image-grid):not(.image-grid-grid):not(.image-float-container) {
-  margin: 20px 0;
+  margin: 20px auto;
 }
-
-/* 标题样式调整 */
-.live-caption {
-  font-size: 13px; /* 稍微减小字体大小 */
-  margin-top: 5px;
-  line-height: 1.4;
-}
-
-/* 确保加载指示器在多图布局中正确显示 */
-.image-grid .live-loading,
-.image-grid-grid .live-loading,
-.image-float-container .live-loading {
-  width: 30px;
-  height: 30px;
-}</style><!-- hexo injector head_begin end -->
+</style><!-- hexo injector head_begin end -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Kangjia" />
@@ -459,7 +314,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2025-05-20 19:50:00
+          2026-01-04 19:35:36
         </span>
         
               <span class="post-tags">
@@ -528,6 +383,64 @@
 <h3 id="2-快速选择算法"><a href="#2-快速选择算法" class="headerlink" title="2.快速选择算法"></a>2.快速选择算法</h3><p>快排每次都选择一个元素作为基准，然后将比基准小的放左边，比基准大的放右边。按这个基准分割，左边的元素都比基准小，右边的元素都比基准大。这个基准的位置就不会变了，即最终的位置。在排序过程中，只要这个位置是第K个，就说明这个就是第K大的元素。</p>
 <p>[TODO]</p>
 <p>具体代码还没写，先放这。</p>
+<h2 id="279-完全平方数"><a href="#279-完全平方数" class="headerlink" title="279. 完全平方数"></a>279. 完全平方数</h2><blockquote>
+<p>给你一个整数 n ，返回 和为 n 的完全平方数的最少数量 。</p>
+<p>完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。</p>
+<p>示例 1：<br>输入：n &#x3D; 12<br>输出：3<br>解释：12 &#x3D; 4 + 4 + 4</p>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>最简单的思路就是枚举所有的平方数的组合，查看是否和<code>n</code>相等，寻找最小的组合；<br>但这样会很差，很多重复的判断，很多不必要的判断。<br>显然，可以察觉到，尽量用大的平方数进行相加，能减少数量。</p>
+<p>所以在使用搜索的方式时，需要从大数开始枚举，通过回溯的方式，完成对组合的枚举（然后再加一些剪枝优化）</p>
+<p>但是，很明显有重复搜索（<strong>重叠子问题</strong>），所以可以进行记忆化搜索。<br>同时发现，<code>f[n]</code>只与<code>f[m] (m&lt;n)</code>有关，满足<strong>最优子结构</strong>。<br>可以用动态和规划，直接进行迭代。(实际上这就是一个<strong>完全背包问题</strong>)</p>
+<h3 id="1-直接搜索（ai）"><a href="#1-直接搜索（ai）" class="headerlink" title="1.直接搜索（ai）"></a>1.直接搜索（ai）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">// 全局变量记录最小数量，初始为最大值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> minCount;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">numSquares</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化最小数量为极大值</span></span><br><span class="line">        minCount = Integer.MAX_VALUE;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 步骤1：收集所有不超过n的平方数（从大到小，优先选大的减少递归）</span></span><br><span class="line">        List&lt;Integer&gt; squares = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> (<span class="type">int</span>) Math.sqrt(n); i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">            squares.add(i * i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 步骤2：回溯（起始索引0，剩余值n，已选数量0）</span></span><br><span class="line">        backtrack(squares, <span class="number">0</span>, n, <span class="number">0</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> minCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 回溯核心方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> squares 所有不超过n的平方数（从大到小）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> start   当前枚举的起始索引（避免重复组合）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> remain  剩余需要凑的数值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> count   已选的平方数数量</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">backtrack</span><span class="params">(List&lt;Integer&gt; squares, <span class="type">int</span> start, <span class="type">int</span> remain, <span class="type">int</span> count)</span> &#123;</span><br><span class="line">        <span class="comment">// 剪枝1：当前数量已≥已知最小值，无需继续递归（不可能更优）</span></span><br><span class="line">        <span class="keyword">if</span> (count &gt;= minCount) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 终止条件：剩余值为0，找到有效组合，更新最小值</span></span><br><span class="line">        <span class="keyword">if</span> (remain == <span class="number">0</span>) &#123;</span><br><span class="line">            minCount = count;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 枚举平方数（从start开始，避免重复组合）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> start; i &lt; squares.size(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">square</span> <span class="operator">=</span> squares.get(i);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 剪枝2：当前平方数超过剩余值，跳过（选了会超，无意义）</span></span><br><span class="line">            <span class="keyword">if</span> (square &gt; remain) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 选择当前平方数：递归（剩余值-平方数，数量+1）</span></span><br><span class="line">            backtrack(squares, i, remain - square, count + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-记忆化搜索"><a href="#2-记忆化搜索" class="headerlink" title="2.记忆化搜索"></a>2.记忆化搜索</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] memo; <span class="comment">// 备忘录：memo[remain] = 凑出remain的最少数量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">numSquares</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化备忘录：-1表示未计算</span></span><br><span class="line">        memo = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        Arrays.fill(memo, -<span class="number">1</span>);</span><br><span class="line">        memo[<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 边界：0需要0个平方数</span></span><br><span class="line">        <span class="comment">// 收集平方数</span></span><br><span class="line">        List&lt;Integer&gt; squares = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i*i &lt;= n; i++) squares.add(i*i);</span><br><span class="line">        <span class="comment">// 记忆化递归</span></span><br><span class="line">        <span class="keyword">return</span> dfs(squares, n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 递归函数：返回凑出remain的最少数量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">dfs</span><span class="params">(List&lt;Integer&gt; squares, <span class="type">int</span> remain)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (memo[remain] != -<span class="number">1</span>) <span class="keyword">return</span> memo[remain]; <span class="comment">// 直接返回已计算的解</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">minCount</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> s : squares) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s &gt; remain) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="comment">// 递归计算子问题：remain-s的最少数量</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">subCount</span> <span class="operator">=</span> dfs(squares, remain - s);</span><br><span class="line">            <span class="keyword">if</span> (subCount != Integer.MAX_VALUE) &#123;</span><br><span class="line">                minCount = Math.min(minCount, subCount + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        memo[remain] = minCount; <span class="comment">// 记录到备忘录</span></span><br><span class="line">        <span class="keyword">return</span> minCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-动态规划"><a href="#3-动态规划" class="headerlink" title="3.动态规划"></a>3.动态规划</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">numSquares</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 初始化：默认极大值（表示初始无法凑出）</span></span><br><span class="line">        Arrays.fill(dp, Integer.MAX_VALUE);</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 基础子问题</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 收集所有平方数</span></span><br><span class="line">        List&lt;Integer&gt; squares = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i*i &lt;= n; i++) squares.add(i*i);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 从底向上计算每个j的最优解</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> s : squares) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= s) &#123;</span><br><span class="line">                    dp[j] = Math.min(dp[j], dp[j - s] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这套代码的循环不太一样。具体见‘背包’中的完全背包问题</p>
+<h3 id="4-数学分析"><a href="#4-数学分析" class="headerlink" title="4.数学分析"></a>4.数学分析</h3><p><del>奇技淫巧</del><br>根据「四平方和定理」：<br>任何自然数都可以表示为最多 4 个完全平方数的和。<br>如果 n 是 4^k*(8m+7) 形式，则必须用 4 个平方数。<br>否则，判断是否能由 1 个、2 个平方数组成，剩下的都是 3 个。<br>这种方法时间复杂度为 O(√n)，远优于 DP 的 O(n√n)：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">numSquares</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="comment">// 1. 判断是否是完全平方数（1个）</span></span><br><span class="line">        <span class="keyword">if</span> (isPerfectSquare(n)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 2. 判断是否是4^k*(8m+7)形式（必须4个）</span></span><br><span class="line">        <span class="keyword">while</span> (n % <span class="number">4</span> == <span class="number">0</span>) &#123;</span><br><span class="line">            n /= <span class="number">4</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">8</span> == <span class="number">7</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 3. 判断是否能由2个平方数组成</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">maxBase</span> <span class="operator">=</span> (<span class="type">int</span>) Math.sqrt(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= maxBase; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (isPerfectSquare(n - i * i)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="comment">// 剩下的都是3个</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 辅助函数：判断是否是完全平方数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">isPerfectSquare</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sqrt</span> <span class="operator">=</span> (<span class="type">int</span>) Math.sqrt(x);</span><br><span class="line">        <span class="keyword">return</span> sqrt * sqrt == x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种完全背包问题，<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/coin-change/">322.零钱兑换</a>也是相似的解法</p>
+<h2 id="41-缺失的第一个正数"><a href="#41-缺失的第一个正数" class="headerlink" title="41 缺失的第一个正数"></a>41 缺失的第一个正数</h2><blockquote>
+<p>给你一个未排序的整数数组，请你找出其中没有出现的最小的正整数。</p>
+<p>输入：nums &#x3D; [1,2,0]<br>输出：3</p>
+<p>输入：nums &#x3D; [3,4,-1,1]<br>输出：2</p>
+<p>输入：nums &#x3D; [7,8,9,11,12]<br>输出：1</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><ol>
+<li><p>朴素浅显的思路是，遍历数组，依次将每个数加入<code>HashSet</code>。完成后，遍历<code>HashSet</code>，找到最小的正整数。<br>时间复杂度是<code>O(n)</code>，空间复杂度是<code>O(n)</code>。</p>
+</li>
+<li><p>但这样会有空间上的浪费，浪费一个<code>hashset</code>的空间。这样就可以自己依赖原本的数组，来记录每个数是否出现过，自己实现一个<code>hashset</code>。但是数组是覆盖整个int范围的，没办法进行特殊标记。<br>但题目要求的不是最小的数，而是最小的正整数。所以可以先过滤一遍，将所有负数和0都过滤掉，变为超出长度的数值。<br>然后再遍历数组，记录每个数是否出现，将对应下标的数字变为负数，表示已经出现过。<br>最后再遍历数组，找到第一个正数，该数的下标就是最小的正整数。<br>（提醒，由于0不考虑在内，所以下标映射要减一）</p>
+</li>
+</ol>
+<p>标签： <code>哈希表</code>  <code>数组</code>  <code>负数</code>  <code>最小正整数</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="comment">//规定了正数，就是突破点</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">firstMissingPositive</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">MAX</span> <span class="operator">=</span> nums.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]&lt;=<span class="number">0</span>)nums[i]=MAX+<span class="number">1</span>;</span><br><span class="line">            <span class="comment">//将负数转化成超出范围的正数，这里设定为   长度+1；这样就全都是正数了，可以用负数对下标进行标记了</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> Math.abs(nums[i]);</span><br><span class="line">            <span class="comment">// 负数变为正数，再判断范围，这样可以圈定1~n范围的数</span></span><br><span class="line">            <span class="comment">// 出现过的数标记为负数（如果原本就是负数，说明已经被标记了）</span></span><br><span class="line">            <span class="keyword">if</span>(temp &lt;= MAX) nums[temp-<span class="number">1</span>]= - Math.abs(nums[temp-<span class="number">1</span>]);   </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]&gt;<span class="number">0</span>)<span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//都是负数，就说明1~n都有，就返回n+1</span></span><br><span class="line">        <span class="keyword">return</span> nums.length+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="76-最小覆盖子串"><a href="#76-最小覆盖子串" class="headerlink" title="76. 最小覆盖子串"></a>76. 最小覆盖子串</h2><blockquote>
+<p>给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。</p>
+<p>注意：如果 s 中存在这样的子串，我们保证它是唯一的答案。</p>
+<p>示例 1：<br>输入：s &#x3D; “ADOBECODEBANC”, t &#x3D; “ABC”<br>输出：”BANC”</p>
+<p>示例 2：<br>输入：s &#x3D; “a”, t &#x3D; “a”<br>输出：”a”</p>
+<p>示例 3:<br>输入：s &#x3D; “a”, t &#x3D; “aa”<br>输出：”aa”</p>
+</blockquote>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>暴力法：枚举子串，判断是否包含t的所有字符，时间复杂度是O(n^3)，空间复杂度是O(1)。</p>
+<p>滑动窗口法：一种更简单、剪枝后的暴力法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @lc app=leetcode.cn id=76 lang=java</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [76] 最小覆盖子串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// @lc code=start</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="4-寻找两个正序数组的中位数"><a href="#4-寻找两个正序数组的中位数" class="headerlink" title="4. 寻找两个正序数组的中位数"></a>4. 寻找两个正序数组的中位数</h2><blockquote>
+<p>给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数 。</p>
+<p>进阶：你能设计一个时间复杂度为 O(log (m+n)) 的算法解决此问题吗？</p>
+<p>示例 1：</p>
+<p>输入：nums1 &#x3D; [1,3], nums2 &#x3D; [2]<br>输出：2.00000<br>解释：合并数组 &#x3D; [1,2,3] ，中位数 2</p>
+<p>示例 2：</p>
+<p>输入：nums1 &#x3D; [1,2], nums2 &#x3D; [3,4]<br>输出：2.50000<br>解释：合并数组 &#x3D; [1,2,3,4] ，中位数 (2 + 3) &#x2F; 2 &#x3D; 2.5</p>
+<p>示例 3：</p>
+<p>输入：nums1 &#x3D; [0,0], nums2 &#x3D; [0,0]<br>输出：0.00000</p>
+</blockquote>
+<h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><p><strong>处理边界情况</strong>的地方非常多，需要考虑到各种边界情况！<br>多看、多验证、多思考！</p>
+<h3 id="1-二分-kth元素"><a href="#1-二分-kth元素" class="headerlink" title="1.二分 + kth元素"></a>1.二分 + kth元素</h3><p>找第 k 小的数，可以用二分法，时间复杂度是 O(log(min(m,n)))。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">findMedianSortedArrays</span><span class="params">(<span class="type">int</span>[] nums1, <span class="type">int</span>[] nums2)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> nums1.length, n = nums2.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">total</span> <span class="operator">=</span> m + n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (total % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 奇数：找第 (total+1)/2 小的数</span></span><br><span class="line">            <span class="keyword">return</span> findKth(nums1, <span class="number">0</span>, nums2, <span class="number">0</span>, (total + <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 偶数：找第 total/2 和 total/2+1 小的数的平均值</span></span><br><span class="line">            <span class="type">double</span> <span class="variable">left</span> <span class="operator">=</span> findKth(nums1, <span class="number">0</span>, nums2, <span class="number">0</span>, total / <span class="number">2</span>);</span><br><span class="line">            <span class="type">double</span> <span class="variable">right</span> <span class="operator">=</span> findKth(nums1, <span class="number">0</span>, nums2, <span class="number">0</span>, total / <span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> (left + right) / <span class="number">2.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 寻找两个有序数组中第k小的数（k从1开始）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> <span class="title function_">findKth</span><span class="params">(<span class="type">int</span>[] nums1, <span class="type">int</span> i, <span class="type">int</span>[] nums2, <span class="type">int</span> j, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="comment">// 如果nums1已经用完，直接从nums2中取</span></span><br><span class="line">        <span class="keyword">if</span> (i &gt;= nums1.length) <span class="keyword">return</span> nums2[j + k - <span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 如果nums2已经用完，直接从nums1中取</span></span><br><span class="line">        <span class="keyword">if</span> (j &gt;= nums2.length) <span class="keyword">return</span> nums1[i + k - <span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 如果k==1，返回两个数组当前元素的最小值</span></span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">1</span>) <span class="keyword">return</span> Math.min(nums1[i], nums2[j]);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 找到两个数组中的第k/2个元素</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">mid1</span> <span class="operator">=</span> (i + k/<span class="number">2</span> - <span class="number">1</span> &lt; nums1.length) ? </span><br><span class="line">                   nums1[i + k/<span class="number">2</span> - <span class="number">1</span>] : Integer.MAX_VALUE;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid2</span> <span class="operator">=</span> (j + k/<span class="number">2</span> - <span class="number">1</span> &lt; nums2.length) ? </span><br><span class="line">                   nums2[j + k/<span class="number">2</span> - <span class="number">1</span>] : Integer.MAX_VALUE;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 比较并舍弃较小的那一半</span></span><br><span class="line">        <span class="keyword">if</span> (mid1 &lt; mid2) &#123;</span><br><span class="line">            <span class="keyword">return</span> findKth(nums1, i + k/<span class="number">2</span>, nums2, j, k - k/<span class="number">2</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> findKth(nums1, i, nums2, j + k/<span class="number">2</span>, k - k/<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-分割数组"><a href="#2-分割数组" class="headerlink" title="2.分割数组"></a>2.分割数组</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">findMedianSortedArrays</span><span class="params">(<span class="type">int</span>[] nums1, <span class="type">int</span>[] nums2)</span> &#123;</span><br><span class="line">        <span class="comment">// 确保nums1是较短的数组，简化逻辑</span></span><br><span class="line">        <span class="keyword">if</span> (nums1.length &gt; nums2.length) &#123;</span><br><span class="line">            <span class="keyword">return</span> findMedianSortedArrays(nums2, nums1);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> nums1.length, n = nums2.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">totalLeft</span> <span class="operator">=</span> (m + n + <span class="number">1</span>) / <span class="number">2</span>;  <span class="comment">// 分割线左边应该有多少个元素</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 在nums1中二分查找合适的分割线</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = m;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="comment">// i: nums1中分割线右边的第一个元素下标</span></span><br><span class="line">            <span class="comment">// j: nums2中分割线右边的第一个元素下标</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left + (right - left + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> totalLeft - i;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (nums1[i - <span class="number">1</span>] &gt; nums2[j]) &#123;</span><br><span class="line">                <span class="comment">// 分割线需要左移</span></span><br><span class="line">                right = i - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                left = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left;</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> totalLeft - i;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 处理边界情况</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">nums1LeftMax</span> <span class="operator">=</span> (i == <span class="number">0</span>) ? Integer.MIN_VALUE : nums1[i - <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">nums1RightMin</span> <span class="operator">=</span> (i == m) ? Integer.MAX_VALUE : nums1[i];</span><br><span class="line">        <span class="type">int</span> <span class="variable">nums2LeftMax</span> <span class="operator">=</span> (j == <span class="number">0</span>) ? Integer.MIN_VALUE : nums2[j - <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">nums2RightMin</span> <span class="operator">=</span> (j == n) ? Integer.MAX_VALUE : nums2[j];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> ((m + n) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 奇数：中位数在分割线左边</span></span><br><span class="line">            <span class="keyword">return</span> Math.max(nums1LeftMax, nums2LeftMax);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 偶数：中位数是左右两边的平均值</span></span><br><span class="line">            <span class="keyword">return</span> (Math.max(nums1LeftMax, nums2LeftMax) + </span><br><span class="line">                    Math.min(nums1RightMin, nums2RightMin)) / <span class="number">2.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
       </div>
       
@@ -543,7 +456,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2025-05-20 19:50:00
+              2026-01-04 19:35:36
             </span>
             
                   <span class="post-tags">
@@ -577,7 +490,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#42-%E6%8E%A5%E9%9B%A8%E6%B0%B4"><span class="toc-text">42. 接雨水</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-text">24. 两两交换链表中的节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#51-N-%E7%9A%87%E5%90%8E"><span class="toc-text">51. N 皇后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#98-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-text">98. 验证二叉搜索树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">1.中序遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%80%92%E5%BD%92%E6%A3%80%E6%9F%A5"><span class="toc-text">2.递归检查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">102. 二叉树的层序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">105. 从前序与中序遍历序列构造二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92"><span class="toc-text">递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3"><span class="toc-text">迭代</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0"><span class="toc-text">215. 数组中的第K个最大元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="toc-text">1.堆排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95"><span class="toc-text">2.快速选择算法</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#42-%E6%8E%A5%E9%9B%A8%E6%B0%B4"><span class="toc-text">42. 接雨水</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="toc-text">24. 两两交换链表中的节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#51-N-%E7%9A%87%E5%90%8E"><span class="toc-text">51. N 皇后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#98-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-text">98. 验证二叉搜索树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">1.中序遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%80%92%E5%BD%92%E6%A3%80%E6%9F%A5"><span class="toc-text">2.递归检查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">102. 二叉树的层序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">105. 从前序与中序遍历序列构造二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92"><span class="toc-text">递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3"><span class="toc-text">迭代</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0"><span class="toc-text">215. 数组中的第K个最大元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="toc-text">1.堆排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95"><span class="toc-text">2.快速选择算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0"><span class="toc-text">279. 完全平方数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%9B%B4%E6%8E%A5%E6%90%9C%E7%B4%A2%EF%BC%88ai%EF%BC%89"><span class="toc-text">1.直接搜索（ai）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2"><span class="toc-text">2.记忆化搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-text">3.动态规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90"><span class="toc-text">4.数学分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#41-%E7%BC%BA%E5%A4%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0"><span class="toc-text">41 缺失的第一个正数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-text">思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2"><span class="toc-text">76. 最小覆盖子串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-text">思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="toc-text">4. 寻找两个正序数组的中位数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%8C%E5%88%86-kth%E5%85%83%E7%B4%A0"><span class="toc-text">1.二分 + kth元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84"><span class="toc-text">2.分割数组</span></a></li></ol></li></ol>
       
     </div>
   </div>
@@ -622,7 +535,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2025 Oranges</a>
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2026 Oranges</a>
         
     </div>
   

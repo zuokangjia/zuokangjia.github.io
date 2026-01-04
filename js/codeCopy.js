@@ -1,50 +1,58 @@
 // clipboard js 代码复制功能
-window.addEventListener('DOMContentLoaded', getCodeBlockDoms)
+window.addEventListener('DOMContentLoaded', initCodeCopy)
 
-let clipboard = null
+function initCodeCopy() {
+  // 查找所有代码块
+  const figures = document.querySelectorAll('figure.highlight')
+  
+  figures.forEach(figure => {
+    // 避免重复添加
+    if (figure.querySelector('.pin-copy')) return
 
-// 获取code block dom
-function getCodeBlockDoms() {
-  const codeBlockDoms = document.querySelectorAll('figure')
-  const copyIcon = document.createElement('i')
-  copyIcon.classList = 'iconfont icon-copy'
-  const copyBtn = document.createElement('span')
-  copyBtn.classList = 'pin-copy'
-  copyBtn.setAttribute('data-text', 'copy')
-  copyBtn.appendChild(copyIcon)
-  codeBlockDoms.length && codeBlockDoms.forEach(res => {
-    res.addEventListener('mouseenter', () => {
-      res.setAttribute('id', 'copy-target')
-      const copyContent = res.querySelector('table tbody tr .code')
-      res.setAttribute('data-clipboard-text', copyContent && copyContent.innerText || '')
-      res.appendChild(copyBtn)
-      copyBtn.addEventListener('click', copyContentAction)
-    })
-    res.addEventListener('mouseleave', () => {
-      res.setAttribute('id', '')
-      res.setAttribute('data-clipboard-text', '')
-      copyBtn.removeEventListener('click', copyContentAction)
-      copyBtn.setAttribute('data-text', 'copy')
-    })
+    // 创建复制按钮
+    const copyBtn = document.createElement('span')
+    copyBtn.className = 'pin-copy'
+    copyBtn.setAttribute('data-text', 'Copy') // 初始提示文字
+    
+    const icon = document.createElement('i')
+    icon.className = 'iconfont icon-copy'
+    copyBtn.appendChild(icon)
+    
+    figure.appendChild(copyBtn)
   })
-}
 
-// 点击复制
-function copyContentAction() {
-  if (!clipboard) {
-    clipboard = new ClipboardJS('#copy-target')
+  // 初始化 ClipboardJS
+  if (typeof ClipboardJS !== 'undefined') {
+    const clipboard = new ClipboardJS('.pin-copy', {
+      text: function(trigger) {
+        const figure = trigger.parentNode
+        // 尝试获取代码内容，适配不同的 hexo 渲染结构
+        const codeElement = figure.querySelector('.code pre') || 
+                          figure.querySelector('table .code pre') || 
+                          figure.querySelector('td.code pre')
+        return codeElement ? codeElement.innerText : ''
+      }
+    })
+
+    clipboard.on('success', function(e) {
+      const btn = e.trigger
+      btn.setAttribute('data-text', 'Copied!')
+      e.clearSelection()
+      
+      setTimeout(() => {
+        btn.setAttribute('data-text', 'Copy')
+      }, 2000)
+    })
+
+    clipboard.on('error', function(e) {
+      const btn = e.trigger
+      btn.setAttribute('data-text', 'Failed')
+      
+      setTimeout(() => {
+        btn.setAttribute('data-text', 'Copy')
+      }, 2000)
+    })
+  } else {
+    console.warn('ClipboardJS not found')
   }
-  const copyBtnDom = document.querySelector('.pin-copy')
-  clipboard.on('success', function(e) {
-    console.warn('clipboard success', e)
-    clipboard.destroy()
-    clipboard = null
-    copyBtnDom && copyBtnDom.setAttribute('data-text', 'copied')
-  })
-  clipboard.on('error', function(e) {
-    console.warn('clipboard error', e)
-    clipboard.destroy()
-    clipboard = null
-    copyBtnDom && copyBtnDom.setAttribute('data-text', 'fail to copy')
-  })
 }

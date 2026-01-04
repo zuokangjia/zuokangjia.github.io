@@ -9,11 +9,13 @@
 .live-photo-container {
   position: relative;
   border-radius: 12px;
-  margin: 20px 0;
+  margin: 20px auto;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 100%;
+  display: table; /* 使用 table 使容器宽度自适应图片内容 */
+  width: auto;
 }
 
 .live-photo-container:hover {
@@ -21,15 +23,16 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-/* 静态图片 */
+/* 静态封面图 */
 .live-photo-static {
-  width: 100%;
+  width: auto; /* 保持图片原始比例和宽度 */
+  max-width: 100%;
   display: block;
   border-radius: 8px;
   transition: opacity 0.3s;
 }
 
-/* 视频元素 */
+/* 视频图层 */
 .live-photo-video {
   position: absolute;
   top: 0;
@@ -46,7 +49,7 @@
   opacity: 1;
 }
 
-/* Live 标识 */
+/* Live 徽章 */
 .live-badge {
   position: absolute;
   background: rgba(0, 0, 0, 0.7);
@@ -71,7 +74,7 @@
   display: inline-block;
 }
 
-/* 位置变体 */
+/* 徽章位置 */
 .live-badge.bottom-left {
   bottom: 12px;
   left: 12px;
@@ -92,7 +95,7 @@
   right: 12px;
 }
 
-/* 加载指示器 */
+/* 加载动画 */
 .live-loading {
   position: absolute;
   top: 50%;
@@ -112,7 +115,7 @@
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* 标题样式 */
+/* 图片说明 */
 .live-caption {
   text-align: center;
   margin-top: 8px;
@@ -120,188 +123,40 @@
   color: #666;
 }
 
-/* 响应式设计 */
+/* 响应式调整 */
 @media (max-width: 768px) {
   .live-photo-container {
     border-radius: 8px;
-    margin: 16px 0;
+    margin: 16px auto;
   }
-  
+
   .live-badge {
     font-size: 11px;
     padding: 3px 6px;
   }
-  
-  .live-badge.bottom-left,
-  .live-badge.bottom-right {
-    bottom: 8px;
-  }
-  
-  .live-badge.bottom-left,
-  .live-badge.top-left {
-    left: 8px;
-  }
-  
-  .live-badge.bottom-right,
-  .live-badge.top-right {
-    right: 8px;
-  }
-  
-  .live-badge.top-left,
-  .live-badge.top-right {
-    top: 8px;
-  }
-  
 }
 
-/* 多图布局容器 */
-.image-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 20px 0;
-  gap: 15px; /* 使用gap属性设置间距 */
-}
-
-.image-column {
-  flex: 0 0 calc(50% - 8px); /* 每列占50%宽度减去一半的间距 */
-  min-width: 0; /* 防止内容溢出 */
-}
-
-/* Grid布局 */
-.image-grid-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 始终保持两列 */
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.grid-item {
-  position: relative;
-  min-width: 0; /* 防止内容溢出 */
-}
-
-/* 浮动布局 */
-.image-float-container {
-  width: 100%;
-  margin: 20px 0;
+/* 多图布局支持 */
+.image-grid, .image-grid-grid, .image-float-container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  margin: 20px 0;
+  justify-content: center;
 }
 
-.float-image {
-  flex: 0 0 calc(50% - 8px); /* 每列占50%宽度减去一半的间距 */
-}
-
-/* Live Photo 容器适配多图布局 */
 .image-grid .live-photo-container,
 .image-grid-grid .live-photo-container,
 .image-float-container .live-photo-container {
-  margin: 0; /* 移除单独设置的外边距 */
-  border-radius: 8px; /* 稍微减小圆角以适应小屏幕 */
+  margin: 0;
+  display: inline-block; /* 在网格中保持行内块属性 */
 }
 
-/* 确保图片和视频在多图布局中正确显示 */
-.image-grid .live-photo-static,
-.image-grid-grid .live-photo-static,
-.image-float-container .live-photo-static,
-.image-grid .live-photo-video,
-.image-grid-grid .live-photo-video,
-.image-float-container .live-photo-video {
-  border-radius: 8px; /* 与容器保持一致 */
-}
-
-/* 调整Live标识在小屏幕上的大小 */
-.image-grid .live-badge,
-.image-grid-grid .live-badge,
-.image-float-container .live-badge {
-  font-size: 10px;
-  padding: 2px 6px;
-}
-
-.image-grid .live-badge.bottom-left,
-.image-grid-grid .live-badge.bottom-left,
-.image-float-container .live-badge.bottom-left,
-.image-grid .live-badge.bottom-right,
-.image-grid-grid .live-badge.bottom-right,
-.image-float-container .live-badge.bottom-right {
-  bottom: 8px;
-}
-
-.image-grid .live-badge.bottom-left,
-.image-grid-grid .live-badge.bottom-left,
-.image-float-container .live-badge.bottom-left,
-.image-grid .live-badge.top-left,
-.image-grid-grid .live-badge.top-left,
-.image-float-container .live-badge.top-left {
-  left: 8px;
-}
-
-.image-grid .live-badge.bottom-right,
-.image-grid-grid .live-badge.bottom-right,
-.image-float-container .live-badge.bottom-right,
-.image-grid .live-badge.top-right,
-.image-grid-grid .live-badge.top-right,
-.image-float-container .live-badge.top-right {
-  right: 8px;
-}
-
-.image-grid .live-badge.top-left,
-.image-grid-grid .live-badge.top-left,
-.image-float-container .live-badge.top-left,
-.image-grid .live-badge.top-right,
-.image-grid-grid .live-badge.top-right,
-.image-float-container .live-badge.top-right {
-  top: 8px;
-}
-
-/* 非常小的设备调整 */
-@media (max-width: 360px) {
-  .image-grid {
-    gap: 10px;
-  }
-  
-  .image-column {
-    flex: 0 0 calc(50% - 5px); /* 调整间距 */
-  }
-  
-  .image-grid-grid {
-    gap: 10px;
-  }
-  
-  .float-image {
-    flex: 0 0 calc(50% - 5px); /* 调整间距 */
-  }
-  
-  /* 进一步调整Live标识 */
-  .image-grid .live-badge,
-  .image-grid-grid .live-badge,
-  .image-float-container .live-badge {
-    font-size: 9px;
-    padding: 2px 4px;
-  }
-}
-
-/* 确保单图布局不受影响 */
+/* 确保非网格状态下居中 */
 .live-photo-container:not(.image-grid):not(.image-grid-grid):not(.image-float-container) {
-  margin: 20px 0;
+  margin: 20px auto;
 }
-
-/* 标题样式调整 */
-.live-caption {
-  font-size: 13px; /* 稍微减小字体大小 */
-  margin-top: 5px;
-  line-height: 1.4;
-}
-
-/* 确保加载指示器在多图布局中正确显示 */
-.image-grid .live-loading,
-.image-grid-grid .live-loading,
-.image-float-container .live-loading {
-  width: 30px;
-  height: 30px;
-}</style><!-- hexo injector head_begin end -->
+</style><!-- hexo injector head_begin end -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Kangjia" />
@@ -612,7 +467,7 @@
     
     <div class="footer-more">
       
-        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2025 Oranges</a>
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2026 Oranges</a>
         
     </div>
   
