@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode="light">
+
+  <head><!-- hexo injector head_begin start -->
+    <script>
+      window.LivePhotoConfig = {"enable":true,"autoplay":true,"hover_to_play":true,"click_to_play":true,"lazy_load":true,"threshold":0.8,"badge":true,"badge_text":"Live","badge_position":"bottom-left","loading_animation":true,"preload":"auto","keep_observing":false,"hover_delay":300,"weixin_disable_autoplay":true};
+    </script>
+  <style>/* Live Photo 容器 */
+.live-photo-container {
+  position: relative;
+  border-radius: 12px;
+  margin: 20px auto;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 100%;
+  display: table; /* 使用 table 使容器宽度自适应图片内容 */
+  width: auto;
+}
+
+.live-photo-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* 静态封面图 */
+.live-photo-static {
+  width: auto; /* 保持图片原始比例和宽度 */
+  max-width: 100%;
+  display: block;
+  border-radius: 8px;
+  transition: opacity 0.3s;
+}
+
+/* 视频图层 */
+.live-photo-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  border-radius: 8px;
+  transition: opacity 0.3s;
+}
+
+.live-photo-video.playing {
+  opacity: 1;
+}
+
+/* Live 徽章 */
+.live-badge {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.live-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #ff2e4d;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* 徽章位置 */
+.live-badge.bottom-left {
+  bottom: 12px;
+  left: 12px;
+}
+
+.live-badge.bottom-right {
+  bottom: 12px;
+  right: 12px;
+}
+
+.live-badge.top-left {
+  top: 12px;
+  left: 12px;
+}
+
+.live-badge.top-right {
+  top: 12px;
+  right: 12px;
+}
+
+/* 加载动画 */
+.live-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ff2e4d;
+  animation: livephoto-spin 1s ease-in-out infinite;
+  display: none;
+  z-index: 1;
+}
+
+@keyframes livephoto-spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 图片说明 */
+.live-caption {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .live-photo-container {
+    border-radius: 8px;
+    margin: 16px auto;
+  }
+
+  .live-badge {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}
+
+/* 多图布局支持 */
+.image-grid, .image-grid-grid, .image-float-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.image-grid .live-photo-container,
+.image-grid-grid .live-photo-container,
+.image-float-container .live-photo-container {
+  margin: 0;
+  display: inline-block; /* 在网格中保持行内块属性 */
+}
+
+/* 确保非网格状态下居中 */
+.live-photo-container:not(.image-grid):not(.image-grid-grid):not(.image-float-container) {
+  margin: 20px auto;
+}
+</style><!-- hexo injector head_begin end -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Kangjia" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  <meta name="description" content="zzz" />
+  
+  
+  
+  <title>
+    
+      JS基础学习 
+      
+      
+      |
+    
+     BlueSKyzzz
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" href="/images/favicon.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/avatar.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">BlueSkyzzz</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          <a href="/friends/">Friends</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">JS基础学习</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2025-06-13 20:15:18
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/javascript/" title="javascript">
+                    #javascript
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="JS基础学习"><a href="#JS基础学习" class="headerlink" title="JS基础学习"></a>JS基础学习</h1><blockquote>
+<p>本文为学习 JavaScript 基础知识的笔记，仅入门</p>
+</blockquote>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>JavaScript 能够改变 HTML 内容</li>
+<li>JavaScript 能够改变 HTML 属性</li>
+<li>JavaScript 能够隐藏 HTML 元素 </li>
+<li>JavaScript 能够显示 HTML 元素</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><code>&lt;script&gt;&lt;/script&gt;</code></p>
+<p>使用在<code>&lt;body&gt;</code>或<code>&lt;head&gt;</code>中</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><h3 id="JavaScript-显示方案"><a href="#JavaScript-显示方案" class="headerlink" title="JavaScript 显示方案"></a>JavaScript 显示方案</h3><p>JavaScript 能够以不同方式“显示”数据：</p>
+<ul>
+<li>使用 <code>window.alert()</code> 写入警告框</li>
+<li>使用 <code>document.write()</code> 写入 HTML 输出</li>
+<li>使用 <code>innerHTML</code> 写入 HTML 元素</li>
+<li>使用 <code>console.log()</code> 写入浏览器控制台</li>
+</ul>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><p><strong>在 HTML 中，JavaScript 语句是由 web 浏览器“执行”的“指令”</strong></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="JavaScript-值"><a href="#JavaScript-值" class="headerlink" title="JavaScript 值"></a>JavaScript 值</h3><p>JavaScript 语句定义两种类型的值：混合值和变量值。</p>
+<p>混合值被称为<em><strong>字面量（literal）</strong></em>。变量值被称为<em><strong>变量</strong></em>。</p>
+<h3 id="JavaScript-字面量"><a href="#JavaScript-字面量" class="headerlink" title="JavaScript 字面量"></a>JavaScript 字面量</h3><p>书写混合值最重要的规则是：</p>
+<p>写<em>数值</em>有无小数点均可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">15.90</span><br><span class="line"></span><br><span class="line">10011</span><br></pre></td></tr></table></figure>
+
+<p><em><strong>字符串</strong></em>是文本，由双引号或单引号包围</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Bill Gates&quot;&#x27;Bill Gates&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-关键词"><a href="#JavaScript-关键词" class="headerlink" title="JavaScript 关键词"></a>JavaScript 关键词</h3><p>JavaScript <em>关键词</em>用于标识被执行的动作。</p>
+<p><code>var</code> 关键词告知浏览器创建新的变量：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">7</span> + <span class="number">8</span>;</span><br><span class="line"><span class="keyword">var</span> y = x * <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-标识符"><a href="#JavaScript-标识符" class="headerlink" title="JavaScript 标识符"></a>JavaScript 标识符</h3><p>所有 JavaScript <em>变量</em>必须以<em>唯一的名称</em>的<em>标识</em>。</p>
+<p>这些唯一的名称称为<em>标识符</em>。</p>
+<p>标识符可以是短名称（比如 x 和 y），或者更具描述性的名称（age、sum、totalVolume）。</p>
+<p>构造变量名称（唯一标识符）的<strong>通用规则</strong>是：</p>
+<ul>
+<li>名称可包含字母、数字、下划线和美元符号</li>
+<li>名称必须以字母开头</li>
+<li>名称也可以 <code>$</code> 和 <code>_</code> 开头（但是在本教程中我们不会这么做）</li>
+<li>名称对大小写敏感（y 和 Y 是不同的变量）</li>
+<li>保留字（比如 JavaScript 的关键词）无法用作变量名称</li>
+</ul>
+<p>**提示：**JavaScript 标识符对大小写敏感。</p>
+<h3 id="JavaScript-对大小写敏感"><a href="#JavaScript-对大小写敏感" class="headerlink" title="JavaScript 对大小写敏感"></a>JavaScript 对大小写敏感</h3><p>所有 JavaScript 标识符<em>对大小写敏感</em>。</p>
+<p>变量 <code>lastName</code> 和 <code>lastname</code>，是两个不同的变量。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lastName = <span class="string">&quot;Gates&quot;</span>;lastname = <span class="string">&quot;Jobs&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-字符集"><a href="#JavaScript-字符集" class="headerlink" title="JavaScript 字符集"></a>JavaScript 字符集</h3><p>JavaScript 使用 <em>Unicode</em> 字符集。</p>
+<p>Unicode 覆盖世界上几乎所有的字符、标点和符号。</p>
+<p>如需了解详情，请访问我们完整的 <a target="_blank" rel="noopener" href="https://www.w3school.com.cn/tags/html_ref_utf8.asp">Unicode 参考手册</a>。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="声明（创建）-JavaScript-变量"><a href="#声明（创建）-JavaScript-变量" class="headerlink" title="声明（创建） JavaScript 变量"></a>声明（创建） JavaScript 变量</h3><p>在 JavaScript 中创建变量被称为“声明”变量。</p>
+<p>您可以通过 <code>var</code> 关键词来声明 JavaScript 变量：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> carName;</span><br></pre></td></tr></table></figure>
+
+<p>声明之后，变量是没有值的。（技术上，它的值是 <code>undefined</code>。）</p>
+<h2 id="JavaScript-Let"><a href="#JavaScript-Let" class="headerlink" title="JavaScript Let"></a>JavaScript Let</h2><h3 id="ECMAScript-2015"><a href="#ECMAScript-2015" class="headerlink" title="ECMAScript 2015"></a>ECMAScript 2015</h3><p>ES2015 引入了两个重要的 JavaScript 新关键词：<code>let</code> 和 <code>const</code>。</p>
+<p>这两个关键字在 JavaScript 中提供了块作用域（<em>Block Scope</em>）变量（和常量）。</p>
+<p>在 ES2015 之前，JavaScript 只有两种类型的作用域：<em>全局作用域</em>和<em>函数作用域</em>。</p>
+<blockquote>
+<p>作用域</p>
+<ul>
+<li>全局作用域</li>
+<li>函数作用域</li>
+<li>块作用域</li>
+</ul>
+</blockquote>
+<h3 id="JavaScript-块作用域"><a href="#JavaScript-块作用域" class="headerlink" title="JavaScript 块作用域"></a>JavaScript 块作用域</h3><p>通过 <code>var</code> 关键词声明的变量没有块<em>作用域</em>。</p>
+<p>在块 <em>{}</em> 内声明的变量可以从块之外进行访问。</p>
+<p><strong>实例</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;  <span class="keyword">var</span> x = <span class="number">10</span>;&#125;<span class="comment">// 此处可以使用 x</span></span><br></pre></td></tr></table></figure>
+
+<p>在 ES2015 之前，JavaScript 是没有块作用域的。</p>
+<p>可以使用 <code>let</code> 关键词声明拥有块作用域的变量。</p>
+<p>在块 <em>{}</em> 内声明的变量无法从块外访问：</p>
+<p><strong>实例</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 此处不可以使用 x</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用 <code>let</code> 关键字重新声明变量可以解决重新声明变量导致的覆盖。</strong></p>
+<p><strong>在块中重新声明变量不会重新声明块外的变量：</strong></p>
+<h3 id="循环作用域"><a href="#循环作用域" class="headerlink" title="循环作用域"></a>循环作用域</h3><p>在循环中使用 <code>var</code>：</p>
+<p><strong>实例</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">7</span>;<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;  <span class="comment">// 一些语句&#125;// 此处，i 为 10</span></span><br></pre></td></tr></table></figure>
+
+<p>在循环中使用 <code>let</code>：</p>
+<p><strong>实例</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">7</span>;<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;  <span class="comment">// 一些语句&#125;// 此处 i 为 7</span></span><br></pre></td></tr></table></figure>
+
+<p>在第一个例子中，在循环中使用的变量使用 <code>var</code> 重新声明了循环之外的变量。</p>
+<p>在第二个例子中，在循环中使用的变量使用 <code>let</code> 并没有重新声明循环外的变量。</p>
+<p>如果在循环中用 <code>let</code> 声明了变量 i，那么只有在循环内，变量 i 才是可见的。</p>
+<h2 id="JavaScript-const"><a href="#JavaScript-const" class="headerlink" title="JavaScript const"></a>JavaScript const</h2><p>通过 <code>const</code> 定义的变量与 <code>let</code> 变量类似，但不能重新赋值：</p>
+<blockquote>
+<p>不是真正的常数</p>
+<p>关键字 <code>const</code> 有一定的误导性。</p>
+<p>它没有定义常量值。它定义了对值的常量引用。</p>
+<p>因此，我们不能更改常量原始值，但我们可以更改常量对象的属性。</p>
+</blockquote>
+<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-tutorial.html">JavaScript 教程</a></li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2025-06-13 20:15:18
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/javascript/" title="javascript">
+                        #javascript
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2025/02/23/hello-world/" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0"><span class="toc-text">JS基础学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-text">作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA"><span class="toc-text">输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E6%98%BE%E7%A4%BA%E6%96%B9%E6%A1%88"><span class="toc-text">JavaScript 显示方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5"><span class="toc-text">语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E5%80%BC"><span class="toc-text">JavaScript 值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="toc-text">JavaScript 字面量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-text">JavaScript 关键词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="toc-text">JavaScript 标识符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E5%AF%B9%E5%A4%A7%E5%B0%8F%E5%86%99%E6%95%8F%E6%84%9F"><span class="toc-text">JavaScript 对大小写敏感</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="toc-text">JavaScript 字符集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%EF%BC%88%E5%88%9B%E5%BB%BA%EF%BC%89-JavaScript-%E5%8F%98%E9%87%8F"><span class="toc-text">声明（创建） JavaScript 变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Let"><span class="toc-text">JavaScript Let</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ECMAScript-2015"><span class="toc-text">ECMAScript 2015</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">JavaScript 块作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">循环作用域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-const"><span class="toc-text">JavaScript const</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A5%E6%BA%90"><span class="toc-text">来源</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+  <div id="gitalk-container"></div>
+
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23lirhdmOoOaSGKqz0',
+        clientSecret: '1bd203387fc0b6d8316959d329df616d481e5730',
+        repo: 'zuokangjia.github.io',
+        owner: 'zuokangjia',
+        admin: ['zuokangjia'],
+        id: location.pathname,
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="/plugins/gitalk.css">
+    <script type="text/javascript" src="/plugins/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/zuokangjia">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2026 Oranges</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + JS%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0 + '&url=' + https%3A%2F%2Fzuokangjia.github.io%2F2023%2F05%2F16%2Fjs_learn_101%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://zuokangjia.github.io/2023/05/16/js_learn_101/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  <!-- hexo injector body_end start --><script>// LivePhoto类，管理单个Live Photo的行为
+class LivePhoto {
+  constructor(container, config) {
+    this.container = container;
+    this.staticImage = container.querySelector(".live-photo-static");
+    this.video = container.querySelector(".live-photo-video");
+    this.config = config;
+    this.hasAutoPlayed = false;
+    this.isPlaying = false;
+    this.hoverTimeout = null;
+    this.isWeixin = this.detectWeixinBrowser();
+
+    // 在微信环境中调整配置
+    if (this.isWeixin && this.config.weixin_disable_autoplay) {
+      this.config.autoplay = false;
+
+      // 修改微信环境下的badge
+      this.modifyWeixinBadge();
+    }
+
+    // 绑定事件
+    this.bindEvents();
+  }
+
+  // 检测微信浏览器
+  detectWeixinBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.includes("micromessenger");
+  }
+
+  // 修改微信环境下的badge
+  modifyWeixinBadge() {
+    let badge = this.container.querySelector(".live-badge");
+
+    // 如果没有badge，创建一个
+    if (!badge && this.config.badge) {
+      badge = document.createElement("div");
+      badge.className = `live-badge ${
+        this.config.badge_position || "bottom-left"
+      }`;
+      this.container.appendChild(badge);
+    }
+
+    // 修改badge内容和样式
+    if (badge) {
+      if(!this.config.badge_text) {
+        badge.innerHTML = "点击播放";
+      } else{
+        badge.innerHTML = this.config.badge_text + " | 点击播放";
+      }
+    }
+  }
+
+  // 绑定事件
+  bindEvents() {
+    // 桌面端：鼠标悬停播放
+    if (this.config.hover_to_play) {
+      this.container.addEventListener("mouseenter", () =>
+        this.handleHoverStart()
+      );
+      this.container.addEventListener("mouseleave", () =>
+        this.handleHoverEnd()
+      );
+    }
+
+    // 点击事件 - 在微信环境中这是主要的交互方式
+    if (this.config.click_to_play) {
+      this.container.addEventListener("click", (e) => {
+        this.play();
+      });
+    }
+
+    // 监听视频结束事件
+    this.video.addEventListener("ended", () => this.stop());
+
+    // 监听视频加载事件
+    this.video.addEventListener("loadstart", () => this.showLoading());
+    this.video.addEventListener("canplay", () => this.hideLoading());
+    this.video.addEventListener("error", () => this.hideLoading());
+  }
+
+  // 处理悬停开始
+  handleHoverStart() {
+    // 清除之前的超时
+    if (this.hoverTimeout) clearTimeout(this.hoverTimeout);
+
+    // 设置延迟播放
+    this.hoverTimeout = setTimeout(() => {
+      this.play();
+    }, this.config.hover_delay || 300);
+  }
+
+  // 处理悬停结束
+  handleHoverEnd() {
+    // 清除悬停超时
+    if (this.hoverTimeout) {
+      clearTimeout(this.hoverTimeout);
+      this.hoverTimeout = null;
+    }
+
+    // 如果视频正在播放，不停止（让它播放完）
+  }
+
+  // 显示加载指示器
+  showLoading() {
+    let loadingEl = this.container.querySelector(".live-loading");
+    if (!loadingEl && this.config.loading_animation) {
+      loadingEl = document.createElement("div");
+      loadingEl.className = "live-loading";
+      this.container.appendChild(loadingEl);
+    }
+    if (loadingEl) {
+      loadingEl.style.display = "block";
+    }
+  }
+
+  // 隐藏加载指示器
+  hideLoading() {
+    const loadingEl = this.container.querySelector(".live-loading");
+    if (loadingEl) {
+      loadingEl.style.display = "none";
+    }
+  }
+
+  // 播放视频
+  play() {
+    if (this.isPlaying) return;
+
+    this.isPlaying = true;
+    this.staticImage.style.opacity = 0;
+    this.video.classList.add("playing");
+    if (this.video.readyState < 3) { // HAVE_FUTURE_DATA
+      this.showLoading();
+    }
+
+    // 播放视频
+    const playPromise = this.video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch((error) => {
+        console.error("视频播放失败:", error);
+        this.hideLoading();
+        this.isPlaying = false;
+      });
+    }
+  }
+
+  // 停止播放
+  stop() {
+    this.video.classList.remove("playing");
+    this.staticImage.style.opacity = 1;
+    this.isPlaying = false;
+    this.hideLoading();
+  }
+
+  // 自动播放（当进入视口时）
+  autoPlay() {
+    if (!this.hasAutoPlayed && this.config.autoplay) {
+      this.hasAutoPlayed = true;
+      this.play();
+    }
+  }
+}
+
+// 页面主控制器
+class LivePhotoPage {
+  constructor(config) {
+    this.config = config;
+    this.livePhotos = [];
+    this.observer = null;
+
+    this.init();
+  }
+
+  // 初始化
+  init() {
+    this.detectLivePhotos();
+
+    // 检测是否为微信环境
+    const isWeixin = navigator.userAgent
+      .toLowerCase()
+      .includes("micromessenger");
+
+    // 如果在微信环境中且禁用自动播放，则不设置Intersection Observer
+    if (isWeixin && this.config.weixin_disable_autoplay) {
+      return;
+    }
+
+    // 如果启用懒加载，设置Intersection Observer
+    if (this.config.lazy_load) {
+      this.setupIntersectionObserver();
+    } else if (this.config.autoplay) {
+      // 如果不使用懒加载，直接自动播放所有
+      this.livePhotos.forEach((livePhoto) => livePhoto.autoPlay());
+    }
+  }
+
+  // 检测页面中的所有Live Photo容器
+  detectLivePhotos() {
+    const containers = document.querySelectorAll(".live-photo-container");
+
+    containers.forEach((container) => {
+      // 检查是否已经初始化过
+      if (!container.dataset.initialized) {
+        const livePhoto = new LivePhoto(container, this.config);
+        this.livePhotos.push(livePhoto);
+        container.dataset.initialized = "true";
+      }
+    });
+  }
+
+  // 设置Intersection Observer
+  setupIntersectionObserver() {
+    // 如果已有observer，先断开所有观察
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+
+    // 创建新的observer
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // 找到对应的LivePhoto实例
+            const container = entry.target;
+            const livePhoto = this.livePhotos.find(
+              (lp) => lp.container === container
+            );
+
+            if (livePhoto) {
+              livePhoto.autoPlay();
+
+              // 如果不需要持续观察，可以取消观察
+              if (!this.config.keep_observing) {
+                this.observer.unobserve(container);
+              }
+            }
+          }
+        });
+      },
+      {
+        threshold: this.config.threshold,
+        rootMargin: "0px 0px 10% 0px", // 底部提前10%触发
+      }
+    );
+
+    // 开始观察所有Live Photo容器
+    this.livePhotos.forEach((livePhoto) => {
+      this.observer.observe(livePhoto.container);
+    });
+  }
+}
+
+// 当DOM加载完成后初始化
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.LivePhotoConfig && window.LivePhotoConfig.enable) {
+    window.livePhotoPage = new LivePhotoPage(window.LivePhotoConfig);
+  }
+});
+</script><!-- hexo injector body_end end --></body>
+</html>
