@@ -5,7 +5,9 @@
 }
 
 .markdown-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  */
+  font-family: Ubuntu, "Noto Sans SC", "Bitstream Vera Sans", "DejaVu Sans", Tahoma, sans-serif;
   font-size: 16px; /* 恢复默认字体大小 */
 }
 
@@ -51,8 +53,8 @@
 .markdown-body dl,
 .markdown-body table,
 .markdown-body pre {
-  margin-top: 0;
-  margin-bottom: 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .markdown-body hr {
@@ -139,7 +141,7 @@
 .markdown-body code,
 .markdown-body kbd,
 .markdown-body pre {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "Source Code Pro", Consolas, "Liberation Mono", Menlo, Monaco, "Courier New", Courier, monospace;
 }
 
 .markdown-body code {
@@ -157,8 +159,8 @@
   word-wrap: normal;
   padding: 10px;
   overflow: auto;
-  font-size: 90%;
-  line-height: 1.8;
+  font-size: 100%;
+  line-height: 1.6;
   background-color: var(--bg-block-md-pre);
   border-radius: 5px;
 }
