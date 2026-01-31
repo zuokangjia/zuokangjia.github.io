@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans" color-mode="light">
+<html lang="zh-CN" color-mode="light">
 
   <head><!-- hexo injector head_begin start -->
     <script>
@@ -244,15 +244,15 @@
         </li>
       
         <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
+          <a href="/tags/">标签</a>
         </li>
       
         <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
+          <a href="/friends/">友链</a>
         </li>
       
         <li class="nav-item" data-path="/about/">
-          <a href="/about/">About</a>
+          <a href="/about/">关于</a>
         </li>
       
     </ul>
@@ -313,7 +313,7 @@
       <div class="post-title">python入门</div>
       <div class="post-attach">
         <span class="post-pubtime">
-          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2025-04-16 00:59:39
         </span>
         
@@ -368,13 +368,13 @@
             
               <a href="/2025/03/12/algorithm-recording/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
-                <span>Prev</span>
+                <span>上一页</span>
               </a>
             
           </div>
           <div class="post-attach">
             <span class="post-pubtime">
-              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
               2025-04-16 00:59:39
             </span>
             
@@ -382,7 +382,7 @@
           <div class="post-foot-prev">
             
               <a href="/2025/04/15/linux101/" target="_self">
-                <span>Next</span>
+                <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
             
@@ -395,7 +395,7 @@
     <i class="iconfont icon-catalog"></i>
   </div>
   <div class="post-catalog hidden" id="catalog">
-    <div class="title">Contents</div>
+    <div class="title">目录</div>
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-%E7%AE%80%E4%BB%8B"><span class="toc-text">Python 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA-Python-%E7%A8%8B%E5%BA%8F"><span class="toc-text">第一个 Python 程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%92%8C%E7%BC%A9%E8%BF%9B"><span class="toc-text">行和缩进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-text">输入输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="toc-text">分支结构</span></a></li></ol>
@@ -487,7 +487,7 @@
           </a>
         </span>
         
-          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
         
         <span class="search-close-icon" id="search-close-icon">
           <a href="javascript: void(0)">
@@ -539,7 +539,7 @@
       'use strict';
       var $input = document.getElementById(search_id);
       var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
       $.ajax({
         // 0x01. load xml file
         url: path,
@@ -635,7 +635,7 @@
             });
             str += "</ul>";
             if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
             }
             $resultContent.innerHTML = str;
           });
@@ -643,9 +643,9 @@
         error: function(xhr, status, error) {
           $resultContent.innerHTML = ""
           if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
           } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
           }
         }
       });

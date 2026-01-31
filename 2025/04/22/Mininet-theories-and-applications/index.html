@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans" color-mode="light">
+<html lang="zh-CN" color-mode="light">
 
   <head><!-- hexo injector head_begin start -->
     <script>
@@ -244,15 +244,15 @@
         </li>
       
         <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
+          <a href="/tags/">标签</a>
         </li>
       
         <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
+          <a href="/friends/">友链</a>
         </li>
       
         <li class="nav-item" data-path="/about/">
-          <a href="/about/">About</a>
+          <a href="/about/">关于</a>
         </li>
       
     </ul>
@@ -313,12 +313,12 @@
       <div class="post-title">Mininet的原理和应用</div>
       <div class="post-attach">
         <span class="post-pubtime">
-          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2025-09-15 17:25:10
         </span>
         
               <span class="post-tags">
-                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
                   <a href="/tags/Mininet/" title="Mininet">
@@ -436,18 +436,18 @@
             
               <a href="/2025/04/15/linux101/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
-                <span>Prev</span>
+                <span>上一页</span>
               </a>
             
           </div>
           <div class="post-attach">
             <span class="post-pubtime">
-              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
               2025-09-15 17:25:10
             </span>
             
                   <span class="post-tags">
-                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
                       <a href="/tags/Mininet/" title="Mininet">
@@ -473,7 +473,7 @@
           <div class="post-foot-prev">
             
               <a href="/2025/11/02/livephoteTest/" target="_self">
-                <span>Next</span>
+                <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
             
@@ -486,7 +486,7 @@
     <i class="iconfont icon-catalog"></i>
   </div>
   <div class="post-catalog hidden" id="catalog">
-    <div class="title">Contents</div>
+    <div class="title">目录</div>
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mininet%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="toc-text">Mininet的由来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mininet%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E6%9E%B6%E6%9E%84"><span class="toc-text">Mininet的原理和架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-Container"><span class="toc-text">Linux Container</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mininet%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">Mininet的架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mininet%E5%8F%AF%E4%BB%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-text">Mininet可以做什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mininet%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">Mininet的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mininet%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">Mininet的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%84%E5%BB%BA%E5%8F%82%E6%95%B0"><span class="toc-text">网络构建参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E4%BA%A4%E4%BA%92%E5%91%BD%E4%BB%A4"><span class="toc-text">内部交互命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mininet%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">Mininet的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
@@ -578,7 +578,7 @@
           </a>
         </span>
         
-          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
         
         <span class="search-close-icon" id="search-close-icon">
           <a href="javascript: void(0)">
@@ -630,7 +630,7 @@
       'use strict';
       var $input = document.getElementById(search_id);
       var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
       $.ajax({
         // 0x01. load xml file
         url: path,
@@ -726,7 +726,7 @@
             });
             str += "</ul>";
             if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
             }
             $resultContent.innerHTML = str;
           });
@@ -734,9 +734,9 @@
         error: function(xhr, status, error) {
           $resultContent.innerHTML = ""
           if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
           } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
           }
         }
       });

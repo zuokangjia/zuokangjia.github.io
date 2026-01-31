@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans" color-mode="light">
+<html lang="zh-CN" color-mode="light">
 
   <head><!-- hexo injector head_begin start -->
     <script>
@@ -244,15 +244,15 @@
         </li>
       
         <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
+          <a href="/tags/">标签</a>
         </li>
       
         <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
+          <a href="/friends/">友链</a>
         </li>
       
         <li class="nav-item" data-path="/about/">
-          <a href="/about/">About</a>
+          <a href="/about/">关于</a>
         </li>
       
     </ul>
@@ -313,12 +313,12 @@
       <div class="post-title">计算机网络-链路层</div>
       <div class="post-attach">
         <span class="post-pubtime">
-          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2025-09-05 17:33:36
         </span>
         
               <span class="post-tags">
-                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
                   <a href="/tags/network/" title="network">
@@ -394,18 +394,18 @@
             
               <a href="/2025/02/27/sdn-base1/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
-                <span>Prev</span>
+                <span>上一页</span>
               </a>
             
           </div>
           <div class="post-attach">
             <span class="post-pubtime">
-              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
               2025-09-05 17:33:36
             </span>
             
                   <span class="post-tags">
-                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
                       <a href="/tags/network/" title="network">
@@ -419,7 +419,7 @@
           <div class="post-foot-prev">
             
               <a href="/2025/03/12/algorithm-recording/" target="_self">
-                <span>Next</span>
+                <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
             
@@ -432,7 +432,7 @@
     <i class="iconfont icon-catalog"></i>
   </div>
   <div class="post-catalog hidden" id="catalog">
-    <div class="title">Contents</div>
+    <div class="title">目录</div>
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AF%E8%AF%AD"><span class="toc-text">术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%B7%AF%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E6%9C%8D%E5%8A%A1"><span class="toc-text">链路层提供的服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%88%90%E5%B8%A7"><span class="toc-text">封装成帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93"><span class="toc-text">透明传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-text">流量控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6"><span class="toc-text">差错控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A3%80%E9%AA%8C%E7%AE%97%E6%B3%95"><span class="toc-text">常见的检验算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LLC%E5%92%8CMAC"><span class="toc-text">LLC和MAC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%EF%BC%88MAC%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-text">媒体访问控制（MAC协议）</span></a></li></ol></li></ol>
@@ -524,7 +524,7 @@
           </a>
         </span>
         
-          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
         
         <span class="search-close-icon" id="search-close-icon">
           <a href="javascript: void(0)">
@@ -576,7 +576,7 @@
       'use strict';
       var $input = document.getElementById(search_id);
       var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
       $.ajax({
         // 0x01. load xml file
         url: path,
@@ -672,7 +672,7 @@
             });
             str += "</ul>";
             if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
             }
             $resultContent.innerHTML = str;
           });
@@ -680,9 +680,9 @@
         error: function(xhr, status, error) {
           $resultContent.innerHTML = ""
           if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
           } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
           }
         }
       });

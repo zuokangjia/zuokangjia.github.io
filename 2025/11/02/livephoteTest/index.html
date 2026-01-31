@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans" color-mode="light">
+<html lang="zh-CN" color-mode="light">
 
   <head><!-- hexo injector head_begin start -->
     <script>
@@ -244,15 +244,15 @@
         </li>
       
         <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
+          <a href="/tags/">标签</a>
         </li>
       
         <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
+          <a href="/friends/">友链</a>
         </li>
       
         <li class="nav-item" data-path="/about/">
-          <a href="/about/">About</a>
+          <a href="/about/">关于</a>
         </li>
       
     </ul>
@@ -313,14 +313,14 @@
       <div class="post-title">livephoteTest</div>
       <div class="post-attach">
         <span class="post-pubtime">
-          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2026-01-04 20:55:13
         </span>
         
       </div>
       <div class="markdown-body">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"> 
-      <div class="live-photo-container" id="livephoto-4cw4qra77" >
+      <div class="live-photo-container" id="livephoto-qrqt7ex11" >
         <img src="/images/live/motion_photo_photo.jpg" alt="" class="live-photo-static"  >
         <video muted playsinline preload="auto" class="live-photo-video">
           <source src="/images/live/motion_photo_video.mp4" type="video/mp4">
@@ -332,7 +332,7 @@
       </div>
 <p> 第十五届全国运动会将于11月9日至21日在广东、香港、澳门三地举办。今天上午，十五运会火炬传递启动仪式在深圳的莲花山公园举行，随后与广州、香港、澳门同步开展火炬传递。本次火炬传递共设火炬手200棒，每个城市跑动50棒，每棒跑动50至100米。火炬传递活动结束后，将由四个城市代表将传递之后的火种送至广州。</p>
  
-      <div class="live-photo-container" id="livephoto-zl3ghlxu9" >
+      <div class="live-photo-container" id="livephoto-flrbrx42r" >
         <img src="/images/live/yun_photo.jpg" alt="" class="live-photo-static"  >
         <video muted playsinline preload="auto" class="live-photo-video">
           <source src="/images/live/yun_video.mp4" type="video/mp4">
@@ -344,7 +344,7 @@
       </div>
 <p> 雍和宫位于北京市东城区，最早建于清康熙三十三年（1694年），当时是康熙帝为其四子胤禛（后来的雍正皇帝）所建的府邸，称为雍亲王府。雍正三年（1725年），胤禛即位后将其改为行宫，称为雍和宫。乾隆九年（1744年），雍和宫被改为喇嘛庙，成为清政府管理全国藏传佛教事务的中心。雍和宫因其历史渊源和文化底蕴，被誉为“龙潜福地”，是清朝中后期全国规格最高的佛教寺院之一。</p>
  
-      <div class="live-photo-container" id="livephoto-0pq0do4e6" >
+      <div class="live-photo-container" id="livephoto-ddfsn7w5j" >
         <img src="/images/live/tencent_photo.jpg" alt="" class="live-photo-static"  >
         <video muted playsinline preload="auto" class="live-photo-video">
           <source src="/images/live/tencent_video.mp4" type="video/mp4">
@@ -363,13 +363,13 @@
             
               <a href="/2025/04/22/Mininet-theories-and-applications/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
-                <span>Prev</span>
+                <span>上一页</span>
               </a>
             
           </div>
           <div class="post-attach">
             <span class="post-pubtime">
-              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
               2026-01-04 20:55:13
             </span>
             
@@ -377,7 +377,7 @@
           <div class="post-foot-prev">
             
               <a href="/2026/02/01/redis101/" target="_self">
-                <span>Next</span>
+                <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
             
@@ -465,7 +465,7 @@
           </a>
         </span>
         
-          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
         
         <span class="search-close-icon" id="search-close-icon">
           <a href="javascript: void(0)">
@@ -517,7 +517,7 @@
       'use strict';
       var $input = document.getElementById(search_id);
       var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
       $.ajax({
         // 0x01. load xml file
         url: path,
@@ -613,7 +613,7 @@
             });
             str += "</ul>";
             if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
             }
             $resultContent.innerHTML = str;
           });
@@ -621,9 +621,9 @@
         error: function(xhr, status, error) {
           $resultContent.innerHTML = ""
           if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
           } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
           }
         }
       });

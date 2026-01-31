@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans" color-mode="light">
+<html lang="zh-CN" color-mode="light">
 
   <head><!-- hexo injector head_begin start -->
     <script>
@@ -244,15 +244,15 @@
         </li>
       
         <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">Tags</a>
+          <a href="/tags/">标签</a>
         </li>
       
         <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">Friends</a>
+          <a href="/friends/">友链</a>
         </li>
       
         <li class="nav-item" data-path="/about/">
-          <a href="/about/">About</a>
+          <a href="/about/">关于</a>
         </li>
       
     </ul>
@@ -313,7 +313,7 @@
       <div class="post-title">linux基础</div>
       <div class="post-attach">
         <span class="post-pubtime">
-          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
           2025-05-12 01:04:15
         </span>
         
@@ -392,13 +392,13 @@
             
               <a href="/2025/04/04/python-101/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
-                <span>Prev</span>
+                <span>上一页</span>
               </a>
             
           </div>
           <div class="post-attach">
             <span class="post-pubtime">
-              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
               2025-05-12 01:04:15
             </span>
             
@@ -406,7 +406,7 @@
           <div class="post-foot-prev">
             
               <a href="/2025/04/22/Mininet-theories-and-applications/" target="_self">
-                <span>Next</span>
+                <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
             
@@ -419,7 +419,7 @@
     <i class="iconfont icon-catalog"></i>
   </div>
   <div class="post-catalog hidden" id="catalog">
-    <div class="title">Contents</div>
+    <div class="title">目录</div>
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-text">基本命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">vim常用命令</span></a></li></ol></li></ol>
@@ -511,7 +511,7 @@
           </a>
         </span>
         
-          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索...">
         
         <span class="search-close-icon" id="search-close-icon">
           <a href="javascript: void(0)">
@@ -563,7 +563,7 @@
       'use strict';
       var $input = document.getElementById(search_id);
       var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
       $.ajax({
         // 0x01. load xml file
         url: path,
@@ -659,7 +659,7 @@
             });
             str += "</ul>";
             if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
             }
             $resultContent.innerHTML = str;
           });
@@ -667,9 +667,9 @@
         error: function(xhr, status, error) {
           $resultContent.innerHTML = ""
           if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
           } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
           }
         }
       });
