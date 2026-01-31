@@ -244,15 +244,15 @@
         </li>
       
         <li class="nav-item" data-path="/tags/">
-          <a href="/tags/">标签</a>
+          <a href="/tags/">Tags</a>
         </li>
       
         <li class="nav-item" data-path="/friends/">
-          <a href="/friends/">友链</a>
+          <a href="/friends/">Friends</a>
         </li>
       
         <li class="nav-item" data-path="/about/">
-          <a href="/about/">关于</a>
+          <a href="/about/">About</a>
         </li>
       
     </ul>
@@ -388,6 +388,29 @@
 
 
 
+
+
+  <div id="gitalk-container"></div>
+
+  <script>
+    function loadGitalkSuc() {
+      const gitalk = new Gitalk({
+        clientID: 'Ov23lirhdmOoOaSGKqz0',
+        clientSecret: '1bd203387fc0b6d8316959d329df616d481e5730',
+        repo: 'zuokangjia.github.io',
+        owner: 'zuokangjia',
+        admin: ['zuokangjia'],
+        id: location.pathname,
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
+    }
+  </script>
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" onload="loadGitalkSuc(this)"></script>
+  
 
 
 
