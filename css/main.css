@@ -484,8 +484,8 @@ pre .javascript .function {
 .markdown-body dl,
 .markdown-body table,
 .markdown-body pre {
-  margin-top: 0;
-  margin-bottom: 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .markdown-body hr {
@@ -598,6 +598,35 @@ pre .javascript .function {
 
 .markdown-body .highlight {
   margin-bottom: 16px;
+}
+
+.code-scroll-pane {
+  overflow-x: auto;
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.code-scroll-pane:hover {
+  scrollbar-color: var(--color-scrollbar-thumb) transparent;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.code-scroll-pane::-webkit-scrollbar {
+  height: 6px;
+}
+
+.code-scroll-pane::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+.code-scroll-pane:hover::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+}
+
+.code-scroll-pane::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 .markdown-body .highlight pre {
   margin-bottom: 0;
@@ -942,6 +971,7 @@ pre .javascript .function {
   --bg-block-md-table: #ffffff;
   --bg-block-md-table-2: #f6f8fa;
   --color-border-md-table: #dfe2e5;
+  --color-scrollbar-thumb: #ccc;
 }
 
 /* dark scheme */
@@ -965,6 +995,7 @@ pre .javascript .function {
   --bg-block-md-table: #2E3440;
   --bg-block-md-table-2: #313744;
   --color-border-md-table: #4c566a;
+  --color-scrollbar-thumb: #4c566a;
 }
 
 * {
