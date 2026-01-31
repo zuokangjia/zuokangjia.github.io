@@ -9,6 +9,18 @@ function initCodeCopy() {
     // 避免重复添加
     if (figure.querySelector('.pin-copy')) return
 
+    // 1. 创建滚动容器包裹 table (如果存在)
+    // 这样做的目的是为了让 table 横向滚动时，figure (及其绝对定位的复制按钮) 保持静止
+    const table = figure.querySelector('table')
+    if (table) {
+      const wrapper = document.createElement('div')
+      wrapper.className = 'code-scroll-pane'
+      // 将 wrapper 插入到 table 之前
+      table.parentNode.insertBefore(wrapper, table)
+      // 将 table 移动到 wrapper 中
+      wrapper.appendChild(table)
+    }
+
     // 创建复制按钮
     const copyBtn = document.createElement('span')
     copyBtn.className = 'pin-copy'
