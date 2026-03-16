@@ -170,7 +170,7 @@
   
   <title>
     
-      linux基础 
+      linux 备忘录 
       
       
       |
@@ -310,80 +310,75 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">linux基础</div>
+      <div class="post-title">linux 备忘录</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2025-05-12 01:04:15
+          2026-03-07 22:28:13
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/linux/" title="linux">
+                    #linux
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
-<p>Linux的基础操作指令<br>熟练了就会用了<br>只涉及基础操作，不涉及内核原理</p>
+<p>面向日常开发与运维的 Linux 高价值速查，强调“原理 + 命令 + 风险点”。</p>
 </blockquote>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li>发行版：Linux操作系统的不同版本，如Ubuntu、CentOS、Arch Linux等。</li>
-<li>终端：Linux系统的命令行界面，用户通过终端输入命令来操作系统。</li>
-<li>权限：在Linux系统中，权限是用来控制用户对文件和目录的访问权限的。</li>
-<li>文本编辑器：在Linux系统中，有很多文本编辑器可以用来编辑文件，如nano、vim、gedit等。</li>
+<h2 id="1-先建立三个核心认知"><a href="#1-先建立三个核心认知" class="headerlink" title="1. 先建立三个核心认知"></a>1. 先建立三个核心认知</h2><ul>
+<li>Linux 的本质是“<strong>一切皆文件</strong>”：设备、进程信息、网络状态都可通过文件接口观察。</li>
+<li>Shell 是“<strong>命令解释器</strong>”：负责展开变量、管道连接、重定向。</li>
+<li>权限模型是“<strong>用户&#x2F;组&#x2F;其他人 + rwx</strong>”：大部分线上事故都和权限或路径误操作有关。</li>
 </ul>
-<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>文件操作命令：</p>
+<h2 id="2-文件与目录（90-日常操作）"><a href="#2-文件与目录（90-日常操作）" class="headerlink" title="2. 文件与目录（90% 日常操作）"></a>2. 文件与目录（90% 日常操作）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span>                    <span class="comment"># 当前目录</span></span><br><span class="line"><span class="built_in">ls</span> -alh                <span class="comment"># 查看隐藏文件、权限、大小</span></span><br><span class="line"><span class="built_in">cd</span> /path               <span class="comment"># 切换目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p a/b/c         <span class="comment"># 递归创建目录</span></span><br><span class="line"><span class="built_in">touch</span> app.log          <span class="comment"># 创建空文件或更新时间戳</span></span><br><span class="line"><span class="built_in">cp</span> -r src dst          <span class="comment"># 复制目录</span></span><br><span class="line"><span class="built_in">mv</span> old new             <span class="comment"># 移动或重命名</span></span><br><span class="line"><span class="built_in">rm</span> -rf target          <span class="comment"># 高危：先 ls target 再执行</span></span><br><span class="line">find . -name <span class="string">&quot;*.log&quot;</span>    <span class="comment"># 按名称查找</span></span><br></pre></td></tr></table></figure>
+
+<p>高频风险点：</p>
 <ul>
-<li>ls：列出目录下的文件和目录。</li>
-<li>cd：切换目录。</li>
-<li>mkdir：创建目录。</li>
-<li>rm：删除文件或目录。<ul>
-<li>-r：递归删除目录及其子目录。</li>
-<li>-i：删除前询问确认。</li>
-<li>-f：强制删除，无需确认。</li>
-<li>-d：删除空目录。</li>
+<li><code>rm -rf</code> 前先 <code>pwd</code>，避免在错误目录执行。</li>
+<li>路径中有空格时使用引号：<code>&quot;my dir&quot;</code>。</li>
+<li>批量操作前先 dry-run：先 <code>echo</code> 命令确认目标集合。</li>
 </ul>
-</li>
-<li>touch：创建空文件。</li>
-<li>mv：移动或重命名文件或目录。</li>
-<li>cp：复制文件或目录。</li>
-</ul>
-<p>网络操作命令：</p>
+<h2 id="3-权限与身份"><a href="#3-权限与身份" class="headerlink" title="3. 权限与身份"></a>3. 权限与身份</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">whoami</span></span><br><span class="line"><span class="built_in">id</span></span><br><span class="line"><span class="built_in">ls</span> -l file.txt</span><br><span class="line"><span class="built_in">chmod</span> 644 file.txt     <span class="comment"># rw-r--r--</span></span><br><span class="line"><span class="built_in">chmod</span> +x script.sh</span><br><span class="line"><span class="built_in">chown</span> user:group file.txt</span><br><span class="line"><span class="built_in">sudo</span> -l                <span class="comment"># 查看当前用户 sudo 权限</span></span><br></pre></td></tr></table></figure>
+
+<p>简明规则：</p>
 <ul>
-<li>ifconfig：查看网络接口信息。</li>
-<li>ping：测试网络连接。</li>
-<li>ssh：远程登录。</li>
+<li>文件：常用 <code>644</code>；脚本&#x2F;可执行：常用 <code>755</code>。</li>
+<li>避免无脑 <code>777</code>：会放大安全面并掩盖真实权限问题。</li>
 </ul>
-<p>进程管理命令：</p>
+<h2 id="4-进程与资源定位"><a href="#4-进程与资源定位" class="headerlink" title="4. 进程与资源定位"></a>4. 进程与资源定位</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep python</span><br><span class="line">top                    <span class="comment"># 实时资源</span></span><br><span class="line">free -h                <span class="comment"># 内存</span></span><br><span class="line"><span class="built_in">df</span> -h                  <span class="comment"># 磁盘容量</span></span><br><span class="line"><span class="built_in">du</span> -sh *               <span class="comment"># 目录体积</span></span><br><span class="line"><span class="built_in">kill</span> -15 &lt;pid&gt;         <span class="comment"># 优雅终止</span></span><br><span class="line"><span class="built_in">kill</span> -9 &lt;pid&gt;          <span class="comment"># 强制终止（最后手段）</span></span><br></pre></td></tr></table></figure>
+
+<p>排障优先级：</p>
 <ul>
-<li>ps：查看进程信息。</li>
-<li>top：实时显示进程信息。</li>
-<li>kill：杀死进程。</li>
-<li>killall：杀死进程。</li>
-<li>nohup：后台运行命令。</li>
+<li>先看 CPU、内存、磁盘是否打满。</li>
+<li>再看进程状态（僵尸&#x2F;阻塞）与日志。</li>
 </ul>
-<p>系统管理命令：</p>
+<h2 id="5-网络与远程"><a href="#5-网络与远程" class="headerlink" title="5. 网络与远程"></a>5. 网络与远程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ip a                   <span class="comment"># 比 ifconfig 更通用</span></span><br><span class="line">ss -lntp               <span class="comment"># 监听端口 + 进程</span></span><br><span class="line">ping 8.8.8.8</span><br><span class="line">curl -I https://example.com</span><br><span class="line">ssh user@host</span><br><span class="line">scp file user@host:/tmp/</span><br></pre></td></tr></table></figure>
+
+<p>定位端口占用：</p>
 <ul>
-<li>man：查看命令的帮助信息。</li>
-<li>sudo：以超级用户权限运行命令。</li>
-<li>su：切换用户。</li>
-<li>chmod：修改文件或目录的权限。</li>
-<li>chmod -R 777: 递归地将目录及其子目录的权限设置为777。</li>
+<li>先 <code>ss -lntp | grep :端口</code></li>
+<li>再决定是重启服务还是释放旧进程。</li>
 </ul>
-<p>sudo apt update：更新软件源。</p>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>ctrl+alt+t：打开终端。</p>
-<h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><ul>
-<li>vi&#x2F;vim：Linux系统中最常用的文本编辑器。</li>
-<li>nano：功能较为简单，适合小型系统。</li>
-<li>gedit：GNOME桌面环境下最常用的文本编辑器。</li>
-<li>emacs：功能强大，可高度自定义。</li>
+<h2 id="6-包管理与服务管理（Debian-Ubuntu）"><a href="#6-包管理与服务管理（Debian-Ubuntu）" class="headerlink" title="6. 包管理与服务管理（Debian&#x2F;Ubuntu）"></a>6. 包管理与服务管理（Debian&#x2F;Ubuntu）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install nginx</span><br><span class="line">systemctl status nginx</span><br><span class="line">systemctl restart nginx</span><br><span class="line">journalctl -u nginx -n 100 --no-pager</span><br></pre></td></tr></table></figure>
+
+<p>建议：</p>
+<ul>
+<li>线上改配置后先 <code>systemctl status</code>，再看 <code>journalctl</code>，不要只看“命令执行成功”。</li>
 </ul>
-<h3 id="vim常用命令"><a href="#vim常用命令" class="headerlink" title="vim常用命令"></a>vim常用命令</h3><ul>
-<li>i：进入编辑模式。</li>
-<li>esc：退出编辑模式。</li>
-<li>:wq：保存并退出。</li>
-<li>:q!：强制退出不保存。</li>
-<li>?：查看帮助。</li>
-<li>&#x2F;：查找。</li>
-<li>p：粘贴。</li>
-<li>u：撤销。</li>
-</ul>
+<h2 id="7-一条最实用工作流"><a href="#7-一条最实用工作流" class="headerlink" title="7. 一条最实用工作流"></a>7. 一条最实用工作流</h2><ol>
+<li><code>pwd &amp;&amp; ls -al</code> 确认上下文。</li>
+<li>修改前备份：<code>cp conf conf.bak</code>。</li>
+<li>小步变更，单点验证（端口、日志、健康检查）。</li>
+<li>记录变更命令，保证可复现。</li>
+</ol>
 
       </div>
       
@@ -399,9 +394,20 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2025-05-12 01:04:15
+              2026-03-07 22:28:13
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/linux/" title="linux">
+                        #linux
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
             
@@ -422,7 +428,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-text">基本命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">vim常用命令</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%85%88%E5%BB%BA%E7%AB%8B%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E8%AE%A4%E7%9F%A5"><span class="toc-text">1. 先建立三个核心认知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%EF%BC%8890-%E6%97%A5%E5%B8%B8%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="toc-text">2. 文件与目录（90% 日常操作）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9D%83%E9%99%90%E4%B8%8E%E8%BA%AB%E4%BB%BD"><span class="toc-text">3. 权限与身份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D"><span class="toc-text">4. 进程与资源定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%BD%91%E7%BB%9C%E4%B8%8E%E8%BF%9C%E7%A8%8B"><span class="toc-text">5. 网络与远程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%8C%85%E7%AE%A1%E7%90%86%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%EF%BC%88Debian-Ubuntu%EF%BC%89"><span class="toc-text">6. 包管理与服务管理（Debian&#x2F;Ubuntu）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E4%B8%80%E6%9D%A1%E6%9C%80%E5%AE%9E%E7%94%A8%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-text">7. 一条最实用工作流</span></a></li></ol>
       
     </div>
   </div>
@@ -710,7 +716,7 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + linux%E5%9F%BA%E7%A1%80 + '&url=' + https%3A%2F%2Fzuokangjia.github.io%2F2025%2F04%2F15%2Flinux101%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + linux%20%E5%A4%87%E5%BF%98%E5%BD%95 + '&url=' + https%3A%2F%2Fzuokangjia.github.io%2F2025%2F04%2F15%2Flinux101%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
