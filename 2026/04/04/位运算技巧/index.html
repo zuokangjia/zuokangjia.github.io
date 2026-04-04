@@ -170,7 +170,7 @@
   
   <title>
     
-      TUN MODE 到底是什么 
+      位运算技巧 
       
       
       |
@@ -310,23 +310,121 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">TUN MODE 到底是什么</div>
+      <div class="post-title">位运算技巧</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2026-04-04 18:18:36
+          2026-04-04 18:22:25
         </span>
         
       </div>
       <div class="markdown-body">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><p>在讲代理服务中的TUN MODE是什么前，需要先明白VPN是怎么运作的。   </p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="常见位运算技巧"><a href="#常见位运算技巧" class="headerlink" title="常见位运算技巧"></a>常见位运算技巧</h2><table>
+<thead>
+<tr>
+<th>技巧表达式</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>n &amp; (n - 1)</code></td>
+<td>将最低位的 1 变成 0（清除最低位的 1）</td>
+<td><code>12 (1100) -&gt; 8 (1000)</code></td>
+</tr>
+<tr>
+<td><code>n &amp; -n</code></td>
+<td>提取最低位的 1（得到 2^k 形式的数）</td>
+<td><code>12 (1100) -&gt; 4 (0100)</code></td>
+</tr>
+<tr>
+<td><code>n | (n + 1)</code></td>
+<td>将最低位的 0 变成 1</td>
+<td><code>9 (1001) -&gt; 11 (1011)</code></td>
+</tr>
+<tr>
+<td><code>n | (n - 1)</code></td>
+<td>将末尾连续 0 变成 1</td>
+<td><code>8 (1000) -&gt; 15 (1111)</code></td>
+</tr>
+<tr>
+<td><code>n &amp; (n + 1)</code></td>
+<td>将末尾连续 1 变成 0</td>
+<td><code>7 (0111) -&gt; 0</code></td>
+</tr>
+<tr>
+<td><code>(n &amp; (n - 1)) == 0</code></td>
+<td>判断 n 是否为 2 的幂（或 0）</td>
+<td><code>8 -&gt; true, 6 -&gt; false</code></td>
+</tr>
+<tr>
+<td><code>x ^ y</code></td>
+<td>按位异或，可用于无临时变量交换、寻找只出现一次的数</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>(x ^ y) &gt;= 0</code></td>
+<td>判断 x 和 y 是否同号（最高位相同）</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n &gt;&gt; 31</code></td>
+<td>获取符号位（对于 32 位 int，负数得 -1，非负数得 0）</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>(n ^ (n &gt;&gt; 31)) - (n &gt;&gt; 31)</code></td>
+<td>求绝对值（兼容正负）</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>while (n) &#123; cnt++; n &amp;= n-1; &#125;</code></td>
+<td>计算二进制中 1 的个数（popcount）</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>sub = (sub - 1) &amp; super</code></td>
+<td>枚举超级集合 <code>super</code> 的所有子集</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h2><p><strong>1. 清除最低位的 1</strong><br><code>n = 0b10110</code> (22)<br><code>n-1 = 0b10101</code><br><code>n &amp; (n-1) = 0b10100</code> (20) ✅</p>
+<p><strong>2. 提取最低位的 1</strong><br><code>n = 0b10110</code> (22)<br><code>-n = 0b01010</code> (补码)<br><code>n &amp; -n = 0b00010</code> (2) ✅</p>
+<p><strong>3. 将最低位的 0 变成 1</strong><br><code>n = 0b10101</code> (21)<br><code>n+1 = 0b10110</code><br><code>n | (n+1) = 0b10111</code> (23) ✅</p>
+<p><strong>4. 将末尾连续 0 变成 1</strong><br><code>n = 0b10000</code> (16)<br><code>n-1 = 0b01111</code><br><code>n | (n-1) = 0b11111</code> (31) ✅</p>
+<p><strong>5. 判断 2 的幂</strong><br><code>n = 16</code> → <code>n &amp; (n-1) = 0</code> ✅<br><code>n = 18</code> → <code>n &amp; (n-1) = 16 ≠ 0</code> ❌</p>
+<h2 id="HashMap-核心技巧"><a href="#HashMap-核心技巧" class="headerlink" title="HashMap 核心技巧"></a>HashMap 核心技巧</h2><ul>
+<li><strong>底层</strong>：数组 + 链表&#x2F;红黑树（链表长度 ≥8 且数组 ≥64 时树化；红黑树节点 ≤6 时退化为链表）</li>
+<li><strong>哈希扰动</strong>：<code>(h = key.hashCode()) ^ (h &gt;&gt;&gt; 16)</code> → 混合高位低位，减少碰撞</li>
+<li><strong>取模优化</strong>：<code>(n - 1) &amp; hash</code> 代替 <code>hash % n</code>（要求 n 为 2 的幂）</li>
+<li><strong>扩容时机</strong>：<code>size &gt; threshold = capacity * loadFactor</code>（默认 0.75）</li>
+<li><strong>扩容机制</strong>：新容量翻倍（<code>oldCap &lt;&lt; 1</code>），元素重新分配 → 索引要么不变，要么 <code>oldIndex + oldCap</code></li>
+<li><strong>树化阈值</strong>：链表长度 ≥8 且数组 ≥64 → 转为红黑树，提升极端碰撞下的查询效率</li>
+</ul>
+<h2 id="ConcurrentHashMap-核心技巧"><a href="#ConcurrentHashMap-核心技巧" class="headerlink" title="ConcurrentHashMap 核心技巧"></a>ConcurrentHashMap 核心技巧</h2><ul>
+<li><strong>锁粒度</strong>：JDK 8+ 采用 <strong>CAS + synchronized</strong> 锁桶（Node 的头节点），放弃分段锁，降低锁竞争</li>
+<li><strong>初始化</strong>：使用 <code>sizeCtl</code> 控制多线程并发初始化（CAS 保证单次）</li>
+<li><strong>put 流程</strong>：<ul>
+<li>桶为空 → CAS 插入头节点</li>
+<li>桶非空 → synchronized 锁住头节点，进行链表&#x2F;红黑树插入</li>
+</ul>
+</li>
+<li><strong>扩容</strong>：支持<strong>多线程协助扩容</strong>（每个线程负责一部分桶迁移），通过 <code>transferIndex</code> 分配任务，<code>sizeCtl</code> 标记状态</li>
+<li><strong>计数</strong>：<code>LongAdder</code> 思想 → <code>baseCount + CounterCell[]</code> 分散计数，减少竞争</li>
+<li><strong>弱一致性</strong>：迭代器（如 <code>entrySet().iterator()</code>）不抛出 ConcurrentModificationException，允许遍历过程中修改</li>
+</ul>
+<h2 id="通用技巧"><a href="#通用技巧" class="headerlink" title="通用技巧"></a>通用技巧</h2><ul>
+<li><strong>初始化容量</strong>：预估 <code>expectedSize / loadFactor + 1</code> 避免频繁扩容</li>
+<li><strong>key 不可变</strong>：保证 hash 值稳定（尤其是放入后修改会导致丢失）</li>
+<li><strong>ConcurrentHashMap 不允许 null key&#x2F;value</strong>（HashMap 允许一个 null key）</li>
+</ul>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2026/02/01/redis101/" target="_self">
+              <a href="/2026/03/21/what-is-tun-mode/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -335,16 +433,11 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2026-04-04 18:18:36
+              2026-04-04 18:22:25
             </span>
             
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2026/04/04/%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8A%80%E5%B7%A7/" target="_self">
-                <span>下一页</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -358,7 +451,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#VPN"><span class="toc-text">VPN</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8A%80%E5%B7%A7"><span class="toc-text">常见位运算技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="toc-text">举例说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap-%E6%A0%B8%E5%BF%83%E6%8A%80%E5%B7%A7"><span class="toc-text">HashMap 核心技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConcurrentHashMap-%E6%A0%B8%E5%BF%83%E6%8A%80%E5%B7%A7"><span class="toc-text">ConcurrentHashMap 核心技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="toc-text">通用技巧</span></a></li></ol>
       
     </div>
   </div>
@@ -646,12 +739,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + TUN%20MODE%20%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88 + '&url=' + https%3A%2F%2Fzuokangjia.github.io%2F2026%2F03%2F21%2Fwhat-is-tun-mode%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E4%BD%8D%E8%BF%90%E7%AE%97%E6%8A%80%E5%B7%A7 + '&url=' + https%3A%2F%2Fzuokangjia.github.io%2F2026%2F04%2F04%2F%25E4%25BD%258D%25E8%25BF%2590%25E7%25AE%2597%25E6%258A%2580%25E5%25B7%25A7%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://zuokangjia.github.io/2026/03/21/what-is-tun-mode/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=https://zuokangjia.github.io/2026/04/04/%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8A%80%E5%B7%A7/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
