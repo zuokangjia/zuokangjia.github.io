@@ -314,7 +314,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2026-04-06 14:50:28
+          2026-11-04 22:18:15
         </span>
         
       </div>
@@ -322,56 +322,55 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
 <p>Linux的基础操作指令<br>熟练了就会用了<br>只涉及基础操作，不涉及内核原理</p>
 </blockquote>
+<p>自己整理的命令备忘，常用的就是这些，忘了就回来翻。</p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li>发行版：Linux操作系统的不同版本，如Ubuntu、CentOS、Arch Linux等。</li>
-<li>终端：Linux系统的命令行界面，用户通过终端输入命令来操作系统。</li>
-<li>权限：在Linux系统中，权限是用来控制用户对文件和目录的访问权限的。</li>
-<li>文本编辑器：在Linux系统中，有很多文本编辑器可以用来编辑文件，如nano、vim、gedit等。</li>
+<li>发行版：Linux 的不同“版本”，Ubuntu、CentOS、Arch 这些</li>
+<li>终端：敲命令的地方</li>
+<li>权限：谁能读、谁能写、谁能执行的规矩</li>
+<li>编辑器：nano、vim、gedit 这些，入门先用 nano，折腾用 vim</li>
 </ul>
-<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p><strong>文件操作</strong></p>
-<p>ls -la          # 列出文件（含隐藏文件）<br>cd &#x2F;path        # 切换目录<br>pwd             # 显示当前目录<br>mkdir -p a&#x2F;b&#x2F;c  # 创建目录（支持嵌套）<br>rm -rf dir      # 删除目录及内容（谨慎使用）<br>cp -r src dst   # 复制目录<br>mv src dst      # 移动&#x2F;重命名<br>ln -s file link # 创建软链接</p>
-<p><strong>文件查看</strong></p>
-<p>cat file        # 查看文件<br>less file       # 分页查看（支持搜索&#x2F;翻页）<br>head -n 20 file # 查看前20行<br>tail -f file    # 实时跟踪末尾<br>wc -l file      # 统计行数<br>zhe<br><strong>搜索查找</strong></p>
-<p>find &#x2F;path -name “*.log”          # 按文件名查找<br>grep -r “error” &#x2F;path             # 递归搜索内容<br>grep -E “pattern1|pattern2” file  # 正则匹配<br>grep -v “pattern” file            # 排除匹配行<br>which command                    # 查找命令位置</p>
-<p><strong>权限管理</strong></p>
-<p>chmod 755 file      # rwxr-xr-x<br>chmod +x script.sh # 添加执行权限<br>chown user:group file  # 更改所有者</p>
-<p><strong>进程管理</strong></p>
-<p>ps aux           # 查看所有进程<br>top &#x2F; htop       # 实时进程监控<br>kill -9 PID      # 强制终止进程<br>pkill -f “name”  # 按名称终止<br>nohup cmd &amp;      # 后台运行（忽略挂断）</p>
-<p><strong>磁盘系统</strong></p>
-<p>df -h            # 磁盘空间<br>du -sh *         # 目录大小<br>free -h          # 内存使用<br>uname -a         # 系统信息</p>
-<p><strong>网络</strong></p>
-<p>curl -I url      # 查看响应头<br>wget url         # 下载文件<br>netstat -tlnp    # 监听端口<br>ss -tlnp         # 同上（现代替代）<br>ping host        # 测试连通性<br>dig domain       # DNS查询</p>
-<p><strong>压缩解压</strong></p>
-<p>tar -czvf a.tar.gz dir&#x2F;   # 压缩<br>tar -xzvf a.tar.gz        # 解压<br>zip -r a.zip dir&#x2F;         # zip压缩<br>unzip a.zip               # zip解压</p>
-<p><strong>文本处理</strong></p>
-<p>awk ‘{print $1}’ file      # 提取第一列<br>sed ‘s&#x2F;old&#x2F;new&#x2F;g’ file     # 替换文本<br>sort file | uniq -c        # 排序并统计<br>cut -d’,’ -f1 file         # 按分隔符切割<br>tr -d ‘\n’                 # 删除字符</p>
-<p><strong>管道与重定向</strong></p>
-<p>cmd | grep pattern    # 管道过滤<br>cmd &gt; file 2&gt;&amp;1       # 重定向输出和错误<br>cmd &gt;&gt; file           # 追加输出<br>cmd1 &amp;&amp; cmd2          # 前者成功才执行后者<br>cmd1 || cmd2          # 前者失败才执行后者</p>
-<p><strong>快捷键</strong></p>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -la          <span class="comment"># 列出文件（含隐藏文件）</span></span><br><span class="line"><span class="built_in">cd</span> /path        <span class="comment"># 切换目录</span></span><br><span class="line"><span class="built_in">pwd</span>             <span class="comment"># 显示当前目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p a/b/c  <span class="comment"># 创建目录（支持嵌套）</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">dir</span>      <span class="comment"># 删除目录及内容（谨慎使用）</span></span><br><span class="line"><span class="built_in">cp</span> -r src dst   <span class="comment"># 复制目录</span></span><br><span class="line"><span class="built_in">mv</span> src dst      <span class="comment"># 移动/重命名</span></span><br><span class="line"><span class="built_in">ln</span> -s file <span class="built_in">link</span> <span class="comment"># 创建软链接</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="文件查看"><a href="#文件查看" class="headerlink" title="文件查看"></a>文件查看</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> file        <span class="comment"># 查看文件</span></span><br><span class="line">less file       <span class="comment"># 分页查看（支持搜索/翻页）</span></span><br><span class="line"><span class="built_in">head</span> -n 20 file <span class="comment"># 查看前20行</span></span><br><span class="line"><span class="built_in">tail</span> -f file    <span class="comment"># 实时跟踪末尾</span></span><br><span class="line"><span class="built_in">wc</span> -l file      <span class="comment"># 统计行数</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="搜索查找"><a href="#搜索查找" class="headerlink" title="搜索查找"></a>搜索查找</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">find /path -name <span class="string">&quot;*.log&quot;</span>          <span class="comment"># 按文件名查找</span></span><br><span class="line">grep -r <span class="string">&quot;error&quot;</span> /path             <span class="comment"># 递归搜索内容</span></span><br><span class="line">grep -E <span class="string">&quot;pattern1|pattern2&quot;</span> file  <span class="comment"># 正则匹配</span></span><br><span class="line">grep -v <span class="string">&quot;pattern&quot;</span> file            <span class="comment"># 排除匹配行</span></span><br><span class="line"><span class="built_in">which</span> <span class="built_in">command</span>                     <span class="comment"># 查找命令位置</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 755 file        <span class="comment"># rwxr-xr-x</span></span><br><span class="line"><span class="built_in">chmod</span> +x script.sh    <span class="comment"># 加执行权限</span></span><br><span class="line"><span class="built_in">chown</span> user:group file <span class="comment"># 改所有者</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ps aux           <span class="comment"># 查看所有进程</span></span><br><span class="line">top / htop       <span class="comment"># 实时进程监控</span></span><br><span class="line"><span class="built_in">kill</span> -9 PID      <span class="comment"># 强制终止（先试 kill -15）</span></span><br><span class="line">pkill -f <span class="string">&quot;name&quot;</span>  <span class="comment"># 按名称终止</span></span><br><span class="line"><span class="built_in">nohup</span> cmd &amp;      <span class="comment"># 后台运行（忽略挂断）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="磁盘和系统"><a href="#磁盘和系统" class="headerlink" title="磁盘和系统"></a>磁盘和系统</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> -h    <span class="comment"># 磁盘空间</span></span><br><span class="line"><span class="built_in">du</span> -sh * <span class="comment"># 每个目录多大</span></span><br><span class="line">free -h  <span class="comment"># 内存使用</span></span><br><span class="line"><span class="built_in">uname</span> -a <span class="comment"># 系统信息</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -I url <span class="comment"># 查看响应头</span></span><br><span class="line">wget url    <span class="comment"># 下载文件</span></span><br><span class="line">ss -tlnp    <span class="comment"># 看监听端口（netstat 现在不怎么用了）</span></span><br><span class="line">ping host   <span class="comment"># 测试连通性</span></span><br><span class="line">dig domain  <span class="comment"># DNS查询</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="压缩解压"><a href="#压缩解压" class="headerlink" title="压缩解压"></a>压缩解压</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -czvf a.tar.gz <span class="built_in">dir</span>/ <span class="comment"># 压缩</span></span><br><span class="line">tar -xzvf a.tar.gz      <span class="comment"># 解压</span></span><br><span class="line">zip -r a.zip <span class="built_in">dir</span>/       <span class="comment"># zip压缩</span></span><br><span class="line">unzip a.zip             <span class="comment"># zip解压</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> file   <span class="comment"># 提取第一列</span></span><br><span class="line">sed <span class="string">&#x27;s/old/new/g&#x27;</span> file  <span class="comment"># 替换文本</span></span><br><span class="line"><span class="built_in">sort</span> file | <span class="built_in">uniq</span> -c     <span class="comment"># 排序并统计</span></span><br><span class="line"><span class="built_in">cut</span> -d<span class="string">&#x27;,&#x27;</span> -f1 file      <span class="comment"># 按分隔符切割</span></span><br><span class="line"><span class="built_in">tr</span> -d <span class="string">&#x27;\n&#x27;</span>              <span class="comment"># 删除字符</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="管道与重定向"><a href="#管道与重定向" class="headerlink" title="管道与重定向"></a>管道与重定向</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cmd | grep pattern <span class="comment"># 管道过滤</span></span><br><span class="line">cmd &gt; file 2&gt;&amp;1    <span class="comment"># 重定向输出和错误</span></span><br><span class="line">cmd &gt;&gt; file        <span class="comment"># 追加输出</span></span><br><span class="line">cmd1 &amp;&amp; cmd2       <span class="comment"># 前者成功才执行后者</span></span><br><span class="line">cmd1 || cmd2       <span class="comment"># 前者失败才执行后者</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>终端里：</p>
 <ul>
-<li>Ctrl+C - 终止命令</li>
-<li>Ctrl+Z - 暂停（fg恢复）</li>
-<li>Ctrl+R - 搜索历史命令</li>
-<li>Tab - 自动补全</li>
-<li>!! - 执行上一条命令</li>
-<li>!$ - 上一条命令的最后一个参数</li>
+<li>Ctrl+C：终止命令</li>
+<li>Ctrl+Z：暂停（<code>fg</code> 恢复）</li>
+<li>Ctrl+R：搜索历史命令</li>
+<li>Tab：自动补全</li>
+<li><code>!!</code>：执行上一条命令</li>
+<li><code>!$</code>：上一条命令的最后一个参数</li>
 </ul>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>ctrl+alt+t：打开终端。</p>
+<p>系统层面：Ctrl+Alt+T 直接打开终端。</p>
 <h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><ul>
-<li>vi&#x2F;vim：Linux系统中最常用的文本编辑器。</li>
-<li>nano：功能较为简单，适合小型系统。</li>
-<li>gedit：GNOME桌面环境下最常用的文本编辑器。</li>
-<li>emacs：功能强大，可高度自定义。</li>
+<li>vi&#x2F;vim：最常用，很多机器上只有它</li>
+<li>nano：功能简单，改个配置文件够用</li>
+<li>gedit：GNOME 桌面自带的</li>
+<li>emacs：功能强大，配置起来也费劲</li>
 </ul>
-<h3 id="vim常用命令"><a href="#vim常用命令" class="headerlink" title="vim常用命令"></a>vim常用命令</h3><ul>
-<li>i：进入编辑模式。</li>
-<li>esc：退出编辑模式。</li>
-<li>:wq：保存并退出。</li>
-<li>:q!：强制退出不保存。</li>
-<li>?：查看帮助。</li>
-<li>&#x2F;：查找。</li>
-<li>p：粘贴。</li>
-<li>u：撤销。</li>
+<p>vim 常用：</p>
+<ul>
+<li><code>i</code> 进入编辑模式，<code>Esc</code> 退出编辑模式</li>
+<li><code>:wq</code> 保存退出，<code>:q!</code> 强制退出不保存</li>
+<li><code>/</code> 往下查找，<code>?</code> 往上查找，<code>:help</code> 看帮助</li>
+<li><code>p</code> 粘贴，<code>u</code> 撤销</li>
 </ul>
 
       </div>
@@ -388,7 +387,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2026-04-06 14:50:28
+              2026-11-04 22:18:15
             </span>
             
           </div>
@@ -411,7 +410,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-text">基本命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vim%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">vim常用命令</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-text">基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">文件操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B"><span class="toc-text">文件查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE"><span class="toc-text">搜索查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-text">权限管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-text">进程管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E5%92%8C%E7%B3%BB%E7%BB%9F"><span class="toc-text">磁盘和系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-text">网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B"><span class="toc-text">压缩解压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86"><span class="toc-text">文本处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-text">管道与重定向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">编辑器</span></a></li></ol>
       
     </div>
   </div>

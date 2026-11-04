@@ -314,7 +314,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2026-03-07 22:27:49
+          2026-11-04 22:18:15
         </span>
         
               <span class="post-tags">
@@ -330,70 +330,46 @@
           
       </div>
       <div class="markdown-body">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><blockquote>
-<p>Redis 不是“万能缓存”，而是高性能内存数据结构服务。核心是“场景匹配 + 持久化 + 内存治理”。</p>
-</blockquote>
-<h2 id="1-Redis-适合什么，不适合什么"><a href="#1-Redis-适合什么，不适合什么" class="headerlink" title="1. Redis 适合什么，不适合什么"></a>1. Redis 适合什么，不适合什么</h2><p>适合：</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>前阵子把 Redis 重新过了一遍。之前只会 <code>SET</code>、<code>GET</code>，这次顺手把持久化、内存淘汰和缓存那几个经典问题也理了理，记下来。</p>
+<h2 id="先想清楚拿来干嘛"><a href="#先想清楚拿来干嘛" class="headerlink" title="先想清楚拿来干嘛"></a>先想清楚拿来干嘛</h2><p>Redis 是内存里的数据结构服务，本质上不是数据库。我目前用得上的场景：</p>
 <ul>
-<li>缓存热点数据（低延迟读）</li>
-<li>计数器、排行榜、会话、分布式锁</li>
-<li>流式消息（<code>Stream</code>）</li>
+<li>缓存热点数据，图的就是快</li>
+<li>计数器、排行榜、会话、分布式锁这种小的、高频的东西</li>
+<li>消息队列可以拿 <code>Stream</code> 凑合</li>
 </ul>
-<p>不适合：</p>
-<ul>
-<li>超大规模冷数据长期存储</li>
-<li>需要复杂多表关联查询的场景</li>
-</ul>
-<h2 id="2-五种常用数据结构与复杂度直觉"><a href="#2-五种常用数据结构与复杂度直觉" class="headerlink" title="2. 五种常用数据结构与复杂度直觉"></a>2. 五种常用数据结构与复杂度直觉</h2><ul>
-<li><code>String</code>：缓存对象、计数器（<code>INCR</code>）</li>
-<li><code>Hash</code>：对象字段存储（比 JSON 字符串更易局部更新）</li>
-<li><code>List</code>：简单队列（注意积压）</li>
+<p>不适合的也要知道：拿它当大号数据库塞冷数据，或者要复杂多表关联查询的场景，都不合适。</p>
+<h2 id="五种结构"><a href="#五种结构" class="headerlink" title="五种结构"></a>五种结构</h2><ul>
+<li><code>String</code>：缓存对象、<code>INCR</code> 计数</li>
+<li><code>Hash</code>：存对象的字段，比整个 JSON 字符串好改，能局部更新</li>
+<li><code>List</code>：简单队列，但用之前先想想积压了怎么办</li>
 <li><code>Set</code>：去重、交并差</li>
-<li><code>ZSet</code>：排行榜（按 score 排序）</li>
+<li><code>ZSet</code>：排行榜，按 score 排序</li>
 </ul>
-<p>实践建议：</p>
+<p>选结构之前先把 key 想好，我一般按 <code>业务:实体:ID</code> 写，后面排查、扫 key 都省事。</p>
+<h2 id="持久化：RDB-和-AOF"><a href="#持久化：RDB-和-AOF" class="headerlink" title="持久化：RDB 和 AOF"></a>持久化：RDB 和 AOF</h2><p>RDB 是快照，恢复快，但两次快照之间的数据可能丢。AOF 记的是写命令，数据更完整，文件更大、恢复也慢一点。</p>
+<p>生产上常见的是两个都开：RDB 兜底快速恢复，AOF 负责少丢数据。具体哪个为主，看业务能接受丢多少。</p>
+<h2 id="内存满了怎么办"><a href="#内存满了怎么办" class="headerlink" title="内存满了怎么办"></a>内存满了怎么办</h2><p>就两个配置：<code>maxmemory</code> 是上限，<code>maxmemory-policy</code> 是淘汰策略（比如 <code>allkeys-lru</code>）。</p>
+<p>两个坑：</p>
 <ul>
-<li>优先设计 key 结构，再选数据结构。</li>
-<li>key 命名统一：<code>业务:实体:ID</code>，便于治理与扫描。</li>
+<li>不设过期时间，缓存早晚把内存吃满，变成“内存黑洞”</li>
+<li>大 key（超大 value、超长 list）不光占内存，读写和删除都会卡</li>
 </ul>
-<h2 id="3-持久化必须清楚（RDB-vs-AOF）"><a href="#3-持久化必须清楚（RDB-vs-AOF）" class="headerlink" title="3. 持久化必须清楚（RDB vs AOF）"></a>3. 持久化必须清楚（RDB vs AOF）</h2><ul>
-<li><code>RDB</code>：快照，恢复快，可能丢失最近一段数据。</li>
-<li><code>AOF</code>：追加日志，数据更完整，文件更大，恢复较慢。</li>
-<li>生产常用：<code>RDB + AOF</code> 组合，兼顾恢复速度与数据安全。</li>
-</ul>
-<h2 id="4-内存与淘汰策略"><a href="#4-内存与淘汰策略" class="headerlink" title="4. 内存与淘汰策略"></a>4. 内存与淘汰策略</h2><p>关键配置：</p>
+<h2 id="缓存三件套"><a href="#缓存三件套" class="headerlink" title="缓存三件套"></a>缓存三件套</h2><p>这块面试问得多，实际也容易出问题：</p>
 <ul>
-<li><code>maxmemory</code>：内存上限</li>
-<li><code>maxmemory-policy</code>：淘汰策略（如 <code>allkeys-lru</code>）</li>
+<li>缓存穿透：查一个本来就不存在的数据，请求全穿到 DB。布隆过滤器挡一层，查不到也缓存个空值，TTL 设短一点</li>
+<li>缓存击穿：某个热点 key 刚好过期，瞬间并发打到 DB。用互斥锁只放一个请求去回源，或者干脆逻辑过期、不删旧值</li>
+<li>缓存雪崩：一大批 key 同时过期。过期时间加随机抖动，再配合多级缓存</li>
 </ul>
-<p>常见误区：</p>
-<ul>
-<li>不设置过期时间，缓存会退化成“内存黑洞”。</li>
-<li>大 key（超大 value &#x2F; 超长 list）会导致阻塞和抖动。</li>
-</ul>
-<h2 id="5-缓存三大问题与应对"><a href="#5-缓存三大问题与应对" class="headerlink" title="5. 缓存三大问题与应对"></a>5. 缓存三大问题与应对</h2><ul>
-<li>缓存穿透：查询不存在数据<ul>
-<li>方案：布隆过滤器 + 空值短 TTL</li>
-</ul>
-</li>
-<li>缓存击穿：热点 key 过期瞬间并发打 DB<ul>
-<li>方案：互斥锁 + 逻辑过期</li>
-</ul>
-</li>
-<li>缓存雪崩：大量 key 同时过期<ul>
-<li>方案：过期时间加随机抖动 + 多级缓存</li>
-</ul>
-</li>
-</ul>
-<h2 id="6-最小可用命令集"><a href="#6-最小可用命令集" class="headerlink" title="6. 最小可用命令集"></a>6. 最小可用命令集</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br><span class="line">PING</span><br><span class="line">SET user:1:name <span class="string">&quot;alice&quot;</span> EX 60</span><br><span class="line">GET user:1:name</span><br><span class="line">HSET user:1 age 20 city shanghai</span><br><span class="line">HGETALL user:1</span><br><span class="line">ZADD rank 100 userA 120 userB</span><br><span class="line">ZRANGE rank 0 -1 WITHSCORES</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br><span class="line">PING</span><br><span class="line">SET user:1:name <span class="string">&quot;alice&quot;</span> EX 60</span><br><span class="line">GET user:1:name</span><br><span class="line">HSET user:1 age 20 city shanghai</span><br><span class="line">HGETALL user:1</span><br><span class="line">ZADD rank 100 userA 120 userB</span><br><span class="line">ZRANGE rank 0 -1 WITHSCORES</span><br></pre></td></tr></table></figure>
 
-<h2 id="7-线上治理清单"><a href="#7-线上治理清单" class="headerlink" title="7. 线上治理清单"></a>7. 线上治理清单</h2><ol>
-<li>所有缓存 key 必须有 TTL（除极少数白名单）。</li>
-<li>监控命中率、内存、慢查询、连接数。</li>
-<li>禁止 <code>KEYS *</code>，排查用 <code>SCAN</code>。</li>
-<li>大 key 定期巡检并拆分。</li>
-<li>变更前先在压测环境验证淘汰策略与 QPS 峰值。</li>
-</ol>
+<h2 id="一些容易忽略的点"><a href="#一些容易忽略的点" class="headerlink" title="一些容易忽略的点"></a>一些容易忽略的点</h2><ul>
+<li>缓存尽量都设 TTL，除了少数白名单</li>
+<li>命中率、内存、慢查询、连接数这几个指标盯住，出问题基本都能看出来</li>
+<li>线上不要 <code>KEYS *</code>，会阻塞，扫 key 用 <code>SCAN</code></li>
+<li>大 key 定期查一查，能拆就拆</li>
+<li>改淘汰策略、改内存这种操作，先在压测环境按峰值 QPS 跑一遍</li>
+</ul>
+<p>先记这些，后面用到再补。</p>
 
       </div>
       
@@ -409,7 +385,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2026-03-07 22:27:49
+              2026-11-04 22:18:15
             </span>
             
                   <span class="post-tags">
@@ -443,7 +419,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Redis-%E9%80%82%E5%90%88%E4%BB%80%E4%B9%88%EF%BC%8C%E4%B8%8D%E9%80%82%E5%90%88%E4%BB%80%E4%B9%88"><span class="toc-text">1. Redis 适合什么，不适合什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BA%94%E7%A7%8D%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9B%B4%E8%A7%89"><span class="toc-text">2. 五种常用数据结构与复杂度直觉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%8C%81%E4%B9%85%E5%8C%96%E5%BF%85%E9%A1%BB%E6%B8%85%E6%A5%9A%EF%BC%88RDB-vs-AOF%EF%BC%89"><span class="toc-text">3. 持久化必须清楚（RDB vs AOF）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%86%85%E5%AD%98%E4%B8%8E%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-text">4. 内存与淘汰策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%BC%93%E5%AD%98%E4%B8%89%E5%A4%A7%E9%97%AE%E9%A2%98%E4%B8%8E%E5%BA%94%E5%AF%B9"><span class="toc-text">5. 缓存三大问题与应对</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%9C%80%E5%B0%8F%E5%8F%AF%E7%94%A8%E5%91%BD%E4%BB%A4%E9%9B%86"><span class="toc-text">6. 最小可用命令集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%BA%BF%E4%B8%8A%E6%B2%BB%E7%90%86%E6%B8%85%E5%8D%95"><span class="toc-text">7. 线上治理清单</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E6%83%B3%E6%B8%85%E6%A5%9A%E6%8B%BF%E6%9D%A5%E5%B9%B2%E5%98%9B"><span class="toc-text">先想清楚拿来干嘛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E7%A7%8D%E7%BB%93%E6%9E%84"><span class="toc-text">五种结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB-%E5%92%8C-AOF"><span class="toc-text">持久化：RDB 和 AOF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%BB%A1%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-text">内存满了怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E4%B8%89%E4%BB%B6%E5%A5%97"><span class="toc-text">缓存三件套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%E7%82%B9"><span class="toc-text">一些容易忽略的点</span></a></li></ol>
       
     </div>
   </div>
