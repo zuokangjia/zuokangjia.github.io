@@ -314,7 +314,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2026-04-04 18:15:33
+          2026-04-06 14:50:28
         </span>
         
       </div>
@@ -328,45 +328,34 @@
 <li>权限：在Linux系统中，权限是用来控制用户对文件和目录的访问权限的。</li>
 <li>文本编辑器：在Linux系统中，有很多文本编辑器可以用来编辑文件，如nano、vim、gedit等。</li>
 </ul>
-<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>文件操作命令：</p>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p><strong>文件操作</strong></p>
+<p>ls -la          # 列出文件（含隐藏文件）<br>cd &#x2F;path        # 切换目录<br>pwd             # 显示当前目录<br>mkdir -p a&#x2F;b&#x2F;c  # 创建目录（支持嵌套）<br>rm -rf dir      # 删除目录及内容（谨慎使用）<br>cp -r src dst   # 复制目录<br>mv src dst      # 移动&#x2F;重命名<br>ln -s file link # 创建软链接</p>
+<p><strong>文件查看</strong></p>
+<p>cat file        # 查看文件<br>less file       # 分页查看（支持搜索&#x2F;翻页）<br>head -n 20 file # 查看前20行<br>tail -f file    # 实时跟踪末尾<br>wc -l file      # 统计行数<br>zhe<br><strong>搜索查找</strong></p>
+<p>find &#x2F;path -name “*.log”          # 按文件名查找<br>grep -r “error” &#x2F;path             # 递归搜索内容<br>grep -E “pattern1|pattern2” file  # 正则匹配<br>grep -v “pattern” file            # 排除匹配行<br>which command                    # 查找命令位置</p>
+<p><strong>权限管理</strong></p>
+<p>chmod 755 file      # rwxr-xr-x<br>chmod +x script.sh # 添加执行权限<br>chown user:group file  # 更改所有者</p>
+<p><strong>进程管理</strong></p>
+<p>ps aux           # 查看所有进程<br>top &#x2F; htop       # 实时进程监控<br>kill -9 PID      # 强制终止进程<br>pkill -f “name”  # 按名称终止<br>nohup cmd &amp;      # 后台运行（忽略挂断）</p>
+<p><strong>磁盘系统</strong></p>
+<p>df -h            # 磁盘空间<br>du -sh *         # 目录大小<br>free -h          # 内存使用<br>uname -a         # 系统信息</p>
+<p><strong>网络</strong></p>
+<p>curl -I url      # 查看响应头<br>wget url         # 下载文件<br>netstat -tlnp    # 监听端口<br>ss -tlnp         # 同上（现代替代）<br>ping host        # 测试连通性<br>dig domain       # DNS查询</p>
+<p><strong>压缩解压</strong></p>
+<p>tar -czvf a.tar.gz dir&#x2F;   # 压缩<br>tar -xzvf a.tar.gz        # 解压<br>zip -r a.zip dir&#x2F;         # zip压缩<br>unzip a.zip               # zip解压</p>
+<p><strong>文本处理</strong></p>
+<p>awk ‘{print $1}’ file      # 提取第一列<br>sed ‘s&#x2F;old&#x2F;new&#x2F;g’ file     # 替换文本<br>sort file | uniq -c        # 排序并统计<br>cut -d’,’ -f1 file         # 按分隔符切割<br>tr -d ‘\n’                 # 删除字符</p>
+<p><strong>管道与重定向</strong></p>
+<p>cmd | grep pattern    # 管道过滤<br>cmd &gt; file 2&gt;&amp;1       # 重定向输出和错误<br>cmd &gt;&gt; file           # 追加输出<br>cmd1 &amp;&amp; cmd2          # 前者成功才执行后者<br>cmd1 || cmd2          # 前者失败才执行后者</p>
+<p><strong>快捷键</strong></p>
 <ul>
-<li>ls：列出目录下的文件和目录。</li>
-<li>cd：切换目录。</li>
-<li>mkdir：创建目录。</li>
-<li>rm：删除文件或目录。<ul>
-<li>-r：递归删除目录及其子目录。</li>
-<li>-i：删除前询问确认。</li>
-<li>-f：强制删除，无需确认。</li>
-<li>-d：删除空目录。</li>
+<li>Ctrl+C - 终止命令</li>
+<li>Ctrl+Z - 暂停（fg恢复）</li>
+<li>Ctrl+R - 搜索历史命令</li>
+<li>Tab - 自动补全</li>
+<li>!! - 执行上一条命令</li>
+<li>!$ - 上一条命令的最后一个参数</li>
 </ul>
-</li>
-<li>touch：创建空文件。</li>
-<li>mv：移动或重命名文件或目录。</li>
-<li>cp：复制文件或目录。</li>
-</ul>
-<p>网络操作命令：</p>
-<ul>
-<li>ifconfig：查看网络接口信息。</li>
-<li>ping：测试网络连接。</li>
-<li>ssh：远程登录。</li>
-</ul>
-<p>进程管理命令：</p>
-<ul>
-<li>ps：查看进程信息。</li>
-<li>top：实时显示进程信息。</li>
-<li>kill：杀死进程。</li>
-<li>killall：杀死进程。</li>
-<li>nohup：后台运行命令。</li>
-</ul>
-<p>系统管理命令：</p>
-<ul>
-<li>man：查看命令的帮助信息。</li>
-<li>sudo：以超级用户权限运行命令。</li>
-<li>su：切换用户。</li>
-<li>chmod：修改文件或目录的权限。</li>
-<li>chmod -R 777: 递归地将目录及其子目录的权限设置为777。</li>
-</ul>
-<p>sudo apt update：更新软件源。</p>
 <h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>ctrl+alt+t：打开终端。</p>
 <h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><ul>
 <li>vi&#x2F;vim：Linux系统中最常用的文本编辑器。</li>
@@ -399,7 +388,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2026-04-04 18:15:33
+              2026-04-06 14:50:28
             </span>
             
           </div>
