@@ -2,6 +2,9 @@
  * Live Photo 前端逻辑
  * 由 scripts/livephoto.js 按需注入为 <script defer>，只在包含 [data-livephoto] 的页面出现。
  * 特点：没有 window 全局变量、没有内联配置，行为全部由元素上的 data-* 属性决定。
+ *
+ * 视频默认 preload="none"，所以静态图会一直显示到视频真正开始播放；
+ * 加载期间只显示一个小转盘，不会出现“图先消失、黑屏等视频”的闪烁。
  */
 (function () {
   'use strict';
@@ -45,7 +48,7 @@
       this.autoplay = false;
     }
 
-    this.playing = false;
+    this.wantPlay = false;
     this.hoverTimer = null;
     this.observer = null;
 
@@ -105,14 +108,17 @@
     this.video.addEventListener('waiting', function () {
       self.loading(true);
     });
-    this.video.addEventListener('playing', function () {
-      self.loading(false);
-    });
     this.video.addEventListener('canplay', function () {
       self.loading(false);
     });
-    this.video.addEventListener('error', function () {
+    this.video.addEventListener('playing', function () {
+      if (!self.wantPlay) {
+        return;
+      }
+      self.root.classList.add('is-playing');
       self.loading(false);
+    });
+    this.video.addEventListener('error', function () {
       self.pause();
     });
   };
@@ -124,7 +130,7 @@
   };
 
   LivePhoto.prototype.toggle = function () {
-    if (this.playing) {
+    if (this.wantPlay) {
       this.pause();
     } else {
       this.play();
@@ -132,7 +138,7 @@
   };
 
   LivePhoto.prototype.play = function () {
-    if (this.playing) {
+    if (this.wantPlay) {
       return;
     }
     if (this.hoverTimer) {
@@ -140,14 +146,14 @@
       this.hoverTimer = null;
     }
 
-    this.playing = true;
-    this.root.classList.add('is-playing');
+    this.wantPlay = true;
+    this.loading(true);
 
+    var self = this;
     var promise = this.video.play();
     if (promise && typeof promise.catch === 'function') {
-      var self = this;
       promise.catch(function () {
-        self.playing = false;
+        self.wantPlay = false;
         self.root.classList.remove('is-playing');
         self.loading(false);
       });
@@ -155,10 +161,10 @@
   };
 
   LivePhoto.prototype.pause = function () {
-    if (!this.playing) {
+    if (!this.wantPlay && !this.root.classList.contains('is-playing')) {
       return;
     }
-    this.playing = false;
+    this.wantPlay = false;
     this.root.classList.remove('is-playing');
     this.loading(false);
     this.video.pause();
@@ -168,7 +174,7 @@
     if (!this.spinner) {
       return;
     }
-    this.root.classList.toggle('is-loading', !!visible && this.playing);
+    this.root.classList.toggle('is-loading', !!visible && this.wantPlay);
   };
 
   LivePhoto.prototype.observe = function () {

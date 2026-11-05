@@ -16,6 +16,7 @@
 .lp {
   position: relative;
   display: block;
+  max-width: 100%;
   overflow: hidden;
   border-radius: 12px;
   cursor: pointer;
@@ -35,17 +36,26 @@
   outline-offset: 3px;
 }
 
-/* 静态封面图 */
-.lp-img {
+/* 静态封面图
+ * 用 .lp .lp-img 提高优先级：主题的 .markdown-body img 会强制 max-width:80% / margin:auto，
+ * 不覆盖的话视频层和图片尺寸会对不上。 */
+.lp .lp-picture {
+  display: block;
+}
+
+.lp .lp-img {
   display: block;
   width: auto;
   max-width: 100%;
   height: auto;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
   transition: opacity 0.3s ease;
 }
 
 /* 视频图层：铺满容器，默认透明 */
-.lp-video {
+.lp .lp-video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -124,6 +134,12 @@
   font-size: 13px;
   line-height: 1.5;
   text-align: center;
+}
+
+/* 与 hexo-image-caption 插件共存：动态照片用自己的 figcaption 写说明，
+ * 隐藏插件根据 alt 自动插入的说明，避免它撑高容器、被视频层盖住。 */
+.lp .image-caption {
+  display: none !important;
 }
 
 @keyframes lp-spin {
