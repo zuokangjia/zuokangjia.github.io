@@ -36,11 +36,17 @@
   outline-offset: 3px;
 }
 
-/* 静态封面图
- * 用 .lp .lp-img 提高优先级：主题的 .markdown-body img 会强制 max-width:80% / margin:auto，
- * 不覆盖的话视频层和图片尺寸会对不上。 */
+/* 静态封面图（上层）
+ * 用 .lp .lp-* 提高优先级：主题的 .markdown-body img 会强制 max-width:80% / margin:auto，
+ * 不覆盖的话视频层和图片尺寸会对不上。
+ * 叠在视频上层，等视频第一帧真正呈现后才淡出（见 JS），
+ * 避免“图片先淡出、视频还没画出来”时露出白色页面背景。 */
 .lp .lp-picture {
+  position: relative;
+  z-index: 2;
   display: block;
+  background: transparent;
+  transition: opacity 0.3s ease;
 }
 
 .lp .lp-img {
@@ -51,33 +57,29 @@
   margin: 0;
   border-radius: 0;
   background: transparent;
-  transition: opacity 0.3s ease;
 }
 
-/* 视频图层：铺满容器，默认透明 */
+/* 视频图层：常驻不透明，垫在静态图下面。
+ * 不对它做 opacity 动画，避免视频合成层在首帧未就绪时被画成白/透明色。 */
 .lp .lp-video {
   position: absolute;
   inset: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.lp.is-playing .lp-video {
   opacity: 1;
+  pointer-events: none;
 }
 
-.lp.is-playing .lp-img {
+.lp.is-playing .lp-picture {
   opacity: 0;
 }
 
 /* Live 徽标 */
 .lp-badge {
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -110,7 +112,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 1;
+  z-index: 3;
   width: 34px;
   height: 34px;
   margin: -17px 0 0 -17px;
@@ -161,8 +163,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .lp,
-  .lp-img,
-  .lp-video {
+  .lp-picture {
     transition: none;
   }
 

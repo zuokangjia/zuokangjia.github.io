@@ -5,6 +5,11 @@
  *
  * 视频默认 preload="none"，所以静态图会一直显示到视频真正开始播放；
  * 加载期间只显示一个小转盘，不会出现“图先消失、黑屏等视频”的闪烁。
+ *
+ * 图层顺序：视频常驻不透明垫在下面，静态图在上层。
+ * 只有在 requestVideoFrameCallback 确认视频第一帧已经真正呈现后，
+ * 才把上层静态图淡出（见 waitFirstFrame / reveal），
+ * 这样无论视频首帧多晚、视频合成层是否画白，都不会露出白色页面背景。
  */
 (function () {
   'use strict';
@@ -49,7 +54,9 @@
     }
 
     this.wantPlay = false;
+    this.revealed = false;
     this.hoverTimer = null;
+    this.revealTimer = null;
     this.observer = null;
 
     if (!this.video) {
@@ -109,14 +116,13 @@
       self.loading(true);
     });
     this.video.addEventListener('canplay', function () {
-      self.loading(false);
+      // 只等 rVFC/首帧呈现后再揭晓，这里不提前隐藏转盘
     });
     this.video.addEventListener('playing', function () {
       if (!self.wantPlay) {
         return;
       }
-      self.root.classList.add('is-playing');
-      self.loading(false);
+      self.waitFirstFrame();
     });
     this.video.addEventListener('error', function () {
       self.pause();
@@ -154,8 +160,13 @@
     if (promise && typeof promise.catch === 'function') {
       promise.catch(function () {
         self.wantPlay = false;
+        self.revealed = false;
         self.root.classList.remove('is-playing');
         self.loading(false);
+        if (self.revealTimer) {
+          clearTimeout(self.revealTimer);
+          self.revealTimer = null;
+        }
       });
     }
   };
@@ -165,6 +176,11 @@
       return;
     }
     this.wantPlay = false;
+    this.revealed = false;
+    if (this.revealTimer) {
+      clearTimeout(this.revealTimer);
+      this.revealTimer = null;
+    }
     this.root.classList.remove('is-playing');
     this.loading(false);
     this.video.pause();
@@ -174,7 +190,54 @@
     if (!this.spinner) {
       return;
     }
-    this.root.classList.toggle('is-loading', !!visible && this.wantPlay);
+    this.root.classList.toggle('is-loading', !!visible && this.wantPlay && !this.revealed);
+  };
+
+  // 揭晓：把上层静态图淡出，露出下面的视频
+  LivePhoto.prototype.reveal = function () {
+    if (this.revealed || !this.wantPlay) {
+      return;
+    }
+    this.revealed = true;
+    this.root.classList.add('is-playing');
+    this.loading(false);
+    if (this.revealTimer) {
+      clearTimeout(this.revealTimer);
+      this.revealTimer = null;
+    }
+  };
+
+  // 等视频第一帧真正呈现后再淡出静态图，避免露出白色页面背景
+  LivePhoto.prototype.waitFirstFrame = function () {
+    var self = this;
+    if (this.revealTimer) {
+      clearTimeout(this.revealTimer);
+      this.revealTimer = null;
+    }
+
+    if (typeof this.video.requestVideoFrameCallback === 'function') {
+      this.video.requestVideoFrameCallback(function () {
+        self.reveal();
+      });
+      // 兜底：个别情况下 rVFC 不触发（例如第一帧出现前就被暂停）
+      this.revealTimer = setTimeout(function () {
+        if (self.wantPlay && self.video.readyState >= 2) {
+          self.reveal();
+        }
+      }, 300);
+    } else if (this.video.readyState >= 2) {
+      if (typeof window.requestAnimationFrame === 'function') {
+        window.requestAnimationFrame(function () {
+          self.reveal();
+        });
+      } else {
+        this.reveal();
+      }
+    } else {
+      this.revealTimer = setTimeout(function () {
+        self.reveal();
+      }, 100);
+    }
   };
 
   LivePhoto.prototype.observe = function () {
